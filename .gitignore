@@ -1,0 +1,26 @@
+# Composer
+/vendor
+composer.phar
+composer.lock
+.env
+
+# Random nonsense / project stuff
+.DS_Store
+Thumbs.db
+*.idea/
+php.ini
+
+# project files
+/projects/*
+
+# hidden files and directories (in case)
+.cache/
+.selected_editor
+.viminfo
+.project
+.ssh/
+.idea/
+
+* Smarty files
+/smarty/*
+/templates_c/*

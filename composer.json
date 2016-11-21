@@ -1,0 +1,6 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^2.2",
+        "maximebf/debugbar": "1.*"
+    }
+}
