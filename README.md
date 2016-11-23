@@ -15,3 +15,4 @@ This repository contains all necessary code involved in running the jerweb appli
 * Create script to send question / poll results at end of day to Discord
 * Create script that templates out the database
 * Add example .env file
+* Implement editing of profiles plus additional profile fields
