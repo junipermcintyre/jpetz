@@ -40,11 +40,17 @@ function buildTable(headers, rows){
 *	a notification banner across the top of the viewport.						*
 ********************************************************************************/
 function notify(m, l){
-	var s = '<div class="alert alert-'+l+' alert-dismissible show" role="alert">';
+	/*var s = '<div class="alert alert-'+l+' alert-dismissible show" role="alert">';
 	s += 		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
 	s += 			'<span aria-hidden="true">&times;</span>';
 	s += 		'</button>';
 	s += 		m;
 	s += 	'</div>';
-	$("#notify").html(s)
+	$("#notify").html(s)*/
+	if (l == "danger")
+		l = "error";
+	$.notify(
+		m,
+		{position: "right bottom", className: l}
+	);
 }
