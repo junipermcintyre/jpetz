@@ -16,7 +16,6 @@ function buildTable(headers, rows){
 	*/
 	
 	var tableHtml = "";														// This be where we buildin the table
-	tableHtml += "<div class='table-responsive'>";
 	tableHtml += "<table class='table table-bordered table-hover table-sm'>"
 	tableHtml += "<thead class='thead-inverse'><tr>";
 	$.each(headers, function(key, value){									// Iterate over each header
@@ -30,6 +29,22 @@ function buildTable(headers, rows){
 		});					
 		tableHtml += "</tr>";												// Row's done - end it
 	});					
-	tableHtml += "</tbody></table></div>";									// Should be good, end the body and table
+	tableHtml += "</tbody></table>";										// Should be good, end the body and table
 	return tableHtml;														// Aaaand done. Return the complete HTML string
+}
+
+
+/******************************** NOTIFY ****************************************
+*-------------------------------------------------------------------------------*
+*	This function takes a message and a bootstrap message level, and displays	*
+*	a notification banner across the top of the viewport.						*
+********************************************************************************/
+function notify(m, l){
+	var s = '<div class="alert alert-'+l+' alert-dismissible show" role="alert">';
+	s += 		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+	s += 			'<span aria-hidden="true">&times;</span>';
+	s += 		'</button>';
+	s += 		m;
+	s += 	'</div>';
+	$("#notify").html(s)
 }

@@ -16,8 +16,17 @@
                 <input type="password" class="form-control" id="passwordInput" placeholder="*************">
                 <small class="text-muted"><a href="/password-reset.php">Reset password</a></small> 
             </fieldset>
+			<div class="form-check">
+				<label class="form-check-label">
+					<input type="checkbox" id="rememberme" class="form-check-input">
+					Remember me
+				</label>
+			</div>
             <button type="button" id="loginButton" class="btn btn-primary">Login</button>
         </form>
     </div>
+    <script>
+        var gt = "{$gt}";
+    </script>
     <script src="../js/login.js"></script>
 {/block}

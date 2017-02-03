@@ -41,7 +41,7 @@ $(document).ready(function() {
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 4")
+        notify("Something broke! Error code: 4", "danger");
         console.log(err);
         console.log(status);
         $("#scumTable").html('');                                   // Things went to shit? Kill the CSS Spinner
@@ -78,6 +78,14 @@ function modifyPoints(mod) {
     $('#scumTable :checkbox:checked').each(function() {             // Build a list of selected IDs
         ids.push(this.id);
     });
+
+    // Handle no checkboxes
+    if (ids.length < 1) {
+        notify("You didn't click any checkboxes!", "warning");
+        return;
+    }
+
+
     /*
     *   Mod can have three possible values:
     *       ->  1:  Beautiful person modifier
@@ -97,7 +105,8 @@ function modifyPoints(mod) {
             try {                                                   // There's a fair chance we get undefined back
                 var scum = $.parseJSON(data);                       // Take the scum JSON data and build JS object
             } catch(err) {
-                scumDiv.html('<h2>Something went wrong!</h2><p>Please contact an administrator (error code 11)</p>');
+                notify("Something went wrong! Please contact administrator (error code 11)", "danger");
+                scumDiv.html('');
                 return false;                                       // Quit out, after informing of error
             }
 
@@ -107,7 +116,7 @@ function modifyPoints(mod) {
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 6")
+        notify("Something broke! Error code: 6", "danger");
         console.log(err);
         console.log(status);
     });

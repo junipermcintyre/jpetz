@@ -1,3 +1,6 @@
+# Assets and user uploads
+/images/avatars/
+
 # Composer
 /vendor
 composer.phar
@@ -11,7 +14,7 @@ Thumbs.db
 php.ini
 
 # project files
-/projects/*
+/projects
 
 # hidden files and directories (in case)
 .cache/
@@ -21,6 +24,6 @@ php.ini
 .ssh/
 .idea/
 
-* Smarty files
+# Smarty files
 /smarty/*
 /templates_c/*

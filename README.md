@@ -10,9 +10,8 @@ This repository contains all necessary code involved in running the jerweb appli
 * Fill .env with pertinent info (see example.env)
 
 # TO-DO
-* Implement question submission tracking if the user is signed in
-* Let users hit 'enter' to login
-* Create script to send question / poll results at end of day to Discord
 * Create script that templates out the database
 * Add example .env file
-* Implement editing of profiles plus additional profile fields
+* Implement J-Pet training
+* Implement upkeep tick for Raid Boss
+* Implement scum journal entry for Raid Boss

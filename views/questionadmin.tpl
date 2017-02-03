@@ -43,6 +43,7 @@
             <li>No political questions. Final ruling on that one.</li>
             <li>No questions which groups may find offensive.</li>
             <li>Avoid re-posts (if you've noticed the question has run before, discard it).</li>
+            <li>No questions where all the answers are the same, or variations of each other. While the question itself may be interesting, answering it is not.</li>
             <li>Avoid boring questions. Use your judgement.</li>
             <li>Have fun!</li>
         </ul>

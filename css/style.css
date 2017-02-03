@@ -1,21 +1,117 @@
 /* Hand-Written Custom CSS */
-body {
+.main-body {
 	background-image: url('/images/background.jpg');
 	/* Move down content because we have a fixed navbar that is 50px tall */
-  	padding-top: 2rem;
-  	padding-bottom: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.boss-body {
+  background-image: url('/images/background_fire.jpg');
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .main-container {
 	background-color: #FDFDFD;
-    border-style: double;
-    border-color: #e7e7e7;
-    padding-bottom: 15px;
-    padding-top: 1rem;
-    margin-top: 45px;
+  border-style: double;
+  border-color: #e7e7e7;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
 	-webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 	-moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 	box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.battle-box {
+  margin-left: 3%;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #710707;
+  border-width: 10px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.boss-container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #710707;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.stats {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.boss {
+  font-family: 'Walter Turncoat', cursive;
+}
+
+.pet-horizontal {
+  webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  margin-bottom: 3px;
+}
+
+.quest-card {
+  width: 9rem;
+  margin-right: 10px;
+}
+
+.shop-card {
+  margin-bottom: 10px;
+}
+
+.pet-item {
+  width: 13rem;
+  margin-right:10px;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.pet-box {
+  padding-bottom: 15px;
+}
+
+.pet-frame {
+  margin-bottom: 40px;
+}
+
+.profile {
+  height: 150px;
+  width: 150px;
+  margin-right: 15px;
+}
+
+.pet-boss {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.stat {
+  margin-bottom: 0px;
+}
+
+.scum-thumb {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .vertical-text {

@@ -14,45 +14,53 @@
         	<div class="col-md-6">
                 <h2>Projects</h2>
                 <div class="list-group">
-                    <a href="projects/fb" class="list-group-item">
-                        <h4 class="list-group-item-heading">FB</h4>
-                        <p class="list-group-item-text">Attempt to make a "Sign in with Facebook" style page</p>
+                    <a href="projects/game" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Game</h4>
+                        </div>
+                        <p class="mb-1">HTML5 canvas & JavaScript game</p>
                     </a>
-                    <a href="projects/game" class="list-group-item">
-                        <h4 class="list-group-item-heading">Game</h4>
-                        <p class="list-group-item-text">HTML5 canvas & JavaScript game</p>
+                    <a href="projects/generator" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Generator</h4>
+                        </div>
+                        <p class="mb-1">Quote generator for Computer Science meme-ery, uses WTFEngine</p>
                     </a>
-                    <a href="projects/generator" class="list-group-item">
-                        <h4 class="list-group-item-heading">Generator</h4>
-                        <p class="list-group-item-text">Quote generator for Computer Science meme-ery, uses WTFEngine</p>
+                    <a href="projects/iptext" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">IPText</h4>
+                        </div>
+                        <p class="mb-1">It just shows you your IP... or does it?</p>
                     </a>
-                    <a href="projects/glype" class="list-group-item">
-                        <h4 class="list-group-item-heading">Glype</h4>
-                        <p class="list-group-item-text">Install of the Glype webproxy</p>
+                    <a href="projects/pizza" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Pizza</h4>
+                        </div>
+                        <p class="mb-1">The OG pizza project from DB I, much better than the DB II project</p>
                     </a>
-                    <a href="projects/iptext" class="list-group-item">
-                        <h4 class="list-group-item-heading">IPText</h4>
-                        <p class="list-group-item-text">It just shows you your IP... or does it?</p>
+                    <a href="projects/referralpad" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">ReferralPad</h4>
+                        </div>
+                        <p class="mb-1">Referral network installation</p>
                     </a>
-                    <a href="projects/pizza" class="list-group-item">
-                        <h4 class="list-group-item-heading">Pizza</h4>
-                        <p class="list-group-item-text">The OG pizza project from DB I, much better than the DB II project</p>
+                    <a href="projects/texts" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Texts</h4>
+                        </div>
+                        <p class="mb-1">You can spam a Bell Phone with texts</p>
                     </a>
-                    <a href="projects/referralpad" class="list-group-item">
-                        <h4 class="list-group-item-heading">ReferralPad</h4>
-                        <p class="list-group-item-text">Referral network installation</p>
+                    <a href="projects/web" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Web Proxy</h4>
+                        </div>
+                        <p class="mb-1">Install of PHPProxy</p>
                     </a>
-                    <a href="projects/signage" class="list-group-item">
-                        <h4 class="list-group-item-heading">Signage</h4>
-                        <p class="list-group-item-text">Download branded signage player</p>
-                    </a>
-                    <a href="projects/texts" class="list-group-item">
-                        <h4 class="list-group-item-heading">Texts</h4>
-                        <p class="list-group-item-text">You can spam a Bell Phone with texts</p>
-                    </a>
-                    <a href="projects/web" class="list-group-item">
-                        <h4 class="list-group-item-heading">Web Proxy</h4>
-                        <p class="list-group-item-text">Install of PHPProxy</p>
+                    <a href="projects/minecraft" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">JulianCraft</h4>
+                        </div>
+                        <p class="mb-1">The MC server to end all mc servers</p>
                     </a>
                 </div>
         	</div>
@@ -64,7 +72,7 @@
         	<div class="col-md-6">
                 <h3>Steam</h3>
                 <a href="http://steamcommunity.com/id/andwhatnot/" target="_blank">
-                    <img src="http://badges.steamprofile.com/profile/default/steam/76561198048462067.png" border="0" alt="Steamprofile badge by Steamprofile.com">
+                    <img src="http://badges.steamprofile.com/profile/default/steam/76561198048462067.png" border="0" style="width: 100%;" alt="Steamprofile badge by Steamprofile.com">
                 </a>
         	</div>
         	<div class="col-md-6">

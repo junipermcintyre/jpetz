@@ -32,21 +32,21 @@ $("#register").click(function(){
             function(response) {                            // Hit the controller successfully! Check for success etc...
                 console.log(response);
                 if (response.success == true) {             // Account was created...
-                    alert(response.message);                // Clear inputs and inform user of success
+                    notify(response.message, "success");    // Clear inputs and inform user of success
                     $("#emailInput").val("");
                     $("#passwordInput").val("");
                     document.location.href = "/login.php";  // Send the user to the login page
                 } else {                                    // Account was not created
-                    alert(response.message);                // Inform user of failure, don't clear inputs
+                    notify(response.message, "warning");    // Inform user of failure, don't clear inputs
                 }
             },
             "json"
         ).fail(function(err, status){                       // The AJAX call was unsuccessful here
-            alert("Something broke! Error code: 2")
+            notify("Something broke! Error code: 2", "danger");
             console.log(err);
             console.log(status);
         });
     } else {        // Password was empty(?)
-        alert("All fields are required for account creation!");
+        notify("All fields are required for account creation!", "warning");
     }
 });
