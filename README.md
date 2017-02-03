@@ -15,3 +15,6 @@ This repository contains all necessary code involved in running the jerweb appli
 * Implement J-Pet training
 * Implement upkeep tick for Raid Boss
 * Implement scum journal entry for Raid Boss
+* Add daily pet feature (journal and home page)
+* Add pet graveyard
+* Add question of the day to the homepage(?)
