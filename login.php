@@ -2,28 +2,17 @@
     /*
     * This page displays the login form. It's more or less a static page, so no Smarty objects need assigning.
     */
+    $access = "visitor";                // Define access level
+    include 'includes/before.php';      // Get initial boilerplate
 
-    // Begin the login session!
-    session_start();
+    $gt = "";
+    if (isset($_GET['goto']))
+    	$gt = $_GET['goto'];
 
-    // Include all Composer dependencies
-    require_once __DIR__ . '/vendor/autoload.php';
-
-    // Include the PHP Debug bar object
-    use DebugBar\StandardDebugBar;
-    $debugbar = new StandardDebugBar();
-    $debugbarRenderer = $debugbar->getJavascriptRenderer();
-    
-    // Include the Smarty Framework for templating
-    $dir = dirname(__FILE__);
-    require("$dir/smarty/libs/Smarty.class.php");
-    
-    // Create Smarty object
-    $smarty = new Smarty;
-    
-    // Pass the DebugBarRenderer to the view
-    $smarty->assign('debugbarRenderer', $debugbarRenderer);
+    include 'includes/after.php';
 
     // Display the associated template
+    $dir = dirname(__FILE__);
+    $smarty->assign('gt', $gt);
     $smarty->display("$dir/views/login.tpl");
 ?>

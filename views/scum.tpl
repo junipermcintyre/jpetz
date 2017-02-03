@@ -2,20 +2,28 @@
 {block name=title}Jerad McIntyre - Scum Points{/block}
 {block name=body}
     <div class="main-container container">
-        <h1 class="display-3">Scum Points</h1>
+        <h1 class="display-3">Leaderboards</h1>
         <p><em>Have you been a bad boy?</em></p>
     </div>
-    <div id="scumTable" class="main-container container">
-    	<!-- This is where the scum point charts will go - on load, it's a CSS spinner though -->
-		<div class="sk-folding-cube">
-			<div class="sk-cube1 sk-cube"></div>
-			<div class="sk-cube2 sk-cube"></div>
-			<div class="sk-cube4 sk-cube"></div>
-			<div class="sk-cube3 sk-cube"></div>
-			<p>Getting points in my sights...</p>
-		</div>
-		<p><em>If this is taking forever, the page probably isn't finished yet!</em></p>
+    <div class="main-container container">
+        <h2>Scum</h2>
+        <div id="scumTable">
+        	<!-- This is where the scum point charts will go - on load, it's a CSS spinner though -->
+    		<div class="sk-folding-cube">
+    			<div class="sk-cube1 sk-cube"></div>
+    			<div class="sk-cube2 sk-cube"></div>
+    			<div class="sk-cube4 sk-cube"></div>
+    			<div class="sk-cube3 sk-cube"></div>
+    			<p>Getting points in my sights...</p>
+    		</div>
+    		<p><em>If this is taking forever, the page probably isn't finished yet!</em></p>
+        </div>
+        <h2>J-Pet Collector</h2>
+        <div id="jpetTable">
+            Coming soon!
+        </div>
     </div>
+
     <div class="main-container container">
     	<h2>What are scum points?</h2>
     	<p>Scum points are a representation of how good of a person one is on the Green-Gaming Discord server. Points are calculated at the end of each day, and depend on your current role. Everyone's role is reset to '<font color="blue">Not scum</font>' at the beginning of a day.<p>
@@ -23,7 +31,7 @@
     	<p>Points can be added or subtracted in larger quantities based on the exploits of the member. If you find yourself with a surplus/deficiency, maybe you did something great/awful!</p>
     	<p>At some point in the future, these will count for something, somehow. Start saving up now!</p>
     	<p>The table below breaks down each role and it's point modifier. Better roles have all bonuses of lower roles!</p>
-    	<table class="table table-sm">
+    	<table class="table table-sm table-responsive">
     		<thead>
     			<tr><th>Role</th><th>Modifier</th><th>Bonuses</th></tr>
     		</thead>

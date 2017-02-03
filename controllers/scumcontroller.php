@@ -75,17 +75,17 @@
         }
 
         // Step #2 - Let's get that user/scum data
-        $result = $db->query("	SELECT u.name as name, r.name as role, u.scum_points, u.id
+        $result = $db->query("	SELECT u.name as name, r.name as role, u.scum_points, u.id, u.avatar
         						FROM users u JOIN roles r ON u.role = r.id ORDER BY scum_points DESC, role, u.name"
         );	
         if ($result === false) {throw new Exception ($dbh->error);}		// If somehing went wrong
 
         // Step #3 - build the result array
-        $response['headers'] = array("Name", "Role", "Scum Points");	// Define some headers
+        $response['headers'] = array("User", "Role", "Scum Points");	// Define some headers
         $response['rows'] = array();									// Get ready for row data
         while ($row = $result->fetch_assoc()) {							// Iterate over each user
         	$tmp = array();
-        	$tmp[0] = "<a href='/user.php?id={$row['id']}'>{$row['name']}</a>";
+        	$tmp[0] = "<span><img class='scum-thumb' src='/images/avatars/{$row['avatar']}'></span><a href='/user.php?id={$row['id']}'>{$row['name']}</a>";
         	$tmp[1] = $row['role'];
         	$tmp[2] = $row['scum_points'];
         	array_push($response['rows'], $tmp);						// And store there data into a result row

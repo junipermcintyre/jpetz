@@ -46,7 +46,7 @@ $(document).ready(function() {
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 29")
+        notify("Something broke! Error code: 29", "danger");
         console.log(err);
         console.log(status);
         $("#qTable").html('');                                            // Things went to shit? Kill the CSS Spinner
@@ -109,17 +109,17 @@ function modify(action) {
                 uDiv.html(uTable);                                          // Set the verified questions table
 
                 $("#mod-loader").hide();                                    // Done, turn off spinner
-                alert("Questions successfully set using: " + action);
+                notify("Questions successfully set using: " + action, "success");
             }
         ).fail(function(err, status){
             // The AJAX call was unsuccessful here
-            alert("Something broke! Error code: 15")
+            notify("Something broke! Error code: 15", "danger");
             console.log(err);
             console.log(status);
 
             $("#mod-loader").hide();                                        // Done, turn off spinner
         });
     } else {
-        alert("Please select some questions!");
+        notify("Please select some questions!", "warning");
     }
 }

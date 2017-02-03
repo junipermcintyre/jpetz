@@ -36,5 +36,15 @@
 			<button class="btn btn-primary" id="qBtn">Send question code</button>
 		</div>
     </div>
+    <div class="main-container container">
+        <h3>Moderator Guidelines - For your reading pleasure</h3>
+        <ol>
+            <li>No political questions. Final ruling on that one.</li>
+            <li>No questions which groups may find seriously offensive (satire is funny - mocking is not).</li>
+            <li>Avoid re-posts (if you've noticed the question has run before, please don't).</li>
+            <li>No questions where all the answers are the same, or variations of each other. While the question itself may be interesting, answering it is not.</li>
+            <li>Have fun!</li>
+        </ol>
+    </div>
     <script src="/js/question.js"></script>
 {/block}

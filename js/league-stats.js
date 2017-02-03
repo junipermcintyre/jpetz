@@ -57,7 +57,7 @@ $(document).ready(function() {
     	}
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 1")
+        notify("Something broke! Error code: 1", "danger");
         console.log(err);
         console.log(status);
         $("#charts").html('');              // Things went to shit? Kill the CSS Spinner
@@ -142,8 +142,13 @@ function buildChart(player_stats, location) {
     var wins = [];
     $.each(player_stats, function(index, player) {
         names.push(player.name);
-        wins.push(player.summary.CAP5x5.wins);      // CAP5x5 is Teambuilder!
-        kills.push(player.summary.CAP5x5.aggregatedStats.totalChampionKills);   
+        if (player.summary.CAP5x5 == undefined) {
+            wins.push(0);
+            kills.push(0);
+        } else {
+            wins.push(player.summary.CAP5x5.wins);      // CAP5x5 is Teambuilder!
+            kills.push(player.summary.CAP5x5.aggregatedStats.totalChampionKills);
+        }   
     });
     var stats_chart = new Chart(ctx, {
         type: 'bar',

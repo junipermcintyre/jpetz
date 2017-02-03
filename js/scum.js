@@ -41,7 +41,7 @@ $(document).ready(function() {
     	}
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 2")
+        notify("Something broke! Error code: 2", "danger");
         console.log(err);
         console.log(status);
         $("#scumTable").html('');              						// Things went to shit? Kill the CSS Spinner

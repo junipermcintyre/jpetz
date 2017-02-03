@@ -40,7 +40,7 @@ $(document).ready(function() {
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 34")
+        notify("Something broke! Error code: 34", "danger");
         console.log(err);
         console.log(status);
         $("#qDiv").html('');                                         // Things went to shit? Kill the CSS Spinner
@@ -75,11 +75,11 @@ function sendCode(code) {
             //console.log("Data from Question Controller:");        // Uncomment these two lines for debug info
             //console.log(data);                                    // There's a fair chance we get undefined back
             $("#qCode").val("");
-            alert("Thank you for your submission! Your question is awaiting validation.");
+            notify("Thank you for your submission! Your question is awaiting validation.", "success");
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here
-        alert("Something broke! Error code: 76")
+        notify("Something broke! Error code: 76", "danger")
         console.log(err);
         console.log(status);
     });

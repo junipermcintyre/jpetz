@@ -109,7 +109,10 @@
         }
 
         // Step #2 - Let's insert the question
-        $sth = $db->prepare("INSERT INTO questions (id, code, active, date, verified) VALUES (NULL, ?, 1, '".date('Y-m-d')."', 0)");
+        $user = "NULL";
+        if (isset($_SESSION['id']))										// If the user is logged in, track who submitted it
+        	$user = $_SESSION['id'];
+        $sth = $db->prepare("INSERT INTO questions (id, code, active, date, verified, user) VALUES (NULL, ?, 1, '".date('Y-m-d')."', 0, {$user})");
         if ($sth === false) {throw new Exception ($db->error);}			// If somehing went REALLY wrong
         $sth->bind_param("s", $code);									// Add data to the query string (avoid SQL injects!)
         if ($sth === false) {throw new Exception ("bind (line ".__LINE__." failed\n");}	
@@ -131,54 +134,60 @@
 	****************************************************************************/
 	function initialAdmin() {
 		// We're gonna need a database connection - MySQLi time
-		$db = connect_to_db();													// (hint - this function is in conf/db.php)
+		$db = connect_to_db();																	// (hint - this function is in conf/db.php)
 
 		// Step #1 - Make sure the database connection is A+
 		if ($db->connect_error) {
-            throw new Exception ($db->connect_error);							// We should probably catch this... somewhere
+            throw new Exception ($db->connect_error);											// We should probably catch this... somewhere
         }
 
         // Step #2 - Let's get that unverified question data
-        $result = $db->query("SELECT id, code, date FROM questions WHERE verified = 0 AND active = 1");	
-        if ($result === false) {throw new Exception ($db->error);}				// If somehing went wrong
+        $result = $db->query("SELECT q.id as id, q.code as code, q.date as date, COALESCE(u.name, 'Anonymous') as name
+        					  FROM questions q LEFT JOIN users u ON q.user = u.id
+        					  WHERE q.verified = 0 AND q.active = 1");
+        if ($result === false) {throw new Exception ($db->error);}								// If somehing went wrong
 
         // Step #3 - build the result array
-        $tmp_response['headers'] = array("Selected","Question", "Submit Date");	// Define some headers
-        $tmp_response['rows'] = array();										// Get ready for row data
-        while ($row = $result->fetch_assoc()) {									// Iterate over each question
+        $tmp_response['headers'] = array("Selected","Question", "Submit Date", "Submitter");	// Define some headers
+        $tmp_response['rows'] = array();														// Get ready for row data
+        while ($row = $result->fetch_assoc()) {													// Iterate over each question
         	$tmp = array();
         	$tmp[0] = "<input type='checkbox' id='{$row['id']}' class='question'>";
         	$tmp[1] = "<a href='http://strawpoll.me/{$row['code']}' target='_blank'>{$row['code']}</a>";
         	$tmp[2] = $row['date'];
-        	array_push($tmp_response['rows'], $tmp);							// And store the data into a result row
+        	$tmp[3] = $row['name'];
+        	array_push($tmp_response['rows'], $tmp);											// And store the data into a result row
         }
 
         // Step #3.5 - Push the unverified table data onto the response
         $response['unverified'] = $tmp_response;
 
         // Step #4 - Let's get that verified / active question data
-        $result = $db->query("SELECT id, code, date FROM questions WHERE verified = 1 AND active = 1");	
-        if ($result === false) {throw new Exception ($dbh->error);}				// If somehing went wrong
+        $result = $db->query("SELECT q.id as id, q.code as code, q.date as date, COALESCE(u.name, 'Anonymous') as name
+        					  FROM questions q LEFT JOIN users u ON q.user = u.id
+        					  WHERE q.verified = 1 AND q.active = 1");	
+        if ($result === false) {throw new Exception ($dbh->error);}								// If somehing went wrong
 
         // Step #5 - build the result array
-        $tmp_response['headers'] = array("Question", "Submit Date", "Live ETA Date");
-        $tmp_response['rows'] = array();										// Get ready for row data
-        $live = 0;																// Track estimation of when question goes live (days)
-        while ($row = $result->fetch_assoc()) {									// Iterate over each question
+        $tmp_response['headers'] = array("Question", "Submit Date", "Live ETA Date", "Submitter");
+        $tmp_response['rows'] = array();														// Get ready for row data
+        $live = 0;																				// Track estimation of when question goes live (days)
+        while ($row = $result->fetch_assoc()) {													// Iterate over each question
         	$tmp = array();
         	$tmp[0] = "<a href='http://strawpoll.me/{$row['code']}' target='_blank'>{$row['code']}</a>";
         	$tmp[1] = $row['date'];
         	$tmp[2] = date('F jS, Y', strtotime("+".$live." days"));
-        	array_push($tmp_response['rows'], $tmp);							// And store the data into a result row
-        	$live++;															// Increment the ETA counter
+        	$tmp[3] = $row['name'];
+        	array_push($tmp_response['rows'], $tmp);											// And store the data into a result row
+        	$live++;																			// Increment the ETA counter
         }
 
         // Step #5.5 - Push the verified table data onto the response
         $response['verified'] = $tmp_response;
     
-        $db->close();															// ALWAYS do this
+        $db->close();																			// ALWAYS do this
     
-        return json_encode($response);											// Everything's good! Return the question data
+        return json_encode($response);															// Everything's good! Return the question data
 	}
 
 
@@ -196,9 +205,9 @@
             throw new Exception ($db->connect_error);								// We should probably catch this... somewhere
         }
 
-		$sql = "UPDATE questions SET verified = 1 WHERE id = ?";					// SQL string to verify one question
+		$sql = "UPDATE questions SET verified = 1 WHERE id = ? AND verified = 0";	// SQL string to verify one question
 		$qSql = "SELECT user FROM questions WHERE id = ?";							// SQL string to get the submitter of one question
-		$scumSql = "UPDATE users SET scum_points = scum_points + 3 WHERE id = ?";	// SQL string to increment scum points for a user
+		$scumSql = "UPDATE users SET scum_points = scum_points + 6 WHERE id = ?";	// SQL string to increment scum points for a user
 
 		// TO-DO: Find more efficient way to do this...
 
