@@ -27,3 +27,7 @@ php.ini
 # Smarty files
 /smarty/*
 /templates_c/*
+
+# Scripts .htaccess
+/scripts/.htaccess
+/scripts/.htpasswd
