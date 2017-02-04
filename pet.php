@@ -160,7 +160,8 @@
             s.flavour,
             p.alive,
             p.busy,
-            t.name as type
+            t.name as type,
+            p.actions
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
@@ -200,6 +201,7 @@
         $p['species'] = $row['species'];
         $p['type'] = $row['type'];
         $p['text'] = $row['bio'];
+        $p['actions'] = $row['actions'];
         if (is_null($p['text']) || $p['text'] == "")
             $p['text'] = $row['flavour'];
         $owner = $row['owner'];

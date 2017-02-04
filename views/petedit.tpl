@@ -12,28 +12,36 @@
             <button type="button" class="btn btn-primary" id="feed">Feed (2 SP)</button>
             <button type="button" class="btn btn-info" id="flaunt">Flaunt (10 SP)</button>
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#petModal">Edit</button>
+            <div class="pull-right">
+                Train: 
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" id="att" class="train btn btn-secondary"><img src="/images/att.gif"></button>
+                    <button type="button" id="def" class="train btn btn-secondary"><img src="/images/def.gif"></button>
+                    <button type="button" id="maxhp" class="train btn btn-secondary"><img src="/images/hp.gif"></button>
+                </div>
+            </div>
         </div>
         
         <h2>Stats</h2>
         <div class="row stats">
             <div class="col-md-6 col-sm-12">
-                <img src="/images/hp.gif"> {$pet.hp}/{$pet.maxhp}<br>
-                <img src="/images/hunger.gif"> {$pet.hunger}/{$pet.maxhunger}<br>
-                <strong>Type:</strong> {$pet.type}
+                <img src="/images/hp.gif"> {$pet.hp}/<span id="petmaxhp">{$pet.maxhp}</span><br>
+                <img src="/images/hunger.gif"> <span id="hunger">{$pet.hunger}</span>/{$pet.maxhunger}<br>
+                <strong>Type:</strong> {$pet.type}<br>
+                <strong>Actions:</strong> <span id="actions">{$pet.actions}</span>
             </div>
             <div class="col-md-6 col-sm-12">
-                <img src="/images/att.gif"> {$pet.att}<br>
-                <img src="/images/def.gif"> {$pet.def}<br>
+                <img src="/images/att.gif"> <span id="petatt">{$pet.att}</span><br>
+                <img src="/images/def.gif"> <span id="petdef">{$pet.def}</span><br>
                 <strong>Species:</strong> {$pet.species}
             </div>
         </div>
+        <br>
         <h2>Bio</h2>
-        <div class="row">
-            <blockquote class="blockquote">
-                <p id="bio-display" class="mb-0">{$pet.text}</p>
-                <footer class="blockquote-footer"><cite title="pet quote">{$pet.name}</cite></footer>
-            </blockquote>
-        </div>
+        <blockquote class="blockquote">
+            <p id="bio-display" class="mb-0">{$pet.text}</p>
+            <footer class="blockquote-footer"><cite title="pet quote">{$pet.name}</cite></footer>
+        </blockquote>
     </div>
 
 	<div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

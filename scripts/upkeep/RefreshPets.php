@@ -4,7 +4,7 @@
 */
 
 // Step #1 - Set up and run a query to increment all points by one
-$sth = $db->prepare("UPDATE pets SET feeds = 0, flaunts = 0");						// Build a query to refresh pets
+$sth = $db->prepare("UPDATE pets SET actions = 10");								// Build a query to refresh pets
 if ($sth === false) {throw new Exception ($dbh->error);}							// If something went REALLY wrong
 
 $sth->execute();																	// Run the query

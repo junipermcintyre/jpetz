@@ -100,7 +100,7 @@
                 <div class="card pull-left quest-card">
                     <img class="card-img-top" src="/images/onquest.png" alt="quest progress">
                     <div class="card-block">
-                    <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#view-progress-{$q.id}">Requirements</button>
+                    <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#view-progress-{$q.id}">Status</button>
                     </div>
                 </div>
                 <h3>{$q.title}</h3>
