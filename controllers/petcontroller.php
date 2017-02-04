@@ -45,6 +45,8 @@
 		case "edit":
 			echo edit($_POST['pet'], $_POST['name'], $_POST['bio']);
 			break;
+		case "train":
+			echo train($_POST['pet'], $_POST['stat']);
 		default:
 			break;
 	}
@@ -103,14 +105,15 @@
         p.def,
         p.hunger,
         p.maxhunger,
-        p.alive
+        p.alive,
+        p.actions
         FROM pets p JOIN species s ON p.species = s.id
         JOIN types t ON s.type = t.id 
         JOIN users u ON p.owner = u.id
         WHERE p.id = ?";
 		if (!$sth = $dbh->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $dbh->error);}
         if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-        if (!$sth->bind_result($id, $name, $img, $owner, $ownername, $species, $type, $flavour, $bio, $hp, $maxhp, $att, $def, $hunger, $maxhunger, $alive)){throw new Exception ("Bind Result failed: ".__LINE__);}
+        if (!$sth->bind_result($id, $name, $img, $owner, $ownername, $species, $type, $flavour, $bio, $hp, $maxhp, $att, $def, $hunger, $maxhunger, $alive, $actions)){throw new Exception ("Bind Result failed: ".__LINE__);}
         if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
     
         // Get results (only need to get one row, because pets are unique)
@@ -133,7 +136,8 @@
         	"def" => $def,
         	"hunger" => $hunger,
         	"maxhunger" => $maxhunger,
-        	"alive" => $alive
+        	"alive" => $alive,
+        	"actions" => $actions
         );
 
 		return buildResponse(true, "J-Pet data supplied.", $pet_data);
@@ -143,7 +147,7 @@
 	/********************************** FEED ************************************
 	*---------------------------------------------------------------------------*
 	*	Feed a pet! Pet must belong to current user ($_SESION['id']), pet must	*
-	*	have been fed less than 3 times today, and use must have 2 points.		*
+	*	have at least 1 action remaning, and user must have 2 points.			*
 	****************************************************************************/
 	function feed($pet) {
 		$db = connect_to_db();	// (hint - this function is in conf/db.php)
@@ -161,24 +165,24 @@
 		if (!checkPoints($db, $_SESSION['id'], 2))
 			return buildResponse(false, "You don't have enough points to buy food!");
 
-		// Confirm that the pet has less than 3 feeds and hunger < maxhunger
-		$sql = "SELECT hunger, maxhunger, feeds FROM pets WHERE id = ?";
+		// Confirm that the pet has hunger < maxhunger
+		$sql = "SELECT hunger, maxhunger FROM pets WHERE id = ?";
 		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
         if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-        if (!$sth->bind_result($hunger, $maxhunger, $feeds)){throw new Exception ("Bind Result failed: ".__LINE__);}
+        if (!$sth->bind_result($hunger, $maxhunger)){throw new Exception ("Bind Result failed: ".__LINE__);}
         if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
         // Get results (only need to get one row, because pets are unique)
         $sth->fetch();
         $sth->close();
         $db->next_result();
 
-        if ($hunger >= $maxhunger || $feeds >= 3)
+        if ($hunger >= $maxhunger || !checkActions($db, $pet, 1))
         	return buildResponse(false, "Your J-Pet does not seem interested in eating.");
 
 		// Subtract users SP
 		dockPoints($db, $_SESSION['id'], 2);
 
-		// Feed the pet (+1 hunger, +1 feeds)
+		// Feed the pet (+1 hunger, +1 actions)
 		feedPet($db, $pet);
 
 		$pd = json_decode(get($db, $pet));
@@ -187,10 +191,41 @@
 	}
 
 
+	/********************************** TRAIN ***********************************
+	*---------------------------------------------------------------------------*
+	*	Train a pet! Pet must belong to current user ($_SESION['id']), pet must	*
+	*	have two actions available.												*
+	****************************************************************************/
+	function train($pet, $stat) {
+		$db = connect_to_db();	// (hint - this function is in conf/db.php)
+
+		// Step #1 - Make sure the database connection is A+
+		if ($db->connect_error) {
+            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
+        }
+
+		// Confirm pet belongs to current user
+		if (!checkPet($db, $_SESSION['id'], $pet))
+        	return buildResponse(false, "You don't own this J-Pet! (tell me how you got this error)");
+
+        if (!checkActions($db, $pet, 2))
+        	return buildResponse(false, "Your J-Pet is far too tired to train right now.");
+
+		// Train the pet
+		trainPet($db, $pet, $stat, null);	// null here represents the bonus to add - if not supplied, use the pets mod stat
+		dockActions($db, $pet, 2);
+		
+		$pd = json_decode(get($db, $pet));
+        $pd = $pd->data;
+        
+		return buildResponse(true, "J-Pet successfully trained in {$stat}!", $pd);
+	}
+
+
 	/********************************* FLAUNT ***********************************
 	*---------------------------------------------------------------------------*
 	*	Flaunt a pet! Pet must belong to current user, and user must have 10	*
-	*	points. Pet flaunts must be < 2.										*
+	*	points. Must be one action available.									*
 	****************************************************************************/
 	function flaunt($pet) {
 		$db = connect_to_db();	// (hint - this function is in conf/db.php)
@@ -209,17 +244,7 @@
 			return buildResponse(false, "You don't have enough points to pay the flaunt tax!");
 
 		// Confirm pet has been flaunted < 2 today
-		$sql = "SELECT flaunts FROM pets WHERE id = ?";
-		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
-        if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-        if (!$sth->bind_result($flaunts)){throw new Exception ("Bind Result failed: ".__LINE__);}
-        if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
-        // Get results (only need to get one row, because pets are unique)
-        $sth->fetch();
-        $sth->close();
-        $db->next_result();
-
-        if ($flaunts >= 2)
+        if (!checkActions($db, $pet, 1))
         	return buildResponse(false, "Your J-Pet is too tired to be a fabulous bitch right now.");
 
 		// Subtract users SP
@@ -325,16 +350,47 @@
 
 	/******************************** Feed pet **********************************
 	*---------------------------------------------------------------------------*
-	*	Increase pets hunger by one, feeds by one								*
+	*	Increase pets hunger by one, actions by one								*
 	****************************************************************************/
 	function feedPet($dbh, $pet) {
-		$sql = "UPDATE pets SET hunger = hunger + 1, feeds = feeds + 1 WHERE id = ?";
+		$sql = "UPDATE pets SET hunger = hunger + 1 WHERE id = ?";
 		if (!$sth = $dbh->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $dbh->error);}
         if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
         if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
 
         $dbh->next_result();
-        
+        dockActions($dbh, $pet, 1);
+        return;
+	}
+
+
+	/******************************** Train pet *********************************
+	*---------------------------------------------------------------------------*
+	*	Increase pets supplied stat by supplied value, or, the statmod.			*
+	****************************************************************************/
+	function trainPet($dbh, $pet, $stat, $mod = null) {
+		if ($stat == "att") {
+			$sql = "UPDATE pets SET att = att + ";
+			$modStr = "(SELECT attmod FROM species WHERE pets.species = species.id) WHERE id = ?";
+		} else if ($stat == "def") {
+			$sql = "UPDATE pets SET def = def + ";
+			$modStr = "(SELECT defmod FROM species WHERE pets.species = species.id) WHERE id = ?";
+		} else if ($stat == "maxhp") {
+			$sql = "UPDATE pets SET maxhp = maxhp + ";
+			$modStr = "(SELECT hpmod FROM species WHERE pets.species = species.id) WHERE id = ?";
+		} else {
+			throw new Exception("Unrecognized stat to train!");
+		}
+
+		if (!is_null($mod))
+			$modstr = "{$mod} WHERE id = ?";
+
+		$sql = $sql.$modStr;
+		if (!$sth = $dbh->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $dbh->error);}
+        if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+        if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
+
+        $dbh->next_result();
         return;
 	}
 
@@ -407,14 +463,41 @@
 		}
 
 		curl_close($curl);
+		dockActions($dbh, $pet, 1);
+        return;
+	}
 
-		$sql = "UPDATE pets SET flaunts = flaunts + 1 WHERE id = ?";
+
+	/****************************** Dock actions ********************************
+	*---------------------------------------------------------------------------*
+	*	Like dock points but for pet actions.									*
+	****************************************************************************/
+	function dockActions($dbh, $petId, $n) {
+		$sql = "UPDATE pets SET actions = actions - ? WHERE id = ?";
 		if (!$sth = $dbh->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $dbh->error);}
-        if (!$sth->bind_param("i",$pet)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+        if (!$sth->bind_param("ii",$n,$petId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
         if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
 
         $dbh->next_result();
-
-        return;
 	}
-?>
+
+	/****************************** Check Actions *******************************
+	*---------------------------------------------------------------------------*
+	*	See if a pet has at least x actions										*
+	****************************************************************************/
+	function checkActions($dbh, $petId, $n) {
+		// Confirm pet belongs to current user
+		$sql = "SELECT actions FROM pets WHERE id = ?";
+		if (!$sth = $dbh->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $dbh->error);}
+        if (!$sth->bind_param("i",$petId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+        if (!$sth->bind_result($ac)){throw new Exception ("Bind Result failed: ".__LINE__);}
+        if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
+    
+        // Get results (only need to get one row, because pets are unique)
+        $sth->fetch();
+        $sth->close();
+
+        $dbh->next_result();
+        
+        return ($ac >= $n);
+	}

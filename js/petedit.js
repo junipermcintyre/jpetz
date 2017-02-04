@@ -45,6 +45,11 @@ $("#edit").click(function(){
     edit(petId);
 });
 
+$(".train").click(function(){
+    var stat = $(this).attr('id');
+    train(petId, stat);
+});
+
 /********************************************************************************
 *                     HELPER FUNCTIONS FOR JS PROCESSES                         *
 *********************************************************************************
@@ -53,7 +58,7 @@ $("#edit").click(function(){
 ********************************************************************************/
 // AJAX call to PetController for feeding a pet
 function feed(id) {
-	// Can only feed pet if feeds < 3 and points available
+	// Can only feed pet if actions >= 1 and points available
 	$.post(
         "/controllers/petcontroller.php",                      		// Controller to send to
         {action: 'feed', pet: petId},                          		// Action to run, pet ID to feed
@@ -67,6 +72,7 @@ function feed(id) {
                 	notify(response.message, "success");
                 	$("#hunger").html(response.data.hunger);
                     $("#usr-scum").html($("#usr-scum").html()*1-2);
+                    $("#actions").html(response.data.actions);
                 } else {
                 	notify(response.message, "warning");
                 }
@@ -83,6 +89,38 @@ function feed(id) {
     });
 }
 
+// AJAX call to PetController for training a pet
+function train(id, stat) {
+    // Can only feed pet if actions >= 2
+    $.post(
+        "/controllers/petcontroller.php",                           // Controller to send to
+        {action: 'train', pet: petId, stat: stat},                  // Action to run, pet ID to feed
+        function(data){            
+            // The AJAX call was successful in this brace
+            console.log("Data from Pet Controller:");               // Uncomment these two lines for debug info
+            console.log(data);
+            try {                                                   // There's a fair chance we get undefined back
+                var response = $.parseJSON(data);                   // Take the pet JSON data and build JS object
+                if (response.success) {
+                    notify(response.message, "success");
+                    $("#pet"+stat).html(response.data[stat]);
+                    $("#actions").html(response.data.actions);
+                } else {
+                    notify(response.message, "warning");
+                }
+            } catch(err) {
+                notify("Wasn't able to train pet (errors), contact admin (code: 45754)", "danger");
+                return false;                                       // Quit out, after informing of error
+            }
+        }
+    ).fail(function(err, status){
+        // The AJAX call was unsuccessful here
+        notify("Something broke! Error code: 9567", "danger");
+        console.log(err);
+        console.log(status);
+    });
+}
+
 // AJAX call to PetController for flaunting a pet
 function flaunt(id) {
 	// Can only feed pet if feeds < 2 and points available
@@ -91,13 +129,12 @@ function flaunt(id) {
         {action: 'flaunt', pet: petId},                          	// Action to run, pet ID to feed
         function(data){            
             // The AJAX call was successful in this brace
-            console.log("Data from Pet Controller:");        		// Uncomment these two lines for debug info
-            console.log(data);
             try {                                                   // There's a fair chance we get undefined back
                 var response = $.parseJSON(data);                   // Take the pet JSON data and build JS object
                 if (response.success) {
                 	notify(response.message, "success");
                     $("#usr-scum").html($("#usr-scum").html()*1-10);
+                    $("#actions").html(response.data.actions);
                 } else {
                 	notify(response.message, "warning");
                 }
@@ -126,8 +163,6 @@ function edit(id) {
         {action: 'edit', pet: petId, name: name, bio: bio},         // Action to run, pet ID + info
         function(data){            
             // The AJAX call was successful in this brace
-            console.log("Data from Pet Controller:");        		// Uncomment these two lines for debug info
-            console.log(data);
             try {                                                   // There's a fair chance we get undefined back
                 var response = $.parseJSON(data);                   // Take the pet JSON data and build JS object
                 if (response.success) {
