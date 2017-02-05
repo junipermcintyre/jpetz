@@ -13,6 +13,13 @@
   padding-bottom: 2rem;
 }
 
+.spooky-body {
+  background-image: url('/images/background_spooky.gif');
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .main-container {
 	background-color: #FDFDFD;
   border-style: double;
@@ -23,6 +30,19 @@
 	-webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 	-moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 	box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.spooky-container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 }
 
 .battle-box {
@@ -78,6 +98,12 @@
 .pet-item {
   width: 13rem;
   margin-right:10px;
+  margin-bottom: 5px;
+}
+
+.dead-pet {
+  background-image: url("/images/rip.png");
+  background-size: contain;
 }
 
 .text-center {
