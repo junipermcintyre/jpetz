@@ -36,7 +36,6 @@ $(document).ready(function() {
 $(".fight").click(function(){
 	var code = $(this).attr('id');
     code = decode(code);
-    console.log(code);
     attack(code.pet);
 });
 
@@ -81,7 +80,7 @@ function attack(pet) {
 	    },
 	    "json"
 	).fail(function(err, status){                       // The AJAX call was unsuccessful here
-		//notify(err.responseText, "danger");
+		console.log(err);
 		unfreeze();
 	    notify("Something broke! Error code: 142", "danger");
 	});
