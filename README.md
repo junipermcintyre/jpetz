@@ -18,3 +18,4 @@ This repository contains all necessary code involved in running the jerweb appli
 * Add pet graveyard memorials
 * Add pet graveyard "pey respects" feature
 * Add question of the day to the homepage(?)
+* BOUNTIES (custom quests given by players)
