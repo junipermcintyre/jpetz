@@ -8,19 +8,29 @@
     <div class="main-container container">
         <h2>Scum</h2>
         <div id="scumTable">
-        	<!-- This is where the scum point charts will go - on load, it's a CSS spinner though -->
-    		<div class="sk-folding-cube">
-    			<div class="sk-cube1 sk-cube"></div>
-    			<div class="sk-cube2 sk-cube"></div>
-    			<div class="sk-cube4 sk-cube"></div>
-    			<div class="sk-cube3 sk-cube"></div>
-    			<p>Getting points in my sights...</p>
-    		</div>
-    		<p><em>If this is taking forever, the page probably isn't finished yet!</em></p>
+        	<table class="table table-bordered table-hover table-sm">
+                <thead class="thead-inverse">
+                    <th>User</th><th>Role</th><th>Scum points</th>
+                </thead>
+                <tbody>
+                    {foreach from=$scum item=u}
+                        <tr><td>{$u.user}</td><td>{$u.role}</td><td>{$u.sp}</td></tr>
+                    {/foreach}
+                </tbody>
+            </table>
         </div>
         <h2>J-Pet Collector</h2>
         <div id="jpetTable">
-            Coming soon!
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="thead-inverse">
+                    <th>User</th><th>J-Petz collected</th>
+                </thead>
+                <tbody>
+                    {foreach from=$collectors item=c}
+                        <tr><td>{$c.user}</td><td>{$c.count}</td></tr>
+                    {/foreach}
+                </tbody>
+            </table>
         </div>
     </div>
 

@@ -36,9 +36,6 @@
 	*/
 
 	switch($_POST['action']) {
-		case 'initialLoad':				// Loads initial data for page and sends it back to client
-			echo initialLoad();			// We can expect an array headers and rows for user scum data
-			break;
 		case 'initialAdmin':
 			echo initialAdmin();
 			break;
@@ -58,43 +55,6 @@
 	*						SCUM CONTROLLER ACTION FUNCTIONS 					*
 	****************************************************************************/
 	// Each function is mapped to one of the controller actions listed above
-
-
-	/****************************** INITIAL LOAD ********************************
-	*---------------------------------------------------------------------------*
-	*	This function is called on the initial scum page - queries the users	*
-	*	for a list of users and their scum points								*
-	****************************************************************************/
-	function initialLoad() {
-		// We're gonna need a database connection - MySQLi time
-		$db = connect_to_db();											// (hint - this function is in conf/db.php)
-
-		// Step #1 - Make sure the database connection is A+
-		if ($db->connect_error) {
-            throw new Exception ($db->connect_error);					// We should probably catch this... somewhere
-        }
-
-        // Step #2 - Let's get that user/scum data
-        $result = $db->query("	SELECT u.name as name, r.name as role, u.scum_points, u.id, u.avatar
-        						FROM users u JOIN roles r ON u.role = r.id ORDER BY scum_points DESC, role, u.name"
-        );	
-        if ($result === false) {throw new Exception ($dbh->error);}		// If somehing went wrong
-
-        // Step #3 - build the result array
-        $response['headers'] = array("User", "Role", "Scum Points");	// Define some headers
-        $response['rows'] = array();									// Get ready for row data
-        while ($row = $result->fetch_assoc()) {							// Iterate over each user
-        	$tmp = array();
-        	$tmp[0] = "<span><img class='scum-thumb' src='/images/avatars/{$row['avatar']}'></span><a href='/user.php?id={$row['id']}'>{$row['name']}</a>";
-        	$tmp[1] = $row['role'];
-        	$tmp[2] = $row['scum_points'];
-        	array_push($response['rows'], $tmp);						// And store there data into a result row
-        }
-    
-        $db->close();													// ALWAYS do this
-    
-        return json_encode($response);									// Everything's good! Return the scum/user data
-	}
 
 
 	/*************************** INITIAL ADMIN LOAD *****************************
