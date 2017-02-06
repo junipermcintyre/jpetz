@@ -218,7 +218,7 @@
 		$pd = json_decode(get($db, $pet));
         $pd = $pd->data;
         
-		return buildResponse(true, "J-Pet successfully trained in {$stat}!", $pd);
+		return buildResponse(true, "Your J-Pet trains hard. {$stat} increased!", $pd);
 	}
 
 
