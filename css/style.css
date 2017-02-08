@@ -75,6 +75,13 @@
   font-family: 'Gloria Hallelujah', cursive;
 }
 
+.fight {
+  border: 1px solid black;
+}
+.fight:active {
+  background-color: grey;
+}
+
 .boss {
   font-family: 'Walter Turncoat', cursive;
 }
@@ -96,8 +103,6 @@
 }
 
 .pet-item {
-  width: 13rem;
-  margin-right:10px;
   margin-bottom: 5px;
 }
 
