@@ -10,9 +10,10 @@
     	{if empty($pets)}
     		<p>No J-Petz available!</p>
     	{else}
-    		<div class="clearfix">
+    		<div class="row clearfix">
+    			{assign var=pCount value=1}
 		        {foreach from=$pets item=p}
-	                <div class="card pull-left pet-item">
+	                <div class="card pet-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
 	                    <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h4 class="card-title stats">{$p.name}</h4>
@@ -20,7 +21,19 @@
 	                        <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-primary btn-lg btn-block">Stats</button>
 	                    </div>
 	                </div>
+	                {if $pCount % 4 == 0}
+	                	<div class="clearfix hidden-sm-down"></div>
+	                {/if}
 
+	                {if $pCount % 3 == 0}
+	                	<div class="clearfix hidden-md-up hidden-xs-down"></div>
+	                {/if}
+
+	                {if $pCount % 2 == 0}
+	                	<div class="clearfix hidden-sm-up"></div>
+	                {/if}
+
+	                {assign var=pCount value=$pCount+1}
 		            <div class="modal fade" id="pet-{$p.id}" tabindex="-1" role="dialog" aria-labelledby="Pet Modal Window" aria-hidden="true">
 		                <div class="modal-dialog" role="document">
 		                    <div class="modal-content">
@@ -73,15 +86,29 @@
     	{if empty($bpets)}
     		<p>No busy J-Petz!</p>
     	{else}
-    		<div class="clearfix">
+    		<div class="row clearfix">
+    			{assign var=pCount value=1}
 		        {foreach from=$bpets item=p}
-		            <div class="card pull-left pet-item">
+		            <div class="card pet-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
 	                    <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h4 class="card-title stats">{$p.name}</h4>
 	                        <h6 class="text-muted stats"><em>{$p.species} | {$p.type} collection</em></h6>
 	                    </div>
 	                </div>
+	                {if $pCount % 4 == 0}
+	                	<div class="clearfix hidden-sm-down"></div>
+	                {/if}
+
+	                {if $pCount % 3 == 0}
+	                	<div class="clearfix hidden-md-up hidden-xs-down"></div>
+	                {/if}
+
+	                {if $pCount % 2 == 0}
+	                	<div class="clearfix hidden-sm-up"></div>
+	                {/if}
+
+	                {assign var=pCount value=$pCount+1}
 		        {/foreach}
 	        </div>
 	    {/if}

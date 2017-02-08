@@ -11,22 +11,34 @@
             <hr>
             <h4>{$k|upper} <small><em>J-Petz</em></small></h4>
             <div class="row">
+                {assign var=pCount value=1}
                 {foreach from=$i item=p}
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pet-item">
-                        <div class="card shop-card">
-                            <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
-                            <div class="card-block">
-                                <h4 class="card-title stats">{$p.name}</h4>
-                                <h6 class="text-muted stats"><em>{$p.type}</em> J-Pet</h6>
-                                <p class="card-text">{$p.cost} points</p>
-                                {if $p.stock > 0}
-                                    <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-success btn-lg btn-block">Purchase</button>
-                                {else}
-                                    <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-info btn-lg btn-block">Stats</button>
-                                {/if}
-                            </div>
+                    <div class="card pet-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                        <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
+                        <div class="card-block">
+                            <h4 class="card-title stats">{$p.name}</h4>
+                            <h6 class="text-muted stats"><em>{$p.type}</em> J-Pet</h6>
+                            <p class="card-text">{$p.cost} points</p>
+                            {if $p.stock > 0}
+                                <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-success btn-lg btn-block">Purchase</button>
+                            {else}
+                                <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-info btn-lg btn-block">Stats</button>
+                            {/if}
                         </div>
                     </div>
+                    {if $pCount % 4 == 0}
+                        <div class="clearfix hidden-sm-down"></div>
+                    {/if}
+
+                    {if $pCount % 3 == 0}
+                        <div class="clearfix hidden-md-up hidden-xs-down"></div>
+                    {/if}
+
+                    {if $pCount % 2 == 0}
+                        <div class="clearfix hidden-sm-up"></div>
+                    {/if}
+
+                    {assign var=pCount value=$pCount+1}
 
                     <div class="modal fade" id="pet-{$p.id}" tabindex="-1" role="dialog" aria-labelledby="Pet Modal Window" aria-hidden="true">
                         <div class="modal-dialog" role="document">

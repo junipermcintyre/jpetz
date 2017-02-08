@@ -36,7 +36,7 @@
                             <img src="/images/def.gif"> <span class="stats">{$p.def}</span>
                         </div>
                         <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12">
-                            <img src="/images/att.gif" class="fight" data-toggle="tooltip" id="pet-fight-{$p.id}" data-html="true" data-placement="right" title="Deal {$p.ed} dmg<br>Take {$p.et} dmg">
+                            <img src="/images/bttl.gif" class="fight" data-toggle="tooltip" id="pet-fight-{$p.id}" data-html="true" data-placement="right" title="Deal {$p.ed} dmg<br>Take {$p.et} dmg">
                         </div>
                     </div>
                 </div>
