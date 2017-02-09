@@ -102,7 +102,7 @@
 
 	    // Confirm boss hasn't died already
 	    if ($boss['beaten'])
-	    	return buildResponse(false, "This Raid Boss has already been defeated! (refresh page)");
+	    	return buildResponse(false, "This Raid Boss has already been defeated!");
 	    
 	    // Hit the RB (combat.php) (returns true if boss dies) (automatically adds to boss_dmg table)
 	    $beaten = hitBoss($db, $pet, $boss);

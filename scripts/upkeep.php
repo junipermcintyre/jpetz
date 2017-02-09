@@ -48,6 +48,9 @@ include('upkeep/ProcessQuests.php');
 // Generate new quests
 include('upkeep/GenQuests.php');
 
+// Handle daily raid boss processing
+include('upkeep/ProcessBoss.php');
+
 $db->close();																		// Be polite
 
 echo "Upkeep successfully concluded!\n";
