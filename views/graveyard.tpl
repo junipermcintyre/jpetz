@@ -37,11 +37,11 @@
 		                                <div class="col-md-9 col-sm-12">
 		                                    <div class="row stats">
 			                                    <div class="col-md-6 col-sm-12">
-													<img src="/images/att.gif"> {$p.att}<br>
+													<img src="/images/att.gif"> {$p.att|string_format:"%d"}<br>
 			                                    	<strong>Type:</strong> {$p.type}
 			                                    </div>
 			                                    <div class="col-md-6 col-sm-12">
-			                                    	<img src="/images/def.gif"> {$p.def}<br>
+			                                    	<img src="/images/def.gif"> {$p.def|string_format:"%d"}<br>
 													<strong>Species:</strong> {$p.species}
 			                                    </div>
 		                                    </div>

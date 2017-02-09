@@ -102,12 +102,12 @@
 			return json_encode($response);
 		} else if ($points < $cost) {
 	    	$db->close();									// ALWAYS do this
-		    $response = array("success" => false, "message" => "Not enough scum points! View at <a href='/user.php'>your profile</a>.");
+		    $response = array("success" => false, "message" => "Not enough scum points! View at your profile.");
 			return json_encode($response);
 	    }
 
     	// Create pet
-		$sql = "INSERT INTO pets (name, owner, species, hp, maxhp, att, def, hunger, maxhunger) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO pets (name, owner, species, hp, maxhp, att, def, hunger, maxhunger, actions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 10)";
 		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
 	    if (!$sth->bind_param("siiiiiiii",$name,$_SESSION['id'],$id,$hp,$hp,$att,$def,$hunger,$hunger)) {throw new Exception ("Bind Param failed: ".__LINE__);}
 
@@ -132,7 +132,7 @@
 	    $db->close();
 
 	    // Success!
-	    $response = array("success" => true, "message" => "Congratulations on your new pet! View at <a href='/user.php'>your profile</a>.");
+	    $response = array("success" => true, "message" => "Congratulations on your new pet! View at your profile.");
 	    return json_encode($response);
 	}
 

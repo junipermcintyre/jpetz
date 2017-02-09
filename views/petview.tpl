@@ -12,13 +12,13 @@
         <h2>Stats</h2>
         <div class="row stats">
             <div class="col-md-6 col-sm-12">
-                <img src="/images/hp.gif"> {$pet.hp}/{$pet.maxhp}<br>
+                <img src="/images/hp.gif"> {$pet.hp|string_format:"%d"}/{$pet.maxhp|string_format:"%d"}<br>
                 <img src="/images/hunger.gif"> {$pet.hunger}/{$pet.maxhunger}<br>
                 <strong>Type:</strong> {$pet.type}
             </div>
             <div class="col-md-6 col-sm-12">
-                <img src="/images/att.gif"> {$pet.att}<br>
-                <img src="/images/def.gif"> {$pet.def}<br>
+                <img src="/images/att.gif"> {$pet.att|string_format:"%d"}<br>
+                <img src="/images/def.gif"> {$pet.def|string_format:"%d"}<br>
                 <strong>Species:</strong> {$pet.species}
             </div>
         </div>

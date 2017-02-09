@@ -25,14 +25,14 @@
         <h2>Stats</h2>
         <div class="row stats">
             <div class="col-md-6 col-sm-12">
-                <img src="/images/hp.gif"> {$pet.hp}/<span id="petmaxhp">{$pet.maxhp}</span><br>
+                <img src="/images/hp.gif"> {$pet.hp|string_format:"%d"}/<span id="petmaxhp">{$pet.maxhp|string_format:"%d"}</span><br>
                 <img src="/images/hunger.gif"> <span id="hunger">{$pet.hunger}</span>/{$pet.maxhunger}<br>
                 <strong>Type:</strong> {$pet.type}<br>
                 <strong>Actions:</strong> <span id="actions">{$pet.actions}</span>
             </div>
             <div class="col-md-6 col-sm-12">
-                <img src="/images/att.gif"> <span id="petatt">{$pet.att}</span><br>
-                <img src="/images/def.gif"> <span id="petdef">{$pet.def}</span><br>
+                <img src="/images/att.gif"> <span id="petatt">{$pet.att|string_format:"%d"}</span><br>
+                <img src="/images/def.gif"> <span id="petdef">{$pet.def|string_format:"%d"}</span><br>
                 <strong>Species:</strong> {$pet.species}
             </div>
         </div>

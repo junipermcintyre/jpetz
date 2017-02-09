@@ -42,10 +42,10 @@
                             <h4>Requirements</h4>
                             <ul>
                             {if $q.reqatt != "none"}
-                                <li><img src="/images/att.gif"> {$q.reqatt}</li>
+                                <li><img src="/images/att.gif"> {$q.reqatt|string_format:"%d"}</li>
                             {/if}
                             {if $q.reqdef != "none"}
-                                <li><img src="/images/def.gif"> {$q.reqdef}</li>
+                                <li><img src="/images/def.gif"> {$q.reqdef|string_format:"%d"}</li>
                             {/if}
                             {if $q.type != "none"}
                                 <li><strong>Type:</strong> {$q.type}</li>
@@ -125,10 +125,10 @@
                             <h4>Requirements</h4>
                             <ul>
                             {if $q.reqatt != "none"}
-                                <li><img src="/images/att.gif"> {$q.reqatt}</li>
+                                <li><img src="/images/att.gif"> {$q.reqatt|string_format:"%d"}</li>
                             {/if}
                             {if $q.reqdef != "none"}
-                                <li><img src="/images/def.gif"> {$q.reqdef}</li>
+                                <li><img src="/images/def.gif"> {$q.reqdef|string_format:"%d"}</li>
                             {/if}
                             {if $q.type != "none"}
                                 <li><strong>Type:</strong> {$q.type}</li>
