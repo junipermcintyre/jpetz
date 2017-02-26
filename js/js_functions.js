@@ -54,3 +54,29 @@ function notify(m, l){
 		{position: "right bottom", className: l}
 	);
 }
+
+
+/**************************** FEATURE REQUEST ***********************************
+*-------------------------------------------------------------------------------*
+*	This is a listener for when users click the submit request button. Grabs	*
+*	The supplied name, and supplied request, sends em off to me (email).		*
+********************************************************************************/
+$(document).ready(function(){
+	$("#featureBtn").click(function(){
+		console.log("test?");
+		var name = $("#featureName").val();
+		var msg = $("#featureRequest").val();
+
+		if (name == "" || msg == "") {
+			notify("Please fill in all fields", "danger");
+		} else {
+			request(name, msg);
+			$("#featureClose").click();
+		}
+	});
+});
+
+function request(name, msg){
+	notify("Thanks! That helps", "success");
+	notify("((this doesn't do anything yet!))", "warning");
+}

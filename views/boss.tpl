@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="battle-box col-md-7">
-    	<h2 class="boss">{$boss.owner}'s {$boss.name} {if $boss.hp <= 0}- Defeated!{/if}</h2>
+    	<h2 class="boss">{$boss.owner}'s {$boss.name} {if $boss.hp <= 0}- Defeated!{/if} <small>Loot: {$boss.reward} SP | Last hit: {$boss.bonus} SP</small></h2>
     	<em>{$boss.species} | {$boss.type}</em>
         <div class="jumbotron pet-box {if $boss.hp <= 0}dead-pet{/if}">
             <img src="/images/pets/{$boss.img}" class="mx-auto d-block pet-frame" id="boss-img" draggable="false">

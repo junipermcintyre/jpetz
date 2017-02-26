@@ -23,7 +23,7 @@
                 <h3>{$q.title}</h3>
                 <p><em>{$q.description}</em></p>
                 <blockquote class="blockquote">
-                    <p class="mb-0">Length: <u>{$q.length} day(s)</u><br>Reward: <u>{$q.reward}SP</u></p>
+                    <p class="mb-0">Length: <u>{$q.length} day(s)</u><br>Reward: <u>{$q.reward} SP</u></p>
                 </blockquote>
             </div>
 

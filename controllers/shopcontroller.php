@@ -39,6 +39,9 @@
 		case "purchase":
 			echo purchase($_POST['id']);
 			break;
+		case "buycap":
+			echo buycap($_POST['id']);
+			break;
 		default:
 			break;
 	}
@@ -128,6 +131,119 @@
 	    if (!$sth->bind_param("i",$id)) {throw new Exception ("Bind Param failed: ".__LINE__);}
 	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
 	    $sth->free_result();
+
+	    $db->close();
+
+	    // Success!
+	    $response = array("success" => true, "message" => "Congratulations on your new pet! View at your profile.");
+	    return json_encode($response);
+	}
+
+
+
+	/**************************** PURCHASE CAPSULE ******************************
+	*---------------------------------------------------------------------------*
+	*	Purchase a new J-Cap! Pass the cap ID, user pulled from session.		*
+	*	Only succeed if enough scum points to purchase. Decrement points.		*
+	****************************************************************************/
+	function buycap($id) {
+		mysqli_report(MYSQLI_REPORT_ALL);
+		# Get users scum points
+		# Get cap stats
+		# If enough
+			# Decrement cost
+			# Select the pet
+			# return success + pet ID
+		# If not enough
+			# Return failed
+		
+		$user = $_SESSION['id'];						// Collect the current user
+
+		$db = connect_to_db();							// We're gonna need a database connection - MySQLi time
+		if ($db->connect_error) {
+            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
+        }
+
+		// Step #1 - Get users scum points
+		$points = $db->query("SELECT scum_points FROM users WHERE id = {$user}");
+		$points = $points->fetch_assoc()['scum_points'];
+
+		$db->next_result();
+
+		// Step #2 - Get cap data
+		$sql = "SELECT name, type, cost FROM caps WHERE id = ?";
+		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
+	    if (! $sth->bind_param("i",$id)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+	    if (! $sth->bind_result($name, $type, $cost)){throw new Exception ("Bind Result failed: ".__LINE__);}
+
+	    // Grab the cap data
+	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
+
+	    // Get results (only need to get one row, because caps are unique)
+	    $sth->fetch();
+	    $sth->free_result();
+	    $db->next_result();
+
+	    // Step #3 - Handle failure cases
+	    if ($points < $cost) {
+	    	$db->close();									// ALWAYS do this
+		    $response = array("success" => false, "message" => "You don't have enough Scum Points to buy this!");
+			return json_encode($response);
+	    }
+
+	    // Select a pet ID
+	    $sql = "SELECT id, cost FROM species WHERE type = ?";
+	    if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
+	    if (! $sth->bind_param("i",$type)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+	    if (! $sth->bind_result($speciesId, $weight)){throw new Exception ("Bind Result failed: ".__LINE__);}
+
+	    // Build a weighted distribution
+	    $sum = 0;
+	    $options = array();
+	    while ($sth->fetch()) {
+	    	$sum += $weight;
+	    	$options[$speciesId] = $weight;
+	    }
+
+	    // Pick the selected pet
+	    $rnd = rand(0, $sum);
+	    foreach($options as $sId => $w) {
+	    	if ($rnd < $w) {
+	    		$selectedId = $sId;
+	    		break;
+	    	}
+	    	$rnd -= $w;
+	    }
+
+	    // Get its stats
+		$sql = "SELECT name, cost, stock, basehp, baseatt, basedef, basehunger FROM species WHERE id = ?";
+		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
+	    if (! $sth->bind_param("i",$sId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+	    if (! $sth->bind_result($name, $cost, $stock, $hp, $att, $def, $hunger)){throw new Exception ("Bind Result failed: ".__LINE__);}
+
+	    // Get a pet from database
+	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
+
+	    // Get results (only need to get one row, because pets are unique)
+	    $sth->fetch();
+	    $sth->free_result();
+	    $db->next_result();
+
+    	// Create pet
+		$sql = "INSERT INTO pets (name, owner, species, hp, maxhp, att, def, hunger, maxhunger, actions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 10)";
+		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
+	    if (!$sth->bind_param("siiiiiiii",$name,$_SESSION['id'],$id,$hp,$hp,$att,$def,$hunger,$hunger)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+
+	    // Create the new pet
+	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
+
+	    $sth->free_result();
+    	$db->next_result();
+
+    	// Decrement users points
+    	$np = $points - $cost;
+    	$db->query("UPDATE users SET scum_points = {$np} WHERE id = {$_SESSION['id']}");
+    	$db->next_result();
 
 	    $db->close();
 
