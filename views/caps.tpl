@@ -15,7 +15,7 @@
                 <div class="card-block">
                     <h4 class="card-title stats">{$p.name}</h4>
                     <p class="card-text">Cost: {$p.cost} SP</p>
-                    <button class="btn btn-success btn-lg btn-block buyBtn" id="pet-buy-{$p.id}">Purchase</button>
+                    <button class="btn btn-success btn-lg btn-block buyBtn" id="pet-buy-{$p.id}" cost="{$p.cost}">Purchase</button>
                 </div>
             </div>
             {if $pCount % 4 == 0}

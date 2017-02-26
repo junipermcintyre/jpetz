@@ -35,8 +35,9 @@ $(document).ready(function() {
 ********************************************************************************/
 $(".buyBtn").click(function(){
     var code = $(this).attr('id');
+    var cost = $(this).attr('cost');
     code = decode(code);
-    purchase(code.id);
+    purchase(code.id, cost);
 });
 
 
@@ -63,7 +64,7 @@ function decode(s) {
 *-------------------------------------------------------------------------------*
 *   When passed an ID, attempt to purchase that item/pet.                       *
 ********************************************************************************/
-function purchase(id) {
+function purchase(id, cost) {
     $.post(
 	    "/controllers/shopcontroller.php",
 	    {action: "buycap", id: id},
@@ -79,6 +80,11 @@ function purchase(id) {
 	        	$("#pLink").attr("href", "/pet.php?id="+response.id);
 	        	$("#pImg").attr("src", "/images/pets/"+response.img);
 	        	$('#pet').modal('show')
+
+	        	// Decrement points
+	        	var points = $("#usr-scum").html();
+	        	points -= cost;
+	        	$("#usr-scum").html(points);
 	        } else {
 	            notify(response.message, "danger");    	// Did not have enough points
 	        }
