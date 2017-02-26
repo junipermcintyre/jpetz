@@ -62,7 +62,6 @@
 	*	Only succeed if enough scum points to purchase. Decrement points.		*
 	****************************************************************************/
 	function purchase($id) {
-		mysqli_report(MYSQLI_REPORT_ALL);
 		# Get users scum points
 		# Get cost of item + stats
 		# If enough
@@ -147,7 +146,6 @@
 	*	Only succeed if enough scum points to purchase. Decrement points.		*
 	****************************************************************************/
 	function buycap($id) {
-		mysqli_report(MYSQLI_REPORT_ALL);
 		# Get users scum points
 		# Get cap stats
 		# If enough
@@ -191,11 +189,14 @@
 			return json_encode($response);
 	    }
 
-	    // Select a pet ID
-	    $sql = "SELECT id, cost FROM species WHERE type = ?";
+	    // Get a list of pets in the capsule
+	    $sql = "SELECT id, cost FROM species WHERE type = ? AND cost IS NOT NULL";
 	    if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
 	    if (! $sth->bind_param("i",$type)) {throw new Exception ("Bind Param failed: ".__LINE__);}
 	    if (! $sth->bind_result($speciesId, $weight)){throw new Exception ("Bind Result failed: ".__LINE__);}
+
+	    // Grab the pets data
+	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
 
 	    // Build a weighted distribution
 	    $sum = 0;
@@ -204,6 +205,9 @@
 	    	$sum += $weight;
 	    	$options[$speciesId] = $weight;
 	    }
+
+		$sth->free_result();
+	    $db->next_result();
 
 	    // Pick the selected pet
 	    $rnd = rand(0, $sum);
@@ -216,10 +220,10 @@
 	    }
 
 	    // Get its stats
-		$sql = "SELECT name, cost, stock, basehp, baseatt, basedef, basehunger FROM species WHERE id = ?";
+		$sql = "SELECT name, cost, stock, basehp, baseatt, basedef, basehunger, img FROM species WHERE id = ?";
 		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
 	    if (! $sth->bind_param("i",$sId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-	    if (! $sth->bind_result($name, $cost, $stock, $hp, $att, $def, $hunger)){throw new Exception ("Bind Result failed: ".__LINE__);}
+	    if (! $sth->bind_result($name, $cost, $stock, $hp, $att, $def, $hunger, $img)){throw new Exception ("Bind Result failed: ".__LINE__);}
 
 	    // Get a pet from database
 	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
@@ -232,10 +236,13 @@
     	// Create pet
 		$sql = "INSERT INTO pets (name, owner, species, hp, maxhp, att, def, hunger, maxhunger, actions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 10)";
 		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
-	    if (!$sth->bind_param("siiiiiiii",$name,$_SESSION['id'],$id,$hp,$hp,$att,$def,$hunger,$hunger)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+	    if (!$sth->bind_param("siiiiiiii",$name,$_SESSION['id'],$sId,$hp,$hp,$att,$def,$hunger,$hunger)) {throw new Exception ("Bind Param failed: ".__LINE__);}
 
 	    // Create the new pet
 	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
+
+	    // Get the new pets ID
+	    $newPet = $sth->insert_id;
 
 	    $sth->free_result();
     	$db->next_result();
@@ -248,7 +255,17 @@
 	    $db->close();
 
 	    // Success!
-	    $response = array("success" => true, "message" => "Congratulations on your new pet! View at your profile.");
+	    $response = array(
+	    	"success" => true,
+	    	"message" => "Congratulations on your new pet! View at your profile.",
+	    	"name" => $name,
+	    	"hp" => $hp,
+	    	"hunger" => $hunger,
+	    	"att" => $att,
+	    	"def" => $def,
+	    	"id" => $newPet,
+	    	"img" => $img
+	    );
 	    return json_encode($response);
 	}
 
