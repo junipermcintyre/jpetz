@@ -16,7 +16,7 @@ $db->next_result();
 
 // Step #2 - Build first line of query
 if ($b->beaten) {
-	$content .= "**Yesterday's Raid Boss,** ***{$b->owner}'s {$pet},*** **was defeated by adventuring J-Petz!**\n";
+	$content .= "**Yesterday's Raid Boss,** ***{$b->owner}'s {$b->pet},*** **was defeated by adventuring J-Petz!**\n";
 
 	// Step #2a - Build the rewards table. Line 1 => total reward, line 2..x => dmg percentages + reward share, line x+1 => last hit bonus
 	$content .= "```Reward pool: {$b->reward} SP\n";
@@ -32,8 +32,8 @@ if ($b->beaten) {
 	while ($s = $shares->fetch_object()) {
 		$name = str_pad("{$s->name}:", 20);
 		$dmg = str_pad(ceil(($s->dmg / $b->maxhp) * 100).'%', 4).'-> ';
-		$r = ceil(($b->dmg / $b->maxhp) * $b->reward);
-		$content .= "{$name}{$dmg}{$r}\n";
+		$r = ceil(($s->dmg / $b->maxhp) * $b->reward);
+		$content .= "{$name}{$dmg}{$r} SP\n";
 	}
 
 	// Step #2b - Get last hit info

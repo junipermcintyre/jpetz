@@ -44,13 +44,13 @@ include('news/BossReward.php');
 
 // Top pet collector
 // SELECT u.name, COUNT(DISTINCT p.species) as collection FROM users u JOIN pets p on u.id = p.owner GROUP BY p.owner ORDER BY collection DESC;
-include('news/BestPetCollector.php');
+// include('news/BestPetCollector.php');
 
 // Random pet feature
-include('news/RandomPetFeature.php');
+// include('news/RandomPetFeature.php');
 
 // Shop Stock output
-include('news/ShopStock.php');
+// include('news/ShopStock.php');
 
 $db->close();																		// Be polite
 
