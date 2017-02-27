@@ -14,7 +14,11 @@
             {/if}
             <hr>
             <div class="quest-available clearfix">
+            {if empty($pets["{$q.id}"])}
                 <div class="card pull-left quest-card">
+            {else}
+                <div class="card pull-left quest-card doable">
+            {/if}
                     <img class="card-img-top" src="/images/quest.png" alt="quest available">
                     <div class="card-block">
                     <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#view-available-{$q.id}">Requirements</button>

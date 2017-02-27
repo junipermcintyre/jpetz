@@ -207,7 +207,7 @@
 
 		$sql = "UPDATE questions SET verified = 1 WHERE id = ? AND verified = 0";	// SQL string to verify one question
 		$qSql = "SELECT user FROM questions WHERE id = ?";							// SQL string to get the submitter of one question
-		$scumSql = "UPDATE users SET scum_points = scum_points + 6 WHERE id = ?";	// SQL string to increment scum points for a user
+		$scumSql = "UPDATE users SET scum_points = scum_points + 20 WHERE id = ?";	// SQL string to increment scum points for a user
 
 		// TO-DO: Find more efficient way to do this...
 

@@ -415,7 +415,8 @@
         	$content .= $out.$next;
         }
         else {
-        	$in = "\"{$pd->bio}\"";
+        	$newBio = '"'.rtrim(trim($pd->bio, ' "'), ' "').'"';
+        	$in = "{$newBio}";
         	$out = strlen($in) > 1000 ? substr($in,0,1000)."...\"" : $in; 
         	$next = "\n-**{$pd->name}** *the* **{$pd->species}***\n\n";
         	

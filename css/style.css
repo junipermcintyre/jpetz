@@ -20,6 +20,10 @@
   padding-bottom: 2rem;
 }
 
+.doable {
+  background-color: lavender;
+}
+
 .main-container {
 	background-color: #FDFDFD;
   border-style: double;

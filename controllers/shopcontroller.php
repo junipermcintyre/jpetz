@@ -183,7 +183,7 @@
 	    $db->next_result();
 
 	    // Step #3 - Handle failure cases
-	    if ($points < $cost) {
+	    if ($points < 100) {
 	    	$db->close();									// ALWAYS do this
 		    $response = array("success" => false, "message" => "You don't have enough Scum Points to buy this!");
 			return json_encode($response);
@@ -248,7 +248,7 @@
     	$db->next_result();
 
     	// Decrement users points
-    	$np = $points - $cost;
+    	$np = $points - 100;
     	$db->query("UPDATE users SET scum_points = {$np} WHERE id = {$_SESSION['id']}");
     	$db->next_result();
 
