@@ -34,10 +34,13 @@ include('news/ScumTopFive.php');
 include('news/PreviousQuestionResults.php');
 
 // Get new question and answers
-include('news/NewQuestion.php');
+//include('news/NewQuestion.php');
 
 // Show which quests were completed last night
 include('news/CompleteQuests.php');
+
+// Show what happened to yesterdays raid boss
+include('news/BossReward.php');
 
 // Top pet collector
 // SELECT u.name, COUNT(DISTINCT p.species) as collection FROM users u JOIN pets p on u.id = p.owner GROUP BY p.owner ORDER BY collection DESC;
@@ -84,4 +87,4 @@ if (curl_errno($curl) > 0) {														// Ensure we sent the data properly
 
 curl_close($curl);																	// Done with curl, close it
 
-echo "Upkeep successfully concluded!\n";
+echo "News successfully concluded!\n";
