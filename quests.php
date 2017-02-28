@@ -73,13 +73,16 @@
             u.name as hero,
             p.name as pet,
             COALESCE(s.name, 'none') as species,
-            COALESCE(t.name, 'none') as type
+            COALESCE(t.name, 'none') as type,
+            sp.img
             FROM quests q
             LEFT JOIN species s ON q.reqspecies = s.id
             LEFT JOIN types t ON q.reqtype = t.id
             JOIN pets p ON q.pet = p.id
             JOIN users u ON q.hero = u.id
+            LEFT JOIN species sp ON p.species = sp.id
             WHERE hero IS NOT NULL
+            AND u.id = {$_SESSION['id']}
             AND progress < length"
         );
 
@@ -101,7 +104,8 @@
                 'hero' => $q['hero'],
                 'pet' => $q['pet'],
                 'species' => $q['species'],
-                'type' => $q['type']
+                'type' => $q['type'],
+                'img' => $q['img']
             );
 
             // Change some of the req's

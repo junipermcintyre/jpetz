@@ -97,15 +97,23 @@
             {/if}
             <hr>
             <div class="quest-progress row clearfix">
-            	<div class="col-md-3 col-sm-4">
-	                <div class="card quest-card">
+            	<div class="col-md-2 col-sm-4">
+	                <div class="card quest-card onquest">
 	                    <img class="card-img-top" src="/images/onquest.png" alt="quest progress">
 	                    <div class="card-block">
 	                    <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#view-progress-{$q.id}">Status</button>
 	                    </div>
 	                </div>
                 </div>
-                <div class="col-md-9 col-sm-8">
+                <div class="col-md-2 col-sm-4">
+	                <div class="card quest-card">
+	                    <img class="card-img-top" src="/images/pets/{$q.img}" alt="quest progress pet">
+	                    <div class="card-block">
+	                    	<h4 class="card-title stats">{$q.pet}</h4>
+	                    </div>
+	                </div>
+                </div>
+                <div class="col-md-8 col-sm-4">
 	                <h3>{$q.title}</h3>
 	                <p><em>{$q.description}</em></p>
 	                <blockquote class="blockquote">
@@ -145,7 +153,7 @@
                             <h4>Rewards</h4>
                             {$q.reward} SP
                             <hr>
-                            <p>This quest was accepted by <strong>{$q.hero}</strong>'s J-Pet <strong><em>{$q.pet}</em></strong></p>
+                            <p>This quest was accepted by <strong><em>{$q.pet}</em></strong></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
