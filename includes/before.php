@@ -83,9 +83,9 @@ switch($access) {
 }
 
 // Include the PHP Debug bar object
-use DebugBar\StandardDebugBar;
+/*use DebugBar\StandardDebugBar;
 $debugbar = new StandardDebugBar();
-$debugbarRenderer = $debugbar->getJavascriptRenderer();
+$debugbarRenderer = $debugbar->getJavascriptRenderer();*/
 
 // Include the Smarty Framework for templating
 $dir = dirname(__FILE__);
@@ -95,7 +95,7 @@ require("$dir/../smarty/libs/Smarty.class.php");
 $smarty = new Smarty;
 
 // Pass the DebugBarRenderer to the view
-$smarty->assign('debugbarRenderer', $debugbarRenderer);
+//$smarty->assign('debugbarRenderer', $debugbarRenderer);
 
 /***********************************   Get user info for views   ************************************/
 $usrInfo = null;

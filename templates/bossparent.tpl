@@ -6,6 +6,5 @@
     {block name=body}Default Body{/block}
     <!-- Render DebugBar -->
     {include file="footer.tpl"}
-    {$debugbarRenderer->render()}
   </body>
 </html>

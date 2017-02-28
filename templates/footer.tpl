@@ -1,5 +1,10 @@
 <!-- Feature request modal and button -->
 <div class="feature" id="feature"><img src="/images/bttl.gif" data-toggle="modal" data-target="#feature-modal"></div>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted"><p>All J-Petz images courtesy of <a href="https://friendlytaco.tumblr.com/" target="_blank">FriendlyTaco</a></p></span>
+  </div>
+</footer>
 <div class="modal fade" id="feature-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

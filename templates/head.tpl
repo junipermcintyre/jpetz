@@ -42,7 +42,5 @@
         </script>
     {/literal}
     <!-- End scripts -->
-    <!-- Render the PHP DebugBar -->
-    {$debugbarRenderer->renderHead()}
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Walter+Turncoat" rel="stylesheet">
 </head>
