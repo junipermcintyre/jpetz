@@ -72,6 +72,8 @@
             q.description,
             u.name as hero,
             p.name as pet,
+            p.hp,
+            p.maxhp,
             COALESCE(s.name, 'none') as species,
             COALESCE(t.name, 'none') as type,
             sp.img
@@ -105,7 +107,9 @@
                 'pet' => $q['pet'],
                 'species' => $q['species'],
                 'type' => $q['type'],
-                'img' => $q['img']
+                'img' => $q['img'],
+                'hp' => $q['hp'],
+                'maxhp' => $q['maxhp']
             );
 
             // Change some of the req's
@@ -132,7 +136,7 @@
     	// AND p.def >= $quest.reqDef
     	// AND p.type = $quest.reqtype
     	// AND p.species = $quest.reqspecies
-    	$sql = "SELECT p.id, p.name, p.hp, p.hunger, s.img FROM pets p JOIN species s ON p.species = s.id WHERE p.alive = 1 AND p.busy = 0 AND p.owner = {$id}";
+    	$sql = "SELECT p.id, p.name, p.hp, p.maxhp, p.hunger, s.img FROM pets p JOIN species s ON p.species = s.id WHERE p.alive = 1 AND p.busy = 0 AND p.owner = {$id}";
     	if (!is_null($quest['reqatt']) && $quest['reqatt'] != "none")
     		$sql .= " AND p.att >= {$quest['reqatt']}";
     	if (!is_null($quest['reqdef']) && $quest['reqdef'] != "none")
@@ -154,6 +158,7 @@
     			'img' => $p['img'],
     			'name' => $p['name'],
     			'hp' => $p['hp'],
+                'maxhp' => $p['maxhp'],
     			'hunger' => $p['hunger']
     		);
     		array_push($pets, $tmp);

@@ -68,7 +68,7 @@
 	                            <h4>Send available J-Pet?</h4>
 	                            <select class="custom-select" id="questpicker-{$q.id}">
 	                            {foreach from=$pets["{$q.id}"] item=p}
-	                                <option value="pet-{$q.id}-{$p.id}">{$p.name}</option>
+	                                <option pet="{$p.id}" value="pet-{$q.id}-{$p.id}" data-toggle="tooltip" data-placement="right" title="HP: {$p.hp} / {$p.maxhp}">{$p.name}</option>
 	                            {/foreach}
 	                            </select>
 	                        </div>
@@ -110,6 +110,7 @@
 	                    <img class="card-img-top" src="/images/pets/{$q.img}" alt="quest progress pet">
 	                    <div class="card-block">
 	                    	<h4 class="card-title stats">{$q.pet}</h4>
+	                    	<p class="card-text"><img src="/images/hp.gif">{$q.hp} / {$q.maxhp}</p>
 	                    </div>
 	                </div>
                 </div>
