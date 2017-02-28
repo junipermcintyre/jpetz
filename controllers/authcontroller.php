@@ -153,7 +153,7 @@
     		$res = $db->query("SELECT id FROM login WHERE user = {$user_struct['id']}");
     		if ($res->fetch_assoc()) {		// ie if there was a match
     			// Update the record
-    			$db->query("UPDATE login SET series = '{$series}', token = '{$tokenHash}'");
+    			$db->query("UPDATE login SET series = '{$series}', token = '{$tokenHash}' WHERE user = {$user_struct['id']}");
     		} else {						// Create a new one
     			// Create new record
     			$db->query("INSERT INTO login (user, series, token) VALUES ({$user_struct['id']}, '{$series}', '{$tokenHash}')");
