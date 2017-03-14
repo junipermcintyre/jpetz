@@ -55,9 +55,10 @@
             AND p.alive = true
             AND p.busy = false"
         );   
-        if ($pets === false) {throw new Exception ($db->error);}               // If something went wrong
-        $p_array = array();                                                    // Get ready for row data
-        while ($row = $pets->fetch_assoc()) {                                  // Iterate over each question
+        if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong
+        $p_array = array();                                                     // Get ready for row data
+        $hungerTtl = 0;                                                         // Keep track of total missing hunger
+        while ($row = $pets->fetch_assoc()) {                                   // Iterate over each pet
             $p = array();
             $p['id'] = $row['id'];
             $p['name'] = $row['name'];
@@ -74,7 +75,8 @@
             $p['rarity'] = $row['rarity'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
-            array_push($p_array, $p);                                          // And store the data into a result row
+            array_push($p_array, $p);                                           // And store the data into a result row
+            $hungerTtl += ($p['maxhunger'] - $p['hunger']);                     // Add to total missing hunger
         }
 
         /***************************************   Get user's name   **************************************/
@@ -110,7 +112,7 @@
             AND p.busy = true"
         );   
         if ($bPets === false) {throw new Exception ($db->error);}               // If something went wrong
-        $b_array = array();                                                    // Get ready for row data
+        $b_array = array();                                                     // Get ready for row data
         while ($row = $bPets->fetch_assoc()) {                                  // Iterate over each question
             $p = array();
             $p['id'] = $row['id'];
@@ -142,6 +144,8 @@
         $smarty->assign('pets', $p_array);
         // Pass busy pets data to the view
         $smarty->assign('bpets', $b_array);
+        // Pass count of hunger missing to view
+        $smarty->assign('hunger', $hungerTtl);
 
         // Display the associated template
         $dir = dirname(__FILE__);

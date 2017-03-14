@@ -6,7 +6,7 @@
         <p><em>Behold! My collection...</em></p>
     </div>
     <div class="main-container container">
-    	<h2>Available J-Petz</h2>
+    	<h2>Available J-Petz <button type="button" id="feedAll" class="btn btn-danger btn-sm"><img src="/images/hunger.gif"> Feed all (<span id="hungerTtl">{$hunger * 2}</span> SP)</button></h2>
     	{if empty($pets)}
     		<p>No J-Petz available!</p>
     	{else}
@@ -113,4 +113,5 @@
 	        </div>
 	    {/if}
     </div>
+    <script src="/js/petfull.js"></script>
 {/block}

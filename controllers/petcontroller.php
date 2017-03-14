@@ -47,6 +47,10 @@
 			break;
 		case "train":
 			echo train($_POST['pet'], $_POST['stat']);
+			break;
+		case "feedAll":
+			echo feedAll();
+			break;
 		default:
 			break;
 	}
@@ -287,6 +291,53 @@
 	}
 
 
+	/******************************** FEED ALL **********************************
+	*---------------------------------------------------------------------------*
+	*	Feed all pet! Pet must belong to current user ($_SESION['id']),			*
+	*	user must have 2 points for each pet hunger point.						*
+	****************************************************************************/
+	function feedAll() {
+		$db = connect_to_db();	// (hint - this function is in conf/db.php)
+
+		// Step #1 - Make sure the database connection is A+
+		if ($db->connect_error) {
+            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
+        }
+
+        $pets = $db->query("
+            SELECT
+            hunger,
+            maxhunger
+            FROM pets
+            WHERE owner = {$_SESSION['id']}
+            AND alive = true
+            AND busy = false"
+        );   
+        if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong
+        $hungerTtl = 0;                                                         // Keep track of total missing hunger
+        while ($row = $pets->fetch_assoc()) {                                   // Iterate over each pet
+            $hungerTtl += ($row['maxhunger'] - $row['hunger']);                     // Add to total missing hunger
+        }
+
+        $cost = $hungerTtl *= 2;
+
+        if ($cost <= 0)
+        	return buildResponse(false, "None of your J-Petz seem hungry!");
+
+		// Confirm that the user has the necessary points to feed pet
+		if (!checkPoints($db, $_SESSION['id'], $cost))
+			return buildResponse(false, "You don't have enough points to buy food!");
+
+		// Subtract users SP
+		dockPoints($db, $_SESSION['id'], $cost);
+
+		// Set pets up with that sweet hunger fillup
+		$db->query("UPDATE pets SET hunger = maxhunger WHERE owner = {$_SESSION['id']} AND alive = true AND busy = false");
+
+		return buildResponse(true, "J-Petz successfully fed!");
+	}
+
+
 	/****************************************************************************
 	*								HELPER FUNCTIONS 							*
 	*****************************************************************************
@@ -359,7 +410,6 @@
         if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$dbh->error);}
 
         $dbh->next_result();
-        dockActions($dbh, $pet, 1);
         return;
 	}
 
