@@ -75,4 +75,5 @@
 			<p>You're too powerful to raid this player!</p>
 		{/if}
     </div>
+    <script src="/js/raid.js"></script>
 {/block}

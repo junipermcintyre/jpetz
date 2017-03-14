@@ -41,9 +41,10 @@
             AND p.alive = true
             AND p.defending = true"
         );   
-        if ($pets === false) {throw new Exception ($db->error);}               // If something went wrong
-        $p_array = array();                                                    // Get ready for row data
-        while ($row = $pets->fetch_assoc()) {                                  // Iterate over each defending pet
+        if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong
+        $p_array = array();                                                     // Get ready for row data
+        $defTtl = 0;                                                            // Track total defence
+        while ($row = $pets->fetch_assoc()) {                                   // Iterate over each defending pet
             $p = array();
             $p['id'] = $row['id'];
             $p['name'] = $row['name'];
@@ -58,6 +59,7 @@
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
             $p['rarity'] = $row['rarity'];
+            $defTtl += $p['def'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($p_array, $p);                                          // And store the data into a result row
@@ -68,6 +70,7 @@
         /***********************************   Complete view rendering   ***********************************/
         // Pass the defending pets data to the view
         $smarty->assign('pets', $p_array);
+        $smarty->assign('def', $defTtl);
 
         // Display the associated template
         $dir = dirname(__FILE__);
@@ -169,7 +172,8 @@
             JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$_SESSION['id']}
             AND p.alive = true
-            AND p.busy = false"
+            AND p.busy = false
+            AND p.actions >= 5"
         );   
         if ($aPets === false) {throw new Exception ($db->error);}               // If something went wrong
         $a_array = array();                                                     // Get ready for row data

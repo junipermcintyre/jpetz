@@ -35,5 +35,6 @@
 		        {/foreach}
 	        </div>
 	    {/if}
+	    <p class="stats">Total <img src="/images/def.gif">: {$def}</p>
     </div>
 {/block}
