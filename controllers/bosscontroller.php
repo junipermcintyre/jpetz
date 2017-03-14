@@ -92,6 +92,10 @@
 	    // Collect DB info about the RB
 	    $boss = getBoss($db);
 
+	    // Check that a boss exists right now
+	    if (!$boss)
+	    	return buildResponse(false, "There's no boss to fight right now!");
+
 	    // Confirm pet belongs to current user
 	    if ($pet['owner'] != $userId)
 	    	return buildResponse(false, "You don't own that J-Pet!");
@@ -159,6 +163,9 @@
 	    $sth->fetch();
 	    $sth->free_result();
 	    $dbh->next_result();
+
+	    if (!isset($id) || is_null($id) || $id == '' || !$id)
+	    	return false;
 
 	    return array(
 	    	'id' => $id,
