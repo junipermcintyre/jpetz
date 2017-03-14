@@ -114,10 +114,10 @@
                     </div>
                     <div class="col-md-2 col-sm-4">
     	                <div class="card quest-card">
-    	                    <img class="card-img-top" src="/images/pets/{$q.img}" alt="quest progress pet">
+    	                    <img class="card-img-top rarity-{$q.rarity}" src="/images/pets/{$q.img}" alt="quest progress pet">
     	                    <div class="card-block">
     	                    	<h4 class="card-title stats">{$q.pet}</h4>
-    	                    	<p class="card-text"><img src="/images/hp.gif">{$q.hp} / {$q.maxhp}</p>
+    	                    	<p class="card-text"><img src="/images/hp.gif"> {$q.hp} / {$q.maxhp}</p>
     	                    </div>
     	                </div>
                     </div>

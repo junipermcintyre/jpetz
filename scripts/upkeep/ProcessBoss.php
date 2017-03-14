@@ -8,14 +8,17 @@ $res = $db->query("SELECT id, pet, date, maxhp, hp, att, def, reward, bonus, act
 $boss = $res->fetch_assoc();
 $db->next_result();
 
+// Only do the following if a boss exists
+if ($boss) {
 // Step #2A - If it is dead, award points to fighters
-if ($boss['beaten']) {
-	pointsToFighters($db, $boss);
-}
+	if ($boss['beaten']) {
+		pointsToFighters($db, $boss);
+	}
 
-// Step #2B - If it is alive, award points to owner
-if (!$boss['beaten']) {
-	pointsToOwner($db, $boss);
+	// Step #2B - If it is alive, award points to owner
+	if (!$boss['beaten']) {
+		pointsToOwner($db, $boss);
+	}
 }
 
 // Step 3 - Make new boss

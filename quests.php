@@ -31,7 +31,8 @@
             FROM quests q
             LEFT JOIN species s ON q.reqspecies = s.id
             LEFT JOIN types t ON q.reqtype = t.id
-            WHERE hero IS NULL"
+            WHERE hero IS NULL
+            ORDER BY q.length ASC, q.reward DESC"
         );
         $aQuests = array();
         while ($q = $available->fetch_assoc()) {
@@ -76,16 +77,19 @@
             p.maxhp,
             COALESCE(s.name, 'none') as species,
             COALESCE(t.name, 'none') as type,
-            sp.img
+            sp.img,
+            r.name as rarity
             FROM quests q
             LEFT JOIN species s ON q.reqspecies = s.id
             LEFT JOIN types t ON q.reqtype = t.id
             JOIN pets p ON q.pet = p.id
             JOIN users u ON q.hero = u.id
             LEFT JOIN species sp ON p.species = sp.id
+            JOIN rarity r ON sp.rarity = r.id
             WHERE hero IS NOT NULL
             AND u.id = {$_SESSION['id']}
-            AND progress < length"
+            AND progress < length
+            ORDER BY q.length ASC, q.reward DESC"
         );
 
         $pQuests = array();
@@ -109,7 +113,8 @@
                 'type' => $q['type'],
                 'img' => $q['img'],
                 'hp' => $q['hp'],
-                'maxhp' => $q['maxhp']
+                'maxhp' => $q['maxhp'],
+                'rarity' => $q['rarity']
             );
 
             // Change some of the req's

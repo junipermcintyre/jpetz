@@ -248,7 +248,7 @@ function getStory($q) {
 			)
 		),
 		"starcraft" => array(
-			"drone" => array)
+			"drone" => array(
 				array(
 					"title" => "Build an extractor",
 					"description" => "DROOOOOONE, build an extractorrrr"
