@@ -26,21 +26,25 @@
                         </div>
                     </div>-->
                     <div class="pet-horizontal clearfix">
-                        <img src="/images/pets/{$p.img}" id="pet-img-{$p.id}" alt="Pet img" class="img-thumbnail pet-boss pull-left">
-                        <h4 class="stats">{$p.name}</h4>
-                        <div class="row">
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                <img src="/images/hp.gif"> <span class="stats"><span id="pet-hp-{$p.id}">{$p.hp|string_format:"%d"}</span>/{$p.maxhp|string_format:"%d"}</span>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                                <img src="/images/att.gif"> <span class="stats">{$p.att|string_format:"%d"}</span>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                                <img src="/images/def.gif"> <span class="stats">{$p.def|string_format:"%d"}</span>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12">
-                                <img src="/images/bttl.gif" class="fight" data-toggle="tooltip" id="pet-fight-{$p.id}" data-html="true" data-placement="right" title="Deal {$p.ed} dmg<br>Take {$p.et} dmg">
-                            </div>
+	                    <div class="row">
+	                        <img src="/images/pets/{$p.img}" id="pet-img-{$p.id}" alt="Pet img" class="img-thumbnail pet-boss col-md-2">
+	                        <div class="col-md-10">
+	                        	<h4 class="stats">{$p.name}</h4>
+		                        <div class="row">
+		                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+		                                <img src="/images/hp.gif"> <span class="stats"><span id="pet-hp-{$p.id}">{$p.hp|string_format:"%d"}</span>/{$p.maxhp|string_format:"%d"}</span>
+		                            </div>
+		                            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+		                                <img src="/images/att.gif"> <span class="stats">{$p.att|string_format:"%d"}</span>
+		                            </div>
+		                            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+		                                <img src="/images/def.gif"> <span class="stats">{$p.def|string_format:"%d"}</span>
+		                            </div>
+		                            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12">
+		                                <img src="/images/bttl.gif" class="fight" data-toggle="tooltip" id="pet-fight-{$p.id}" data-html="true" data-placement="right" title="Deal {$p.ed} dmg<br>Take {$p.et} dmg">
+		                            </div>
+		                        </div>
+							</div>
                         </div>
                     </div>
                 {/foreach}
