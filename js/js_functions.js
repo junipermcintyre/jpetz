@@ -63,7 +63,6 @@ function notify(m, l){
 ********************************************************************************/
 $(document).ready(function(){
 	$("#featureBtn").click(function(){
-		console.log("test?");
 		var name = $("#featureName").val();
 		var msg = $("#featureRequest").val();
 
@@ -77,6 +76,22 @@ $(document).ready(function(){
 });
 
 function request(name, msg){
-	notify("Thanks! That helps", "success");
-	notify("((this doesn't do anything yet!))", "warning");
+	// Send an AJAX request to send administrators & mods an email
+	$.post(
+        "/controllers/authcontroller.php",
+        {action: "feature", name: name, msg: msg},
+        function(response) {                            // Hit the controller successfully! Check for success etc...
+            console.log(response);
+            if (response.success == true) {             // Account was created...
+                notify("Thanks! That helps", "success");    // Inform user of success
+            } else {                                    // Account was not created
+                notify(response.message, "warning");    // Inform user of failure, don't clear inputs
+            }
+        },
+        "json"
+    ).fail(function(err, status){                       // The AJAX call was unsuccessful here
+        notify("Something broke! Error code: 3168", "danger");
+        console.log(err);
+        console.log(status);
+    });
 }

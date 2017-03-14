@@ -34,23 +34,22 @@ include('news/ScumTopFive.php');
 include('news/PreviousQuestionResults.php');
 
 // Get new question and answers
-//include('news/NewQuestion.php');
+# include('news/NewQuestion.php');
 
 // Show which quests were completed last night
-include('news/CompleteQuests.php');
+# include('news/CompleteQuests.php');
 
 // Show what happened to yesterdays raid boss
 include('news/BossReward.php');
 
 // Top pet collector
-// SELECT u.name, COUNT(DISTINCT p.species) as collection FROM users u JOIN pets p on u.id = p.owner GROUP BY p.owner ORDER BY collection DESC;
-// include('news/BestPetCollector.php');
+# include('news/BestPetCollector.php');
 
 // Random pet feature
-// include('news/RandomPetFeature.php');
+# include('news/RandomPetFeature.php');
 
 // Shop Stock output
-// include('news/ShopStock.php');
+# include('news/ShopStock.php');
 
 $db->close();																		// Be polite
 

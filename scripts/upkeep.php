@@ -40,7 +40,7 @@ include('upkeep/DecrementPetHunger.php');
 include('upkeep/RefreshPets.php');
 
 // Reset pet stocks
-include('upkeep/RefreshSpeciesStock.php');
+# include('upkeep/RefreshSpeciesStock.php');
 
 // Process quests
 include('upkeep/ProcessQuests.php');

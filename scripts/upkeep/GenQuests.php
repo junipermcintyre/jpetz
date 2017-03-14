@@ -12,7 +12,7 @@
 
 // Get max amount and current amount of available quests
 $res = $db->query("SELECT COUNT(*) AS count FROM pets WHERE alive = true");
-$max = $res->fetch_assoc()['count'] * 2;
+$max = $res->fetch_assoc()['count'] * 1.5;
 $db->next_result();
 $res = $db->query("SELECT COUNT(*) AS count FROM quests WHERE complete = false");
 $cur = $res->fetch_assoc()['count'];
@@ -107,7 +107,7 @@ function fiftyfifty() {
 function calcReward($q) {
 	// Can safely add nulls
 	$r = 10;
-	$r += $q['reqatt'] + $q['reqdef'];
+	$r += ($q['reqatt'] * 0.1) + ($q['reqdef'] * 0.1);
 	if (!is_null($q['reqtype']))
 		$r += 2;
 	if (!is_null($q['reqspecies']))
@@ -147,6 +147,10 @@ function getStory($q) {
 				array(
 					"title" => "Sheep Shearer",
 					"description" => "A local farmer is looking to hire a J-Pet to do some farm work."
+				),
+				array(
+					"title" => "Rescue Peasants",
+					"description" => "Peasants are being slaughtered by an enemy Lord, send a J-Pet to assist!"
 				)
 		),
 		"csgo" => array(
@@ -174,6 +178,10 @@ function getStory($q) {
 				array(
 					"title" => "Win a Valve DM",
 					"description" => "Word has gone around that some DMs are taking place. Sending a J-Pet to participate could result in a substantial reward."
+				),
+				array(
+					"title" => "Set up a Crossfire",
+					"description" => "Bomb's down. Your skills are required Camper."
 				)
 			),
 			"Squeaker" => array(
@@ -194,12 +202,20 @@ function getStory($q) {
 				array(
 					"title" => "Avian Consulting Gig",
 					"description" => "A Fortune-500 company is looking for a Business Owl to provide top-tier consulting services."
+				),
+				array(
+					"title" => "Give Sales Presentation",
+					"description" => "The boss is lookin for someone to lead the project presentation. Know anyone who could do it?"
 				)
 			),
 			"Cammy Pls" => array(
 				array(
 					"title" => "Dispose of Extra Beer",
 					"description" => "You heard the man."
+				),
+				array(
+					"title" => "Clean out Rat Infestation",
+					"description" => "\"We're not saying you need to eat the rats-\" \"Say no more\""
 				)
 			),
 			"misc" => array(
@@ -220,8 +236,29 @@ function getStory($q) {
 			)
 		),
 		"starcraft" => array(
+			"drone" => array)
+				array(
+					"title" => "Build an extractor",
+					"description" => "DROOOOOONE, build an extractorrrr"
+				),
+				array(
+					"title" => "Evade Marines",
+					"description" => "OUR DROOOONESS ARE UNDER ATTTACCKKKK"
+				),
+				array(
+					"Build a Spawning Pool",
+					"description" => "Yes you get the drone back after this quest"
+				)
+			),
 			"misc" => array(
-				
+				array(
+					"title" => "Gathering Duty",
+					"description" => "You must collect additional minerals"
+				),
+				array(
+					"title" => "Gathering Guty",
+					"description" => "Not enough vespene gas, get some more!"
+				)
 			)
 		)
 	);

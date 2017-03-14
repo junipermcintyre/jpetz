@@ -51,6 +51,8 @@
 		case 'update':																	// Case when user updates profile
 			echo update();
 			break;
+		case 'feature':
+			echo feature($_POST['name'], $_POST['msg']);							// Case when someone does a feature request
 		default:
 			break;
 	}
@@ -329,6 +331,44 @@
 	        $response = array("success" => true, "message" => "Profile updated successfully!");	// Everything went well!
 	        return json_encode($response);
         }
+	}
+
+
+	/**************************** FEATURE REQUEST *******************************
+	*---------------------------------------------------------------------------*
+	*	This function is called when a user attemps to send a feature request.	*
+	*	Grab the emails of mods and admins, and send them an email.				*
+	****************************************************************************/
+	function feature($name, $message) {
+		// We're gonna need a database connection - MySQLi time
+		$db = connect_to_db();	// (hint - this function is in conf/db.php)
+
+		// Step #1 - Make sure the database connection is A+
+		if ($db->connect_error) {
+            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
+        }
+
+        $sql = "SELECT email FROM users WHERE role = 1";
+        $res = $db->query($sql);
+
+        $to = "";
+        while ($email = $res->fetch_assoc()) {
+        	$to .= "{$email['email']},";
+        }
+        $to = rtrim($to, ',');
+
+        $db->close();
+
+		$subject = 'Feature request on gg.jeradmcintyre.com';
+		$headers = 'From: noreply@gg.jeradmcintyre.com' . "\r\n" .
+				   'X-Mailer: PHP/' . phpversion();
+
+		if (mail($to, $subject, $message, $headers))
+	        $response = array("success" => true, "message" => "Feature request sent!");	// Everything went well!
+	    else
+	        $response = array("success" => false, "message" => "Couldn't send mail!");	// Not good!
+
+	    return json_encode($response);
 	}
 
 

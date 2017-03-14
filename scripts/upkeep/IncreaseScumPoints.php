@@ -4,7 +4,7 @@
 */
 
 // Step #1 - Set up and run a query to increment all points by one
-$sth = $db->prepare("UPDATE users SET scum_points = scum_points + 1");				// Build a query to increment points
+$sth = $db->prepare("UPDATE users SET scum_points = scum_points + 5");				// Build a query to increment points
 if ($sth === false) {throw new Exception ($dbh->error);}							// If somehing went REALLY wrong
 
 $sth->execute();																	// Run the query
