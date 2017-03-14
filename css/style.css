@@ -28,6 +28,11 @@
   padding-bottom: 5rem;
 }
 
+.tiny-icon {
+  width: 15px;
+  height: 15px;
+}
+
 .doable {
   background-color: lavender;
 }

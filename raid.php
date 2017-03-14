@@ -74,11 +74,26 @@
         $smarty->display("$dir/views/raiddef.tpl");
 
     } else {                                // Show the raid attack screen
-        /***************************************   Get user's name   **************************************/
-        $name = $db->query("SELECT name FROM users WHERE id = {$id}");
-        $name = $name->fetch_assoc();
-        $name = $name['name'];
+        /**********************   Handle cases where a user can't raid another user   *********************/
+        $dUser = $db->query("SELECT u.name, u.scum_points, COUNT(p.owner) as pets FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$id} GROUP BY u.id");
+        $dUser = $dUser->fetch_assoc();
+        $name = $dUser['name'];
+        $dPoints = $dUser['scum_points'];
+        $dPets = $dUser['pets'];
         $db->next_result();
+
+        $aUser = $db->query("SELECT u.scum_points, COUNT(p.owner) as pets FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$_SESSION['id']} GROUP BY u.id");
+        $aUser = $aUser->fetch_assoc();
+        $aPoints = $aUser['scum_points'];
+        $aPets = $aUser['pets'];
+        $db->next_result();
+
+        // Validate if raiding is OK
+        $rFlag = true;
+        if ($aPoints > $dPoints + 300)                          // If the attacker has 300 or more scum points than defender
+            $rFlag = false;
+        if ($aPets - $dPets > min($dPets, $aPets) * 0.25)       // If the attacker has more pets (with some leeway)
+            $rFlag = false;
 
         /***********************************   Grab defending pet data   **********************************/
         $dPets = $db->query("
@@ -186,6 +201,7 @@
         $smarty->assign('aPets', $a_array);
         $smarty->assign('def', $defTtl);
         $smarty->assign('att', $attTtl);
+        $smarty->assign('rFlag', $rFlag);
         $smarty->assign('name', $name);
         $dir = dirname(__FILE__);
         $smarty->display("$dir/views/raidatt.tpl");
