@@ -151,6 +151,14 @@ function getStory($q) {
 				array(
 					"title" => "Rescue Peasants",
 					"description" => "Peasants are being slaughtered by an enemy Lord, send a J-Pet to assist!"
+				),
+				array(
+					"title" => "Jeradmcintyre.com Beta Tester",
+					"description" => "Use that report feature button to do something cool!"
+				),
+				array(
+					"title" => "Collect Cow Hides",
+					"description" => "Leather always goes for good money on the market, so cow hides are in strong demand. Send a J-Pet to collect some."
 				)
 		),
 		"csgo" => array(
@@ -206,6 +214,10 @@ function getStory($q) {
 				array(
 					"title" => "Give Sales Presentation",
 					"description" => "The boss is lookin for someone to lead the project presentation. Know anyone who could do it?"
+				),
+				array(
+					"title" => "Do Owl Things",
+					"description" => "I don't know what owls do. Fly around? Eat mice?"
 				)
 			),
 			"Cammy Pls" => array(
