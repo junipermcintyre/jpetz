@@ -23,12 +23,6 @@
     }
 
     if(!isset($_GET['pet'])) {              // Show full pet page (assume ID is set from previous)
-        /***************************************   Get user's name   **************************************/
-        $name = $db->query("SELECT name FROM users WHERE id = {$id}");
-        $name = $name->fetch_assoc();
-        $name = $name['name'];
-        $db->next_result();
-
         /***********************************   Grab available pet data   **********************************/
         $pets = $db->query("
             SELECT

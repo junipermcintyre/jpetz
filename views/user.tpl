@@ -7,7 +7,8 @@
 	    	<div class="col-md-10">
 		        <h1 class="display-3">{$name}</h1>
 		        <p><em>{$intro}</em></p>
-		        <p><a href="/pet.php{$qry}">View this users J-Petz!</a></p>
+		        <p><a href="/pet.php{$qry}">View J-Petz</a> | <a href="/raid.php{$qry}">Raid Scum Points</a></p>
+		        <p></p>
 	        </div>
         </div>
     </div>

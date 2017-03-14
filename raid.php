@@ -74,6 +74,12 @@
         $smarty->display("$dir/views/raiddef.tpl");
 
     } else {                                // Show the raid attack screen
+        /***************************************   Get user's name   **************************************/
+        $name = $db->query("SELECT name FROM users WHERE id = {$id}");
+        $name = $name->fetch_assoc();
+        $name = $name['name'];
+        $db->next_result();
+
         /***********************************   Grab defending pet data   **********************************/
         $dPets = $db->query("
             SELECT
@@ -89,18 +95,21 @@
             s.img,
             s.name as species,
             s.flavour,
-            t.name as type
+            t.name as type,
+            r.name as rarity
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
             JOIN types t ON s.type = t.id
+            JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$id}
             AND p.alive = true
             AND p.defending = true"
         );   
-        if ($dPets === false) {throw new Exception ($db->error);}              // If something went wrong
-        $d_array = array();                                                    // Get ready for row data
-        while ($row = $dPets->fetch_assoc()) {                                 // Iterate over each defending pet
+        if ($dPets === false) {throw new Exception ($db->error);}               // If something went wrong
+        $d_array = array();                                                     // Get ready for row data
+        $defTtl = 0;                                                            // Track total defence
+        while ($row = $dPets->fetch_assoc()) {                                  // Iterate over each defending pet
             $p = array();
             $p['id'] = $row['id'];
             $p['name'] = $row['name'];
@@ -114,6 +123,8 @@
             $p['species'] = $row['species'];
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
+            $p['rarity'] = $row['rarity'];
+            $defTtl += $p['def'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($d_array, $p);                                          // And store the data into a result row
@@ -134,18 +145,21 @@
             s.img,
             s.name as species,
             s.flavour,
-            t.name as type
+            t.name as type,
+            r.name as rarity
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
             JOIN types t ON s.type = t.id
+            JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$_SESSION['id']}
             AND p.alive = true
             AND p.busy = false"
         );   
-        if ($aPets === false) {throw new Exception ($db->error);}              // If something went wrong
-        $a_array = array();                                                    // Get ready for row data
-        while ($row = $aPets->fetch_assoc()) {                                 // Iterate over each defending pet
+        if ($aPets === false) {throw new Exception ($db->error);}               // If something went wrong
+        $a_array = array();                                                     // Get ready for row data
+        $attTtl = 0;                                                            // Track total attack
+        while ($row = $aPets->fetch_assoc()) {                                  // Iterate over each defending pet
             $p = array();
             $p['id'] = $row['id'];
             $p['name'] = $row['name'];
@@ -159,6 +173,8 @@
             $p['species'] = $row['species'];
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
+            $p['rarity'] = $row['rarity'];
+            $attTtl += $p['att'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($a_array, $p);                                          // And store the data into a result row
@@ -166,7 +182,11 @@
 
         /***********************************   Complete view rendering   ***********************************/
         // Pass all the pets data to the view
-        $smarty->assign('dPets', $dPets);
-        $smarty->assign('aPets', $aPets);
+        $smarty->assign('dPets', $d_array);
+        $smarty->assign('aPets', $a_array);
+        $smarty->assign('def', $defTtl);
+        $smarty->assign('att', $attTtl);
+        $smarty->assign('name', $name);
+        $dir = dirname(__FILE__);
         $smarty->display("$dir/views/raidatt.tpl");
     }
