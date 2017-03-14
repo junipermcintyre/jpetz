@@ -3,18 +3,29 @@
 	background-image: url('/images/background.jpg');
 	/* Move down content because we have a fixed navbar that is 50px tall */
 	padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 
 .boss-body {
   background-image: url('/images/background_fire.jpg');
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+.raid-body {
+  background-image: url('/images/background_castle.jpg');
+  background-size: cover;
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 
 .spooky-body {
   background-image: url('/images/background_spooky.gif');
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 
 .doable {
@@ -42,13 +53,12 @@
 }
 
 .footer {
-  margin-top: 20px;
-  bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
   line-height: 60px; /* Vertically center the text there */
   background-color: #f5f5f5;
+  height: 60px;
+  bottom: 0px;
+  position: fixed;
 }
 
 .main-container {
@@ -64,6 +74,19 @@
 }
 
 .spooky-container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.raid-container {
   background-color: #FDFDFD;
   border-style: double;
   border-color: #44034e;
