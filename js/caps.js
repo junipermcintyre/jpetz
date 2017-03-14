@@ -79,6 +79,8 @@ function purchase(id, cost) {
 	        	$("#pDef").html(response.def);
 	        	$("#pLink").attr("href", "/pet.php?id="+response.id);
 	        	$("#pImg").attr("src", "/images/pets/"+response.img);
+	        	$("#pImg").attr("class", "img-thumbnail");
+	        	$("#pImg").addClass("rarity-"+response.rarity);
 	        	$('#pet').modal('show')
 
 	        	// Decrement points

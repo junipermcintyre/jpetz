@@ -25,6 +25,22 @@
   background-color: #ffcdc9;
 }
 
+.rarity-Legendary {
+  border: 2px solid orange;
+}
+
+.rarity-Rare {
+  border: 2px solid purple;
+}
+
+.rarity-Uncommon {
+  border: 2px solid green;
+}
+
+.rarity-Common {
+  border: 2px solid blue;
+}
+
 .footer {
   margin-top: 20px;
   bottom: 0;
@@ -154,7 +170,6 @@
 .profile {
   height: 150px;
   width: 150px;
-  margin-right: 15px;
 }
 
 .pet-boss {

@@ -56,89 +56,6 @@
 	*****************************************************************************
 
 
-	/******************************** PURCHASE **********************************
-	*---------------------------------------------------------------------------*
-	*	Purchase a new item or pet! Pass the ID, user pulled from session.		*
-	*	Only succeed if enough scum points to purchase. Decrement points.		*
-	****************************************************************************/
-	function purchase($id) {
-		# Get users scum points
-		# Get cost of item + stats
-		# If enough
-			# Create pet
-			# return success
-		# If not enough
-			# Return failed
-		
-		$user = $_SESSION['id'];						// Collect the current user
-
-		$db = connect_to_db();							// We're gonna need a database connection - MySQLi time
-		if ($db->connect_error) {
-            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
-        }
-
-		// Step #1 - Get users scum points
-		$points = $db->query("SELECT scum_points FROM users WHERE id = {$user}");
-		$points = $points->fetch_assoc()['scum_points'];
-
-		$db->next_result();
-
-		// Step #2 - Get pet data
-		$sql = "SELECT name, cost, stock, basehp, baseatt, basedef, basehunger FROM species WHERE id = ?";
-		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
-	    if (! $sth->bind_param("i",$id)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-	    if (! $sth->bind_result($name, $cost, $stock, $hp, $att, $def, $hunger)){throw new Exception ("Bind Result failed: ".__LINE__);}
-
-	    // Get a pet from database
-	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
-
-	    // Get results (only need to get one row, because pets are unique)
-	    $sth->fetch();
-	    $sth->free_result();
-	    $db->next_result();
-
-	    // Step #3 - Handle failure cases
-	    if ($stock <= 0) {
-	    	$db->close();									// ALWAYS do this
-		    $response = array("success" => false, "message" => "This pet is out of stock! Stocks are replenished daily.");
-			return json_encode($response);
-		} else if ($points < $cost) {
-	    	$db->close();									// ALWAYS do this
-		    $response = array("success" => false, "message" => "Not enough scum points! View at your profile.");
-			return json_encode($response);
-	    }
-
-    	// Create pet
-		$sql = "INSERT INTO pets (name, owner, species, hp, maxhp, att, def, hunger, maxhunger, actions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 10)";
-		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
-	    if (!$sth->bind_param("siiiiiiii",$name,$_SESSION['id'],$id,$hp,$hp,$att,$def,$hunger,$hunger)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-
-	    // Create the new pet
-	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
-
-	    $sth->free_result();
-    	$db->next_result();
-
-    	// Decrement users points
-    	$np = $points - $cost;
-    	$db->query("UPDATE users SET scum_points = {$np} WHERE id = {$_SESSION['id']}");
-    	$db->next_result();
-
-    	// Decrement pet stock
-    	$sql = "UPDATE species SET stock = stock - 1 WHERE id = ?";
-		if (!$sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
-	    if (!$sth->bind_param("i",$id)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
-	    $sth->free_result();
-
-	    $db->close();
-
-	    // Success!
-	    $response = array("success" => true, "message" => "Congratulations on your new pet! View at your profile.");
-	    return json_encode($response);
-	}
-
-
 
 	/**************************** PURCHASE CAPSULE ******************************
 	*---------------------------------------------------------------------------*
@@ -183,14 +100,14 @@
 	    $db->next_result();
 
 	    // Step #3 - Handle failure cases
-	    if ($points < 100) {
+	    if ($points < $cost) {
 	    	$db->close();									// ALWAYS do this
 		    $response = array("success" => false, "message" => "You don't have enough Scum Points to buy this!");
 			return json_encode($response);
 	    }
 
 	    // Get a list of pets in the capsule
-	    $sql = "SELECT id, cost FROM species WHERE type = ? AND cost IS NOT NULL";
+	    $sql = "SELECT id, rarity FROM species WHERE type = ? AND rarity IS NOT NULL";
 	    if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
 	    if (! $sth->bind_param("i",$type)) {throw new Exception ("Bind Param failed: ".__LINE__);}
 	    if (! $sth->bind_result($speciesId, $weight)){throw new Exception ("Bind Result failed: ".__LINE__);}
@@ -220,10 +137,10 @@
 	    }
 
 	    // Get its stats
-		$sql = "SELECT name, cost, stock, basehp, baseatt, basedef, basehunger, img FROM species WHERE id = ?";
+		$sql = "SELECT s.name, r.name AS rarity, s.basehp, s.baseatt, s.basedef, s.basehunger, s.img FROM species s JOIN rarity r ON s.rarity = r.id WHERE s.id = ?";
 		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
 	    if (! $sth->bind_param("i",$sId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
-	    if (! $sth->bind_result($name, $cost, $stock, $hp, $att, $def, $hunger, $img)){throw new Exception ("Bind Result failed: ".__LINE__);}
+	    if (! $sth->bind_result($name, $rarity, $hp, $att, $def, $hunger, $img)){throw new Exception ("Bind Result failed: ".__LINE__);}
 
 	    // Get a pet from database
 	    if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
@@ -248,7 +165,7 @@
     	$db->next_result();
 
     	// Decrement users points
-    	$np = $points - 100;
+    	$np = $points - $cost;
     	$db->query("UPDATE users SET scum_points = {$np} WHERE id = {$_SESSION['id']}");
     	$db->next_result();
 
@@ -264,8 +181,10 @@
 	    	"att" => $att,
 	    	"def" => $def,
 	    	"id" => $newPet,
-	    	"img" => $img
+	    	"img" => $img,
+	    	"rarity" => $rarity
 	    );
+
 	    return json_encode($response);
 	}
 

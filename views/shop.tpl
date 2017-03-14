@@ -52,7 +52,7 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-12">
-                                            <img src="/images/pets/{$p.img}" class="img-thumbnail">
+                                            <img src="/images/pets/{$p.img}" class="img-thumbnail rarity-{$p.rarity}">
                                         </div>
                                         <div class="col-md-9 col-sm-12">
                                             <div class="row stats">

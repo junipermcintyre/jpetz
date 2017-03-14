@@ -81,7 +81,7 @@
         }
 
         // Step #2 - Let's get that question code
-        $result = $db->query("SELECT code FROM questions WHERE active = 1 AND verified = 1 LIMIT 1");	
+        $result = $db->query("SELECT code FROM questions WHERE verified = 1 ORDER BY active DESC LIMIT 1");	
         if ($result === false) {throw new Exception ($db->error);}		// If somehing went wrong
         $result = $result->fetch_object();
 

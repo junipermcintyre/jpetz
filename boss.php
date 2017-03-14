@@ -34,6 +34,7 @@ $sql = "
 $bosses = $db->query($sql);
 
 // Build boss data
+$bossFlag = true;
 if ($boss = $bosses->fetch_assoc()) {
     $b_array = array(
         "name" => $boss['name'],
@@ -50,7 +51,7 @@ if ($boss = $bosses->fetch_assoc()) {
         "bonus" => $boss['bonus']
     );
 } else {
-    throw new Exception("There's no boss today!");
+    $bossFlag = false;
 }
 
 // Get available pet data
@@ -89,7 +90,10 @@ while ($pet = $pets->fetch_assoc()) {
 
 // Attach data to views
 $smarty->assign("pets", $p_array);
-$smarty->assign("boss", $b_array);
+if ($bossFlag)                          // Only send boss data if boss exists
+    $smarty->assign("boss", $b_array);
+else
+    $smarty->assign("boss", false);
 
 // Finish page processing
 include 'includes/after.php';

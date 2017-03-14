@@ -14,7 +14,7 @@
     			{assign var=pCount value=1}
 		        {foreach from=$pets item=p}
 	                <div class="card pet-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-	                    <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
+	                    <img class="card-img-top img-responsive rarity-{$p.rarity}" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h4 class="card-title stats">{$p.name}</h4>
 	                        <h6 class="text-muted stats"><em>{$p.species} | {$p.type} collection</em></h6>
@@ -90,7 +90,7 @@
     			{assign var=pCount value=1}
 		        {foreach from=$bpets item=p}
 		            <div class="card pet-item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-	                    <img class="card-img-top img-responsive" src="/images/pets/{$p.img}" alt="Pet image" />
+	                    <img class="card-img-top img-responsive rarity-{$p.rarity}" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h4 class="card-title stats">{$p.name}</h4>
 	                        <h6 class="text-muted stats"><em>{$p.species} | {$p.type} collection</em></h6>

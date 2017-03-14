@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
 
             qDiv.html('');                                          // Everything went well? Kill the CSS Spinner
-            qDiv.html('<iframe src="http://www.strawpoll.me/embed_1/'+question.code+'" style="width:680px;height:560px;border:0;">Loading poll...</iframe>');
+            qDiv.html('<iframe src="https://www.strawpoll.me/embed_1/'+question.code+'" style="width:680px;height:560px;border:0;">Loading poll...</iframe>');
         }
     ).fail(function(err, status){
         // The AJAX call was unsuccessful here

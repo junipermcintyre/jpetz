@@ -2,10 +2,14 @@
 {block name=title}Jerad McIntyre - User View{/block}
 {block name=body}
     <div class="main-container container">
-    	<img src="/images/avatars/{$avatar}" alt="User profile image" class="img-thumbnail profile pull-left">
-        <h1 class="display-3">{$name}</h1>
-        <p><em>{$intro}</em></p>
-        <p><a href="/pet.php{$qry}">View this users J-Petz!</a></p>
+    	<div class="row">
+	    	<img src="/images/avatars/{$avatar}" alt="User profile image" class="profile col-md-2">
+	    	<div class="col-md-10">
+		        <h1 class="display-3">{$name}</h1>
+		        <p><em>{$intro}</em></p>
+		        <p><a href="/pet.php{$qry}">View this users J-Petz!</a></p>
+	        </div>
+        </div>
     </div>
     <div class="main-container container">
     	<h2>Info</h2>

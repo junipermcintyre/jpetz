@@ -44,10 +44,12 @@
             s.img,
             s.name as species,
             s.flavour,
-            t.name as type
+            t.name as type,
+            r.name as rarity
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
+            JOIN rarity r ON s.rarity = r.id
             JOIN types t ON s.type = t.id
             WHERE p.owner = {$id}
             AND p.alive = true
@@ -69,6 +71,7 @@
             $p['species'] = $row['species'];
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
+            $p['rarity'] = $row['rarity'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($p_array, $p);                                          // And store the data into a result row
@@ -95,10 +98,12 @@
             s.img,
             s.name as species,
             s.flavour,
-            t.name as type
+            t.name as type,
+            r.name as rarity
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
+            JOIN rarity r ON s.rarity = r.id
             JOIN types t ON s.type = t.id
             WHERE p.owner = {$id}
             AND p.alive = true
@@ -120,6 +125,7 @@
             $p['species'] = $row['species'];
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
+            $p['rarity'] = $row['rarity'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($b_array, $p);                                          // And store the data into a result row
