@@ -82,7 +82,7 @@ while ($pet = $pets->fetch_assoc()) {
         "hp" => $pet['hp'],
         "att" => $pet['att'],
         "def" => $pet['def'],
-        "ed" => estimateDamage($pet['att'], $b_array['def']),
+        "ed" => estimateBossDamage($pet['att'], $b_array['def']),
         "et" => estimateDamage($b_array['att'], $pet['def'])
     );
     array_push($p_array, $p);

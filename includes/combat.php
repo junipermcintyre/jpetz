@@ -10,7 +10,13 @@
 
 // Estimate damage
 function estimateDamage($att, $def) {
-	return max(floor($att - ceil($def / 5)), 0);
+	return max(floor($att - ceil($def)), 0);
+}
+
+
+// Estimate damage
+function estimateBossDamage($att, $def) {
+	return max(floor($att - ceil($def/10)), 0);
 }
 
 
@@ -29,7 +35,7 @@ function tradeDamage($db, $p1, $p2) {
 // Specifically for fighting raid bosses. Returns true if boss died
 function hitBoss($db, $pet, $boss) {
 	// Estimate damage to boss and deal it
-	$dmg = estimateDamage($pet['att'], $boss['def']);
+	$dmg = estimateBossDamage($pet['att'], $boss['def']);
 
 	// Deal the damage to the boss
 	$boss['hp'] -= $dmg;

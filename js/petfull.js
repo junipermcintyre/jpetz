@@ -58,7 +58,7 @@ function feedAll() {
                 if (response.success) {
                 	notify(response.message, "success");
                     $("#usr-scum").html($("#usr-scum").html()*1 - $("#hungerTtl").html()*2);
-                    $("#feedAll").html('<img src="/images/hunger.gif"> Fed!)');
+                    $("#feedAll").html('<img src="/images/hunger.gif"> Fed!');
                 } else {
                 	notify(response.message, "warning");
                 }
