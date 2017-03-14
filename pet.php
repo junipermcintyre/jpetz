@@ -45,7 +45,8 @@
             s.name as species,
             s.flavour,
             t.name as type,
-            r.name as rarity
+            r.name as rarity,
+            p.defending
             FROM pets p
             JOIN users u ON p.owner = u.id
             JOIN species s ON p.species = s.id
@@ -73,6 +74,7 @@
             $p['type'] = $row['type'];
             $p['text'] = $row['bio'];
             $p['rarity'] = $row['rarity'];
+            $p['defending'] = $row['defending'];
             if (is_null($p['text']) || $p['text'] == "")
                 $p['text'] = $row['flavour'];
             array_push($p_array, $p);                                           // And store the data into a result row

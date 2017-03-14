@@ -51,6 +51,9 @@
 		case "feedAll":
 			echo feedAll();
 			break;
+		case "setDef":
+			echo setDef($_POST['pet'], $_POST['def']);
+			break;
 		default:
 			break;
 	}
@@ -338,6 +341,36 @@
 	}
 
 
+	/********************************* SET DEF **********************************
+	*---------------------------------------------------------------------------*
+	*	Set a pets defensive status.											*
+	****************************************************************************/
+	function setDef($petId, $status) {
+		// Toggle status accordingly
+		$d = 0;
+		if ($status == 'true')
+			$d = 1;
+
+		$db = connect_to_db();	// (hint - this function is in conf/db.php)
+
+		// Step #1 - Make sure the database connection is A+
+		if ($db->connect_error) {
+            throw new Exception ($db->connect_error);	// We should probably catch this... somewhere
+        }
+
+        // Change the pets status
+        $sql = "UPDATE pets SET defending = ? WHERE id = ?";
+		if (! $sth = $db->prepare($sql)){throw new Exception ("SQL ($sql) failed: ". $db->error);}
+        if (! $sth->bind_param("ii",$d,$petId)) {throw new Exception ("Bind Param failed: ".__LINE__);}
+        if (!$result = $sth->execute()){throw new Exception ("Execute failed: ".$db->error);}
+
+        if ($status == 'true')
+        	return buildResponse(true, "You garrison the J-Pet");
+        else 
+        	return buildResponse(true, "You relieve the J-Pet of its duty");
+	}
+
+
 	/****************************************************************************
 	*								HELPER FUNCTIONS 							*
 	*****************************************************************************
@@ -531,6 +564,7 @@
 
         $dbh->next_result();
 	}
+
 
 	/****************************** Check Actions *******************************
 	*---------------------------------------------------------------------------*

@@ -69,6 +69,13 @@
 		                                    <footer class="blockquote-footer"><cite title="pet quote">{$p.name}</cite></footer>
 		                                </blockquote>
 		                            </div>
+		                            <hr>
+									<div class="form-check">
+										<label class="form-check-label">
+										<input type="checkbox" class="form-check-input petDef" id="pet-def-{$p.id}" {if $p.defending}checked{/if}>
+											Defending base
+										</label>
+									</div>
 		                        </div>
 		                        <div class="modal-footer">
 		                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
