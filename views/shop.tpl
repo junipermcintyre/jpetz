@@ -1,11 +1,11 @@
-{extends file="../templates/parent.tpl"}
+{extends file="../templates/shopparent.tpl"}
 {block name=title}Jerad McIntyre - User View{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="shop-container container">
         <h1 class="display-3">Shop</h1>
         <p><em>Buying... or selling? Hehehehe...</em></p>
     </div>
-    <div class="main-container container">
+    <div class="shop-container container">
         <h2>J-Petz</h2>
         {foreach from=$pets item=i key=k}
             <hr>

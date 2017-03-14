@@ -81,6 +81,11 @@
         $name = $name['name'];
         $db->next_result();
 
+        // Track whether this is editable or not
+        $editable = false;
+        if ($id == $_SESSION['id'])
+            $editable = true;
+
         /**************************************   Grab BUSY pet data   ************************************/
         $bPets = $db->query("
             SELECT
@@ -142,6 +147,8 @@
         $smarty->assign('bpets', $b_array);
         // Pass count of hunger missing to view
         $smarty->assign('hunger', $hungerTtl);
+        // Pass whether or not these pets can be interacted with to the view
+        $smarty->assign('editable', $editable);
 
         // Display the associated template
         $dir = dirname(__FILE__);

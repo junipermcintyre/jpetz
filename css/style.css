@@ -28,6 +28,14 @@
   padding-bottom: 5rem;
 }
 
+.shop-body {
+  background-image: url('/images/background_shop.jpg');
+  background-size: cover;
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
 .tiny-icon {
   width: 15px;
   height: 15px;
@@ -92,6 +100,19 @@
 }
 
 .raid-container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.shop-container {
   background-color: #FDFDFD;
   border-style: double;
   border-color: #44034e;

@@ -6,7 +6,7 @@
         <p><em>Behold! My collection...</em></p>
     </div>
     <div class="main-container container">
-    	<h2>Available J-Petz <button type="button" id="feedAll" class="btn btn-danger btn-sm"><img src="/images/hunger.gif"> Feed all (<span id="hungerTtl">{$hunger * 2}</span> SP)</button></h2>
+    	<h2>Available J-Petz {if $editable}<button type="button" id="feedAll" class="btn btn-danger btn-sm"><img src="/images/hunger.gif"> Feed all (<span id="hungerTtl">{$hunger * 2}</span> SP)</button>{/if}</h2>
     	{if empty($pets)}
     		<p>No J-Petz available!</p>
     	{else}
@@ -69,13 +69,15 @@
 		                                    <footer class="blockquote-footer"><cite title="pet quote">{$p.name}</cite></footer>
 		                                </blockquote>
 		                            </div>
-		                            <hr>
-									<div class="form-check">
-										<label class="form-check-label">
-										<input type="checkbox" class="form-check-input petDef" id="pet-def-{$p.id}" {if $p.defending}checked{/if}>
-											Defending base
-										</label>
-									</div>
+		                            {if $editable}
+			                            <hr>
+										<div class="form-check">
+											<label class="form-check-label">
+											<input type="checkbox" class="form-check-input petDef" id="pet-def-{$p.id}" {if $p.defending}checked{/if}>
+												Defending base
+											</label>
+										</div>
+									{/if}
 		                        </div>
 		                        <div class="modal-footer">
 		                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
