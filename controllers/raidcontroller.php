@@ -155,7 +155,6 @@
 			u.name,
 			u.id,
 			u.scum_points,
-			COUNT(p.owner) as pets,
 			COALESCE(SUM(p.def), 0) as def
 			FROM users u
 			LEFT JOIN pets p ON u.id = p.owner
@@ -172,9 +171,23 @@
 			"id" => $d['id'],
 			"name" => $d['name'],
 			"points" => $d['scum_points'],
-			"pets" => $d['pets'],
 			"def" => $d['def']
 		);
+
+		$dbh->next_result();
+
+		$sql = "
+			SELECT
+			COUNT(p.owner) as pets
+			FROM users u
+			LEFT JOIN pets p ON u.id = p.owner
+			WHERE u.id = {$id}
+			AND p.alive = 1";
+
+		$result = $dbh->query($sql);
+		$d = $result->fetch_assoc();
+
+		$defender['pets'] = $d['pets'];
 
 		$dbh->next_result();
 		return $defender;

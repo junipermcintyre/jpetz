@@ -66,6 +66,7 @@ function raid(user) {
 	            	$('.aPet').removeClass('animated tada');
 	            	$('.dPet').addClass('animated shake');
 	            	$('.dPet').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	            		console.log("test");
 	            		$('.dPet').removeClass('animated shake');
 			        	$("#action").html('<button type="button" id="reload" class="btn btn-success btn-lg btn-block">Reassemble forces</button>');
 			        	$("#reload").click(function(){

@@ -17,7 +17,7 @@
 	                    <img class="card-img-top img-responsive rarity-{$p.rarity} dPet" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h6 class="text-muted stats">{$p.name}</h6>
-	                        <p class="stats"><img class="tiny-icon" src="/images/def.gif"><small> {$p.def} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp}/{$p.maxhp}</small></p>
+	                        <p class="stats"><img class="tiny-icon" src="/images/def.gif"><small> {$p.def|string_format:'%d'} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp|string_format:'%d'}/{$p.maxhp|string_format:'%d'}</small></p>
 	                    </div>
 	                </div>
 	                {if $pCount % 6 == 0}
@@ -35,7 +35,7 @@
 		        {/foreach}
 	        </div>
 	    {/if}
-	    <p class="stats">Total <img src="/images/def.gif">: {$def}</p>
+	    <p class="stats">Total <img src="/images/def.gif" class="dPet">: {$def|string_format:'%d'}</p>
     </div>
     <div class="raid-container container">
     	<h2>Attacking J-Petz</h2>
@@ -52,7 +52,7 @@
 		                    <img class="card-img-top img-responsive rarity-{$p.rarity} aPet" src="/images/pets/{$p.img}" alt="Pet image" />
 		                    <div class="card-block">
 		                        <h6 class="text-muted stats">{$p.name}</h6>
-	                        	<p class="stats"><img class="tiny-icon" src="/images/att.gif"><small> {$p.att} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp}/{$p.maxhp}</small></p>
+	                        	<p class="stats"><img class="tiny-icon" src="/images/att.gif"><small> {$p.att|string_format:'%d'} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp|string_format:'%d'}/{$p.maxhp|string_format:'%d'}</small></p>
 		                    </div>
 		                </div>
 		                {if $pCount % 6 == 0}
@@ -69,7 +69,7 @@
 		                {assign var=pCount value=$pCount+1}
 			        {/foreach}
 		        </div>
-		        <p class="stats">Total <img src="/images/att.gif">: {$att}</p>
+		        <p class="stats">Total <img src="/images/att.gif">: {$att|string_format:'%d'}</p>
 		        <div id="action">
 		        	<button type="button" id="attack" data-toggle="tooltip" data-html="true" data-placement="bottom" title="{$chance|string_format:'%d'}% chance of success" class="btn btn-danger btn-lg btn-block">CHAAAAAAAAAAAARGE!</button>
 		        </div>

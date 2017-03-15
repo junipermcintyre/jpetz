@@ -102,7 +102,7 @@ function getRaidSuccess($att, $def) {
 function canRaid($ac, $ap, $dc, $dp) {
     if ($ac > $dc + 300)							// If the attacker has 300 or more scum points than defender
         return false;
-    if ($ap - $dp > max(min($ap, $dp) * 0.25, 2))   // If the attacker has more pets (with some leeway)
+    if ($ap - $dp > max($dp * 0.25, 2))   			// If the attacker has more pets (with some leeway)
         return false;
     return true;
 }

@@ -17,7 +17,7 @@
 	                    <img class="card-img-top img-responsive rarity-{$p.rarity}" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h6 class="text-muted stats">{$p.name}</h6>
-	                        <p class="stats"><img class="tiny-icon" src="/images/def.gif"><small> {$p.def} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp}/{$p.maxhp}</small></p>
+	                        <p class="stats"><img class="tiny-icon" src="/images/def.gif"><small> {$p.def|string_format:'%d'} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp|string_format:'%d'}/{$p.maxhp|string_format:'%d'}</small></p>
 	                    </div>
 	                </div>
 	                {if $pCount % 6 == 0}
@@ -35,6 +35,6 @@
 		        {/foreach}
 	        </div>
 	    {/if}
-	    <p class="stats">Total <img src="/images/def.gif">: {$def}</p>
+	    <p class="stats">Total <img src="/images/def.gif">: {$def|string_format:'%d'}</p>
     </div>
 {/block}
