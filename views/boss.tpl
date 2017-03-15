@@ -27,7 +27,7 @@
                     </div>-->
                     <div class="pet-horizontal clearfix">
 	                    <div class="row">
-	                        <img src="/images/pets/{$p.img}" id="pet-img-{$p.id}" alt="Pet img" class="img-thumbnail pet-boss col-md-2">
+	                        <img src="/images/pets/{$p.img}" id="pet-img-{$p.id}" alt="Pet img" class="img-thumbnail pet-boss col-md-2 rarity-{$p.rarity}">
 	                        <div class="col-md-10">
 	                        	<h4 class="stats">{$p.name}</h4>
 		                        <div class="row">

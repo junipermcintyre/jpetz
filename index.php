@@ -8,5 +8,5 @@
 
     // Display the associated template
     $dir = dirname(__FILE__);
-    $smarty->display("$dir/views/index.tpl");
+    $smarty->display("$dir/views/patchnotes.tpl");
 ?>

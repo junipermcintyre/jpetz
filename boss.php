@@ -63,9 +63,11 @@ $sql = "
     p.maxhp,
     p.hp,
     p.att,
-    p.def
+    p.def,
+    r.name as rarity
     FROM pets p
     JOIN species s ON p.species = s.id
+    JOIN rarity r ON s.rarity = r.id
     WHERE p.owner = {$_SESSION['id']}
     AND p.busy = FALSE
     AND p.alive = TRUE";
@@ -83,7 +85,8 @@ while ($pet = $pets->fetch_assoc()) {
         "att" => $pet['att'],
         "def" => $pet['def'],
         "ed" => estimateBossDamage($pet['att'], $b_array['def']),
-        "et" => estimateDamage($b_array['att'], $pet['def'])
+        "et" => estimateDamage($b_array['att'], $pet['def']),
+        "rarity" => $pet['rarity']
     );
     array_push($p_array, $p);
 }

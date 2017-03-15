@@ -363,6 +363,8 @@
 		$headers = 'From: noreply@gg.jeradmcintyre.com' . "\r\n" .
 				   'X-Mailer: PHP/' . phpversion();
 
+		$to = "mcintyrejerad@gmail.com";
+
 		if (mail($to, $subject, $message, $headers))
 	        $response = array("success" => true, "message" => "Feature request sent!");	// Everything went well!
 	    else
