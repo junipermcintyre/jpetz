@@ -70,7 +70,9 @@
 			        {/foreach}
 		        </div>
 		        <p class="stats">Total <img src="/images/att.gif">: {$att}</p>
-		        <button type="button" id="attack" data-toggle="tooltip" data-html="true" data-placement="bottom" title="{$chance|string_format:'%d'}% chance of success" class="btn btn-danger btn-lg btn-block">CHAAAAAAAAAAAARGE!</button>
+		        <div id="action">
+		        	<button type="button" id="attack" data-toggle="tooltip" data-html="true" data-placement="bottom" title="{$chance|string_format:'%d'}% chance of success" class="btn btn-danger btn-lg btn-block">CHAAAAAAAAAAAARGE!</button>
+		        </div>
 		    {/if}
 		{else}
 			<p>You're too powerful to raid this player!</p>

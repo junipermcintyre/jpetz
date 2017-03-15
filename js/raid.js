@@ -67,8 +67,10 @@ function raid(user) {
 	            	$('.dPet').addClass('animated shake');
 	            	$('.dPet').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 	            		$('.dPet').removeClass('animated shake');
-	            		// Values!
-			        	// Filler!
+			        	$("#action").html('<button type="button" id="reload" class="btn btn-success btn-lg btn-block">Reassemble forces</button>');
+			        	$("#reload").click(function(){
+							location.reload(true);
+						});
 			        	unfreeze();
 	            	});
 	            });
