@@ -2,12 +2,14 @@
 {block name=title}Green Gaming - Patch Notes{/block}
 {block name=body}
     <div class="main-container container">
-        <h1 class="display-3">Patch Notes for 3.0.0</h1>
-        <p><em>Oh boy this was a big one</em></p>
+        <h1 class="display-3">Patch Notes for 2.0.0</h1>
+        <p><em>Official Beta Release</em></p>
     </div>
     <div class="main-container container">
         <div class="row">
             <code class="col-md-6 col-xs-12">
+            * New domain! Update your bookmarks / links!<br>
+            * Account progress wiped<br>
             * Implemented raiding<br>
             * Cat Daddy J-Pet released<br>
             * Drone J-Pet released<br>

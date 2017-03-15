@@ -38,13 +38,13 @@ if (!is_null($code)) {                                                          
         $option = html_entity_decode($option, ENT_QUOTES);
     	$content .= "{$option}\n";
     }
-    $content .= "```\nVoting is *very* available at http://jeradmcintyre.com/question.php\n\n";
+    $content .= "```\nVoting is *very* available at https://gg.jeradmcintyre.com/question.php\n\n";
 
 } else {                                                                                        // i.e. we've got no questions left
     $content .= "**Here's the new question of the day:**\n```";    
     $content .= "Uh oh! We're fresh out of questions!\n";                                       // Build the question output string
     $content .= "Remember, submitting questions is worth three scum points!```\n";
-    $content .= "You can submit a new one at http://jeradmcintyre.com/question.php\n\n";
+    $content .= "You can submit a new one at https://gg.jeradmcintyre.com/question.php\n\n";
 }
 
 echo "Current Question of the day data added to news content!\n";								// All done! Inform self of success

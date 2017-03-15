@@ -68,8 +68,8 @@ $hookRequest = array(																// Build the discord webhook object
 	"embeds" => array(
 		array(
     		"title" => "Your Daily Scum Journal",
-    		"description" => "Every day, various facets of Green Gaming activity are updated on http://jeradmcintyre.com/. The *Town Crier* provides a daily journal like summary.",
-    		"url" => "http://jeradmcintyre.com/",
+    		"description" => "Every day, various facets of Green Gaming activity are updated on https://gg.jeradmcintyre.com/. The *Town Crier* provides a daily journal like summary.",
+    		"url" => "https://gg.jeradmcintyre.com/",
 		)
 	)
 );
