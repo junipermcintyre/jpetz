@@ -1,5 +1,5 @@
 {extends file="../templates/shopparent.tpl"}
-{block name=title}Jerad McIntyre - User View{/block}
+{block name=title}Green Gaming - Shop{/block}
 {block name=body}
     <div class="shop-container container">
         <h1 class="display-3">Shop</h1>

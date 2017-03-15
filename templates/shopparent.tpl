@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <title>{block name=title}Jerad McIntyre{/block}</title>
   {include file="head.tpl"}
   <body class="shop-body">
     {include file="nav.tpl"}

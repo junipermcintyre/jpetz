@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - Admin Panel{/block}
+{block name=title}Green Gaming - Admin Panel{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">Admin Panel</h1>

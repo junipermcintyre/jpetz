@@ -1,5 +1,5 @@
 {extends file="../templates/bossparent.tpl"}
-{block name=title}Jerad McIntyre - Raid Boss{/block}
+{block name=title}Green Gaming - Raid Boss{/block}
 {block name=body}
 <div class="boss-container container">
     <h1 class="display-3">Raid Boss</h1>

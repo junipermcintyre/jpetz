@@ -1,5 +1,5 @@
 {extends file="../templates/raidparent.tpl"}
-{block name=title}Jerad McIntyre - {$name}'s J-Petz{/block}
+{block name=title}Green Gaming - Your Raid Defence{/block}
 {block name=body}
     <div class="raid-container container">
         <h1 class="display-3">Your Raid Defence</h1>

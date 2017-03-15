@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - User View{/block}
+{block name=title}Green Gaming - {$name}'s Profile{/block}
 {block name=body}
     <div class="main-container container">
     	<div class="row">

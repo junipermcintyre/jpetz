@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - Scum Points{/block}
+{block name=title}Green Gaming - Leaderboards{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">Leaderboards</h1>

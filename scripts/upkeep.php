@@ -36,7 +36,7 @@ include('upkeep/NextQuestion.php');
 // Perform pet hunger and hp checks
 include('upkeep/DecrementPetHunger.php');
 
-// Reset pet stats (flaunts, feeds)
+// Reset pet stats (actions, etc)
 include('upkeep/RefreshPets.php');
 
 // Reset pet stocks

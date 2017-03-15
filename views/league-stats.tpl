@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - League Stats{/block}
+{block name=title}Green Gaming - League Stats{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">Hall of Fame</h1>

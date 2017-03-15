@@ -1,5 +1,5 @@
 {extends file="../templates/raidparent.tpl"}
-{block name=title}{$name}'s Raid Defence{/block}
+{block name=title}Green Gaming - {$name}'s Raid Defence{/block}
 {block name=body}
     <div class="raid-container container">
         <h1 class="display-3">{$name}'s Raid Defence</h1>

@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - Question{/block}
+{block name=title}Green Gaming - Question{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">Question of the Day</h1>

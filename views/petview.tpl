@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - {$pet.name}{/block}
+{block name=title}Green Gaming - {$pet.name}{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">{$name}'s {$pet.name}</h1>

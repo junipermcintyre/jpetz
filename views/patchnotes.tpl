@@ -1,5 +1,5 @@
 {extends file="../templates/parent.tpl"}
-{block name=title}Jerad McIntyre - Patch Notes{/block}
+{block name=title}Green Gaming - Patch Notes{/block}
 {block name=body}
     <div class="main-container container">
         <h1 class="display-3">Patch Notes for 3.0.0</h1>
@@ -9,12 +9,21 @@
         <div class="row">
             <code class="col-md-6 col-xs-12">
             * Implemented raiding<br>
-            * New pets<br>
+            * Cat Daddy J-Pet released<br>
+            * Drone J-Pet released<br>
+            * Hostie J-Pet released<br>
+            * Chiken J-Pet released<br>
+            * Gabe the Dog J-Pet released<br>
             * Pet balancing<br>
             * Pet rarities<br>
             * Feed all button<br>
             * Feeding no longer requires actions<br>
-            * Numerous fixes, tweaks
+            * New homepage<br>
+            * Navigation menu updated<br>
+            * Feature request working<br>
+            * Shop page visual update<br>
+            * Allow marking J-Petz as defenders<br>
+            * Fix numerous cases where pages didn't handle empty content very well
             </code>
             <div class="col-md-6 col-xs-12">
                 <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>

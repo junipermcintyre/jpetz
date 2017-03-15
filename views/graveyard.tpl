@@ -1,5 +1,5 @@
 {extends file="../templates/graveparent.tpl"}
-{block name=title}J-Petz Graveyard{/block}
+{block name=title}Green Gaming - J-Petz Graveyard{/block}
 {block name=body}
     <div class="spooky-container container">
         <h1 class="display-3">Graveyard</h1>
