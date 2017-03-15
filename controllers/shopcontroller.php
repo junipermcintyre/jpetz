@@ -36,9 +36,6 @@
 	*/
 
 	switch($_POST['action']) {
-		case "purchase":
-			echo purchase($_POST['id']);
-			break;
 		case "buycap":
 			echo buycap($_POST['id']);
 			break;

@@ -77,3 +77,32 @@ function kill($db, $petId) {
 	$db->query("UPDATE pets SET hp = 0, busy = FALSE, alive = FALSE WHERE id = {$petId}");
 	return true;
 }
+
+
+// Return percentage estimate of raid success
+function estimateRaidSuccess($att, $def) {
+	$ac = 50;
+    $dc = 50;
+    $ac = max($ac + ($att - $def), 5);
+    return ($ac / ($ac + $dc)) * 100;
+}
+
+
+// Randomly determine if raid is success
+function getRaidSuccess($att, $def) {
+	$chance = estimateRaidSuccess($att, $def);
+    $rn = rand(0, 100);
+    if ($rn <= $chance)
+    	return true;
+    else
+    	return false;
+}
+
+// Check if one user can raid another
+function canRaid($ac, $ap, $dc, $dp) {
+    if ($ac > $dc + 300)							// If the attacker has 300 or more scum points than defender
+        return false;
+    if ($ap - $dp > max(min($ap, $dp) * 0.25, 2))   // If the attacker has more pets (with some leeway)
+        return false;
+    return true;
+}

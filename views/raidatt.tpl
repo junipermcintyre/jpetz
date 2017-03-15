@@ -14,7 +14,7 @@
     			{assign var=pCount value=1}
 		        {foreach from=$dPets item=p}
 	                <div class="card pet-item col-lg-2 col-md-2 col-sm-3 col-xs-4">
-	                    <img class="card-img-top img-responsive rarity-{$p.rarity}" src="/images/pets/{$p.img}" alt="Pet image" />
+	                    <img class="card-img-top img-responsive rarity-{$p.rarity} dPet" src="/images/pets/{$p.img}" alt="Pet image" />
 	                    <div class="card-block">
 	                        <h6 class="text-muted stats">{$p.name}</h6>
 	                        <p class="stats"><img class="tiny-icon" src="/images/def.gif"><small> {$p.def} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp}/{$p.maxhp}</small></p>
@@ -40,6 +40,7 @@
     <div class="raid-container container">
     	<h2>Attacking J-Petz</h2>
     	{if $rFlag}
+    		<div style="display: none" id="defender">{$defender}</div>
 	    	{if empty($aPets)}
 	    		<p>You and what army?</p>
 	    		<button type="button" class="btn btn-danger btn-lg btn-block" disabled>CHAAAAAAAAAAAARGE!</button>
@@ -48,7 +49,7 @@
 	    			{assign var=pCount value=1}
 			        {foreach from=$aPets item=p}
 		                <div class="card pet-item col-lg-2 col-md-2 col-sm-3 col-xs-4">
-		                    <img class="card-img-top img-responsive rarity-{$p.rarity}" src="/images/pets/{$p.img}" alt="Pet image" />
+		                    <img class="card-img-top img-responsive rarity-{$p.rarity} aPet" src="/images/pets/{$p.img}" alt="Pet image" />
 		                    <div class="card-block">
 		                        <h6 class="text-muted stats">{$p.name}</h6>
 	                        	<p class="stats"><img class="tiny-icon" src="/images/att.gif"><small> {$p.att} <img class="tiny-icon" src="/images/hp.gif"> {$p.hp}/{$p.maxhp}</small></p>
@@ -69,7 +70,7 @@
 			        {/foreach}
 		        </div>
 		        <p class="stats">Total <img src="/images/att.gif">: {$att}</p>
-		        <button type="button" id="attack" class="btn btn-danger btn-lg btn-block">CHAAAAAAAAAAAARGE!</button>
+		        <button type="button" id="attack" data-toggle="tooltip" data-html="true" data-placement="bottom" title="{$chance|string_format:'%d'}% chance of success" class="btn btn-danger btn-lg btn-block">CHAAAAAAAAAAAARGE!</button>
 		    {/if}
 		{else}
 			<p>You're too powerful to raid this player!</p>

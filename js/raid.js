@@ -34,8 +34,8 @@ $(document).ready(function() {
 *   Listeners for click events etc                                              *
 ********************************************************************************/
 $("#attack").click(function(){
-	var id = 10;				// Grab the defending users ID
-    raid(id);					// Raid the user
+	var id = $("#defender").html();	// Grab the defending users ID
+    raid(id);						// Raid the user
 });
 
 
@@ -69,13 +69,14 @@ function raid(user) {
 	            		$('.dPet').removeClass('animated shake');
 	            		// Values!
 			        	// Filler!
+			        	unfreeze();
 	            	});
 	            });
-	            notify(response.message, "success");
+	            notify(response.message, response.data.status);
 	        } else {
-	            notify(response.message, "danger");    	// Wasn't owned or was busy
+	            notify(response.message, "danger");    	// Dunno lol
+	            unfreeze();
 	        }
-	        unfreeze();
 	    },
 	    "json"
 	).fail(function(err, status){                       // The AJAX call was unsuccessful here

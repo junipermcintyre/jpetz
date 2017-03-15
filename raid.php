@@ -4,6 +4,7 @@
     */
     $access = "user";                   // Define access level
     include 'includes/before.php';      // Get initial boilerplate
+    include 'includes/combat.php';      // For estimating success chances
 
     /*
     *   There are two possibilities for this page, depending on what the user parameter. Display the user's raid page, or the attack page.
@@ -39,7 +40,8 @@
             JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$id}
             AND p.alive = true
-            AND p.defending = true"
+            AND p.defending = true
+            AND p.hp > 1"
         );   
         if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong
         $p_array = array();                                                     // Get ready for row data
@@ -78,25 +80,16 @@
 
     } else {                                // Show the raid attack screen
         /**********************   Handle cases where a user can't raid another user   *********************/
-        $dUser = $db->query("SELECT u.name, u.scum_points, COUNT(p.owner) as pets FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$id} GROUP BY u.id");
+        $dUser = $db->query("SELECT u.name, u.scum_points FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$id} GROUP BY u.id");
         $dUser = $dUser->fetch_assoc();
         $name = $dUser['name'];
         $dPoints = $dUser['scum_points'];
-        $dPets = $dUser['pets'];
         $db->next_result();
 
-        $aUser = $db->query("SELECT u.scum_points, COUNT(p.owner) as pets FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$_SESSION['id']} GROUP BY u.id");
+        $aUser = $db->query("SELECT u.scum_points FROM users u LEFT JOIN pets p ON u.id = p.owner WHERE u.id = {$_SESSION['id']} GROUP BY u.id");
         $aUser = $aUser->fetch_assoc();
         $aPoints = $aUser['scum_points'];
-        $aPets = $aUser['pets'];
         $db->next_result();
-
-        // Validate if raiding is OK
-        $rFlag = true;
-        if ($aPoints > $dPoints + 300)                          // If the attacker has 300 or more scum points than defender
-            $rFlag = false;
-        if ($aPets - $dPets > min($dPets, $aPets) * 0.25)       // If the attacker has more pets (with some leeway)
-            $rFlag = false;
 
         /***********************************   Grab defending pet data   **********************************/
         $dPets = $db->query("
@@ -122,7 +115,9 @@
             JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$id}
             AND p.alive = true
-            AND p.defending = true"
+            AND p.busy = false
+            AND p.defending = true
+            AND p.hp > 1"
         );   
         if ($dPets === false) {throw new Exception ($db->error);}               // If something went wrong
         $d_array = array();                                                     // Get ready for row data
@@ -173,7 +168,8 @@
             WHERE p.owner = {$_SESSION['id']}
             AND p.alive = true
             AND p.busy = false
-            AND p.actions >= 5"
+            AND p.actions >= 5
+            AND p.hp > 2"
         );   
         if ($aPets === false) {throw new Exception ($db->error);}               // If something went wrong
         $a_array = array();                                                     // Get ready for row data
@@ -200,6 +196,12 @@
         }
 
         /***********************************   Complete view rendering   ***********************************/
+        // Validate if raiding is OK
+        $rFlag = canRaid($aPoints, count($a_array), $dPoints, count($d_array));
+
+        // Calculate raid success chance
+        $chance = estimateRaidSuccess($attTtl, $defTtl);
+
         // Pass all the pets data to the view
         $smarty->assign('dPets', $d_array);
         $smarty->assign('aPets', $a_array);
@@ -207,6 +209,8 @@
         $smarty->assign('att', $attTtl);
         $smarty->assign('rFlag', $rFlag);
         $smarty->assign('name', $name);
+        $smarty->assign('chance', $chance);
+        $smarty->assign('defender', $id);
         $dir = dirname(__FILE__);
         $smarty->display("$dir/views/raidatt.tpl");
     }
