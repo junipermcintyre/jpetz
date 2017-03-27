@@ -6,7 +6,7 @@
 	*								PET CONTROLLER								*
 	*****************************************************************************
 	*	Author: 		Jerad McIntyre											*
-	*	Date updated:	[Date]													*
+	*	Date updated:	2017-03-17												*
 	*	Purpose:		Serve as an AJAX controller for all interactions		*
 	*					involving PETS.											*
 	*																			*
