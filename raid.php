@@ -41,6 +41,7 @@
             WHERE p.owner = {$id}
             AND p.alive = true
             AND p.defending = true
+            AND p.busy = false
             AND p.hp > 1"
         );   
         if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong

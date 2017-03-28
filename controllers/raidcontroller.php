@@ -160,7 +160,7 @@
 			LEFT JOIN pets p ON u.id = p.owner
 			WHERE u.id = {$id}
 			AND p.alive = 1
-			AND p.busy = 0
+			AND p.busy = false
 			AND p.hp > 1
 			AND p.defending = true";
 

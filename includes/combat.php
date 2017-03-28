@@ -81,10 +81,7 @@ function kill($db, $petId) {
 
 // Return percentage estimate of raid success
 function estimateRaidSuccess($att, $def) {
-	$ac = 50;
-    $dc = 50;
-    $ac = max($ac + ($att - $def), 5);
-    return ($ac / ($ac + $dc)) * 100;
+	return floor($att / $att + $def);
 }
 
 
@@ -102,7 +99,7 @@ function getRaidSuccess($att, $def) {
 function canRaid($ac, $ap, $dc, $dp) {
     if ($ac > $dc + 300)							// If the attacker has 300 or more scum points than defender
         return false;
-    if ($ap - $dp > max($dp * 0.25, 2))   			// If the attacker has more pets (with some leeway)
+    if ($ap - $dp > max($dp * 0.25, 4))   			// If the attacker has more pets (with some leeway)
         return false;
     return true;
 }
