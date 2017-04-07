@@ -81,7 +81,10 @@ function kill($db, $petId) {
 
 // Return percentage estimate of raid success
 function estimateRaidSuccess($att, $def) {
-	return floor($att / $att + $def);
+	if ($att + $def == 0)
+		return -1;
+	
+	return min(floor($att / $att + $def) * 100, 90);
 }
 
 

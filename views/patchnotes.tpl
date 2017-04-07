@@ -9,7 +9,7 @@
         <div class="row">
             <code class="col-md-6 col-xs-12">
             * Pet att / def strength difference affetcs raid success chance a lot more<br>
-            * The limit at which one can attack another player has been decreased
+            * The limit at which one can attack another player has been decreased<br>
             * Viewing your own raid defence no longer shows busy pets as defending
             </code>
             <div class="col-md-6 col-xs-12">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-	<div class="main-container container">
+    <div class="main-container container">
         <h1 class="display-3">Patch Notes for 2.0.1</h1>
         <p><em>Display fixes</em></p>
     </div>
@@ -27,9 +27,6 @@
             * Fixed Raid boss pet images being squished<br>
             * Fixed endless decimal values being displayed on raid pages
             </code>
-            <div class="col-md-6 col-xs-12">
-                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-            </div>
         </div>
     </div>
     <div class="main-container container">
