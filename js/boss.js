@@ -24,6 +24,50 @@
 $(document).ready(function() {
 	// Enable the damage tooltips
 	$('[data-toggle="tooltip"]').tooltip();
+
+	// Load the damage chart (if there's data!)
+	if (damage.length > 0) {
+		var ctx = $("#dmg-chart");
+
+		// We need to organize our data sets a little bit first
+		var owners = [];
+		var pets = [];
+		var d = [];
+		var chartColor = "rgb(188, 54, 20)";			// We'll also get colors for the chart!
+		var chartHover = "rgb(255, 139, 109)";			// And the hover color
+		var c = [];
+		var ch = [];
+		$.each(damage, function(index, dmg) {
+			owners.push(dmg.owner);
+			pets.push(dmg.pet);
+			d.push(dmg.dmg);		// lol
+			c.push(chartColor);
+			ch.push(chartHover);
+			chartColor = shadeRGBColor(chartColor, 10);	// Shade the next chart color a little higher
+			chartHover = shadeRGBColor(chartHover, 10);
+		});
+	
+	
+	
+		var dmgChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: pets,
+				datasets: [{
+					data: d,
+					label: "Damage Dealt to Boss",
+					backgroundColor: c,
+		            hoverBackgroundColor: ch
+				}]
+			},
+			options: {
+				title: {
+					display: true,
+					text: "Damage Dealt by J-Pet"
+				}
+			}
+		});
+	}
 });
 
 
@@ -103,4 +147,11 @@ function freeze() {
 
 function unfreeze() {
 	$(':button').prop('disabled', false); // Enable all the button
+}
+
+// Shade colors function
+// http://stackoverflow.com/a/13542669
+function shadeRGBColor(color, percent) {
+    var f=color.split(","),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
+    return "rgb("+(Math.round((t-R)*p)+R)+","+(Math.round((t-G)*p)+G)+","+(Math.round((t-B)*p)+B)+")";
 }

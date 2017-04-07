@@ -8,11 +8,13 @@ include 'includes/combat.php';      // For combat stuffs!
 
 # Get the boss data
 # Get available pet data for current user
+# Get 
 # Send em all to the view
 
 // Get boss data
 $sql = "
     SELECT
+    b.id,
     p.name as name,
     p.bio,
     u.name as owner,
@@ -37,6 +39,7 @@ $bosses = $db->query($sql);
 $bossFlag = true;
 if ($boss = $bosses->fetch_assoc()) {
     $b_array = array(
+        "id" => $boss['id'],
         "name" => $boss['name'],
         "bio" => $boss['bio'],
         "owner" => $boss['owner'],
@@ -91,12 +94,41 @@ while ($pet = $pets->fetch_assoc()) {
     array_push($p_array, $p);
 }
 
+// Get boss damage chart data (only if there is a boss tho!)
+if ($bossFlag) {
+    $sql = "
+        SELECT
+        u.name as owner,
+        p.name as pet,
+        b.dmg
+        FROM boss_dmg b
+        JOIN users u ON b.owner = u.id
+        JOIN pets p ON b.pet = p.id 
+        WHERE b.boss = {$b_array['id']}";
+    $damage = $db->query($sql);
+
+    // Build damage array
+    $d_array = array();
+    while ($dmg = $damage->fetch_assoc()) {
+        $d = array(
+            "owner" => $dmg['owner'],
+            "pet" => $dmg['pet'],
+            "dmg" => $dmg['dmg']
+        );
+        array_push($d_array, $d);
+    }
+    $d_array = json_encode($d_array);   // A JS library will need this in JSON
+}
+
 // Attach data to views
 $smarty->assign("pets", $p_array);
-if ($bossFlag)                          // Only send boss data if boss exists
+if ($bossFlag) {                        // Only send boss data if boss exists
     $smarty->assign("boss", $b_array);
-else
+    $smarty->assign("dmg", $d_array);
+} else {
     $smarty->assign("boss", false);
+    $smarty->assign("dmg", false);
+}
 
 // Finish page processing
 include 'includes/after.php';

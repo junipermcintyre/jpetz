@@ -85,10 +85,21 @@
             {if $boss.hp <= 0}
                 <p>This boss has been defeated! Rewards and bonuses given, and new raid boss selected at 12AM EST</p>
             {/if}
+            {if $dmg == "[]"}
+            	<div class="row">
+            		<div class="offset-md-3 col-md-6">
+            			<canvas id="dmg-chart" height="400" width="400"></canvas>
+            		</div>
+        		</div>
+        	{/if}
         {else}
             <h2>There doesn't seem to be a boss right now!</h2>
         {/if}
     </div>
 </div>
-<script src="/js/boss.js"></script>
+<!-- This is less than savory... but better than the other option I considered (writing it to a div or something and accessing it via jQuery in boss.js) -->
+<script>
+    var damage = {$dmg};    // Accessed in script src'd below
+</script>
+<script src="/js/boss.js?v=2"></script>
 {/block}
