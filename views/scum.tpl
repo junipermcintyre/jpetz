@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Leaderboards{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Leaderboards</h1>
         <p><em>Have you been a bad boy?</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <h2>Scum</h2>
         <div id="scumTable">
         	<table class="table table-bordered table-hover table-sm">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="main-container container">
+    <div class="container">
     	<h2>What are scum points?</h2>
     	<p>Scum points are a representation of how good of a person one is on the Green-Gaming Discord server. Points are calculated at the end of each day, and depend on your current role. Everyone's role is reset to '<font color="blue">Not scum</font>' at the beginning of a day.<p>
     	<p>Your role can be changed at any given time by a moderator or administrator. Don't hold anything against them - points don't <a href="https://youtu.be/RkMgAzpcI8k?t=30" target="_blank">really matter</a>.

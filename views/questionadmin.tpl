@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Question Admin{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Question Administration</h1>
         <p><em>Put another one onto the stack</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <h3>Unverified Questions</h3>
         <div id="qTable">
             <!-- This is where the unverified questions charts will go - on load, it's a CSS spinner though -->

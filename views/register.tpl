@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Register{/block}
 {block name=body}
-<div class="main-container container">
+<div class="container">
         <h1 class="display-3">Register</h1>
         <p><em>Already have an account? Log in <a href="/login.php">here</a>!</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <form>
             <fieldset class="form-group">
                 <label for="emailInput">Email address</label>

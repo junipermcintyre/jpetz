@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Thanks{/block}
 {block name=body}
-	<div class="main-container container">
+	<div class="container">
 		<h1>Thank You</h1>
 		<p><em>It's for the academy, and only the academy</em></p>
 	</div>
-	<div class="main-container container">
+	<div class="container">
 		<p>Without the hard work of a few individuals, the goodness on <a href="http://jeradmcintyre.com/">http://jeradmcintyre.com/</a> would not exist. Without further ado, I'd like to thank...</p>
 		<ul>
 			<li>Jina, for the lovely J-Petz art assets (<a href="https://twitter.com/notfriendlytaco">Twitter</a>)</li>

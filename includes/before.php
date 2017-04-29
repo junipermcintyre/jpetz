@@ -112,3 +112,12 @@ if (isset($_SESSION['id'])) {
 	$db->next_result();
 }
 $smarty->assign('usrInfo', $usrInfo);
+
+
+/***********************   Check if the nighttime mode cookie is enabled!   ************************/
+if (isset($_COOKIE['nighttime'])) {
+	$smarty->assign('nighttime', $_COOKIE['nighttime']);
+} else {
+	setcookie('nighttime', false, time() + (10 * 365 * 24 * 60 * 60));
+	$smarty->assign('nighttime', false);
+}

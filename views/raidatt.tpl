@@ -1,11 +1,11 @@
 {extends file="../templates/raidparent.tpl"}
 {block name=title}Green Gaming - {$name}'s Raid Defence{/block}
 {block name=body}
-    <div class="raid-container container">
+    <div class="container">
         <h1 class="display-3">{$name}'s Raid Defence</h1>
         <p><em>As you approach the castle gate, your eyes wander up to the battlements...</em></p>
     </div>
-    <div class="raid-container container">
+    <div class="container">
     	<h2>Defending J-Petz</h2>
     	{if empty($dPets)}
     		<p>No J-Petz are defending! You wouldn't hit an unarmed opponent, would you?</p>

@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - {$name}'s J-Petz{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">{$name}'s J-Petz</h1>
         <p><em>Behold! My collection...</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
     	<h2>Available J-Petz {if $editable}<button type="button" id="feedAll" class="btn btn-danger btn-sm"><img src="/images/hunger.gif"> Feed all (<span id="hungerTtl">{$hunger * 2}</span> SP)</button>{/if}</h2>
     	{if empty($pets)}
     		<p>No J-Petz available!</p>

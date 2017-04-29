@@ -1,7 +1,7 @@
 {extends file="../templates/bossparent.tpl"}
 {block name=title}Green Gaming - Raid Boss{/block}
 {block name=body}
-<div class="boss-container container">
+<div class="container">
     <h1 class="display-3">Raid Boss</h1>
     <p><em>getouttathefiregetouttathefiregetouttathefiregetouttathefire</em></p>
 </div>

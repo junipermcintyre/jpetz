@@ -1,4 +1,14 @@
 /* Hand-Written Custom CSS */
+.unselectable {
+  /* http://stackoverflow.com/a/2310809 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .main-body {
 	background-image: url('/images/background.jpg');
 	/* Move down content because we have a fixed navbar that is 50px tall */
@@ -6,11 +16,81 @@
   padding-bottom: 5rem;
 }
 
+.main-body .container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #e7e7e7;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.main-body-dark {
+  background-image: url('/images/black-tile.png');
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  color: white;
+}
+
+.main-body-dark .container {
+  background-color: #000;
+  border-style: double;
+  border-color: #e7e7e7;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.main-body-dark .modal-content {
+  background-color: #000;
+}
+
 .boss-body {
   background-image: url('/images/background_fire.jpg');
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 2rem;
   padding-bottom: 5rem;
+}
+
+.boss-body .container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #710707;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.boss-body-dark {
+  background-image: url('/images/background_fire.jpg');
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  color: white;
+}
+
+.boss-body-dark .container {
+  background-color: #000;
+  border-style: double;
+  border-color: #710707;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 }
 
 .raid-body {
@@ -21,11 +101,80 @@
   padding-bottom: 5rem;
 }
 
+.raid-body .container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.raid-body-dark {
+  background-image: url('/images/background_castle.jpg');
+  background-size: cover;
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  color: white;
+}
+
+.raid-body-dark .container {
+  background-color: #000;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
 .spooky-body {
   background-image: url('/images/background_spooky.gif');
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 2rem;
   padding-bottom: 5rem;
+}
+
+.spooky-body .container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.spooky-body-dark {
+  background-image: url('/images/background_spooky.gif');
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  color: white;
+}
+
+.spooky-body-dark .container {
+  background-color: #000;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 }
 
 .shop-body {
@@ -34,6 +183,49 @@
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 2rem;
   padding-bottom: 5rem;
+}
+
+.shop-body .container {
+  background-color: #FDFDFD;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.shop-body-dark {
+  background-image: url('/images/background_shop.jpg');
+  background-size: cover;
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  color: white;
+}
+
+.shop-body-dark .container {
+  background-color: #000;
+  border-style: double;
+  border-color: #44034e;
+  border-width: 10px;
+  padding-bottom: 15px;
+  padding-top: 1rem;
+  margin-top: 45px;
+  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+}
+
+.shop-body-dark .modal-content {
+  background-color: #000;
+}
+
+.nav-link-color {
+  color: rgba(255,255,255,.5);
 }
 
 .tiny-icon {
@@ -74,58 +266,29 @@
   position: fixed;
 }
 
-.main-container {
-	background-color: #FDFDFD;
-  border-style: double;
-  border-color: #e7e7e7;
-  padding-bottom: 15px;
-  padding-top: 1rem;
-  margin-top: 45px;
-	-webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-	-moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-	box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
+.footer-dark {
+  width: 100%;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #000;
+  height: 60px;
+  bottom: 0px;
+  position: fixed;
 }
 
-.spooky-container {
-  background-color: #FDFDFD;
+.boss-body-dark .battle-box {
+  margin-left: 3%;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: #000;
   border-style: double;
-  border-color: #44034e;
+  border-color: #710707;
   border-width: 10px;
-  padding-bottom: 15px;
-  padding-top: 1rem;
-  margin-top: 45px;
   -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
   -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
   box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
 }
 
-.raid-container {
-  background-color: #FDFDFD;
-  border-style: double;
-  border-color: #44034e;
-  border-width: 10px;
-  padding-bottom: 15px;
-  padding-top: 1rem;
-  margin-top: 45px;
-  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-}
-
-.shop-container {
-  background-color: #FDFDFD;
-  border-style: double;
-  border-color: #44034e;
-  border-width: 10px;
-  padding-bottom: 15px;
-  padding-top: 1rem;
-  margin-top: 45px;
-  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-}
-
-.battle-box {
+.boss-body .battle-box {
   margin-left: 3%;
   margin-top: 20px;
   padding: 5px;
@@ -133,19 +296,6 @@
   border-style: double;
   border-color: #710707;
   border-width: 10px;
-  -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-  box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
-}
-
-.boss-container {
-  background-color: #FDFDFD;
-  border-style: double;
-  border-color: #710707;
-  border-width: 10px;
-  padding-bottom: 15px;
-  padding-top: 1rem;
-  margin-top: 45px;
   -webkit-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
   -moz-box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);
   box-shadow: 6px 4px 29px -10px rgba(0,0,0,0.75);

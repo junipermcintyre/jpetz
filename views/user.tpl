@@ -1,7 +1,7 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - {$name}'s Profile{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
     	<div class="row">
 	    	<img src="/images/avatars/{$avatar}" alt="User profile image" class="profile col-md-2">
 	    	<div class="col-md-10">
@@ -12,7 +12,7 @@
 	        </div>
         </div>
     </div>
-    <div class="main-container container">
+    <div class="container">
     	<h2>Info</h2>
         <div class="row">
         	<div class="col-md-10">
@@ -87,7 +87,7 @@
 		</div>
     </div>
 
-    <div class="main-container container">
+    <div class="container">
     	<h2>Question History</h2>
     	<table class="table table-bordered table-hover table-sm">
 	    	<thead class="thead-inverse">

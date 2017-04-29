@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Home{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Hello Friends</h1>
         <p><em>What are you looking for?</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <div class="row">
         	<div class="col-md-6">
         		<h2>Looking to talk?</h2>
@@ -66,7 +66,7 @@
         	</div>
         </div>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <h2>Communities</h2>
         <div class="row">
         	<div class="col-md-6">

@@ -1,9 +1,11 @@
 <!-- Feature request modal and button -->
 <div class="feature" id="feature"><img src="/images/bttl.gif" data-toggle="modal" data-target="#feature-modal"></div>
-<div class="footer">
-  <div class="container">
-    <span class="text-muted"><p>All J-Petz images courtesy of <a href="https://friendlytaco.tumblr.com/succ" target="_blank">FriendlyTaco</a></p></span>
-  </div>
+{if $nighttime}
+  <div id="credit" class="footer-dark">
+{else}
+  <div id="credit" class="footer">
+{/if}
+  <span class="text-muted"><p class="text-center">All J-Petz images courtesy of <a href="https://friendlytaco.tumblr.com/succ" target="_blank">FriendlyTaco</a></p></span>
 </div>
 <div class="modal fade" id="feature-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -41,3 +43,4 @@
     </div>
   </div>
 </div>
+<script src="/js/js_after.js"></script>

@@ -4,7 +4,7 @@
     </button>
     <a class="navbar-brand" href="/">Green Gaming</a>
     <div class="collapse navbar-collapse" id="exCollapsingNavbar2">
-        <ul class="mr-auto navbar-nav">
+        <ul class="navbar-nav" style="padding-right: 20px;">
             <li class="nav-item">
                 <a class="nav-link" href="/user.php">Profile</a>
             </li>
@@ -36,6 +36,12 @@
                 </li>
             {/if}
         </ul>
+        <form class="form-inline my-2 my-lg-0 mr-auto">
+            <label class="form-check-label unselectable">
+                <input id="nighttime" class="form-check-input mr-sm-2" type="checkbox" placeholder="Search" {if $nighttime}checked{/if}>
+                <small class="nav-link-color"><em>Nighttime Browsing<sup>tm</sup></em> (Beta)</small>
+            </label>
+        </form>
         {if $usrInfo != ""}
             <span class="navbar-text pull-right">
                 <a class="text-white" href="/user.php">Hello {$usrInfo.role} {$usrInfo.name} | SP: <span id="usr-scum">{$usrInfo.scumPoints}</span></a>

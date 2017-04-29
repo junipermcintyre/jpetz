@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - {$pet.name}{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">{$name}'s {$pet.name}</h1>
         <p><em>A {$pet.species} J-Pet</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <div class="jumbotron">
             <img src="/images/pets/{$pet.img}" class="mx-auto d-block" draggable="false">
         </div>

@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Quests{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Quest Board</h1>
         <p><em>Not all those who wander are lost</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <h2>Available quests</h1>
         {assign var="count" value=0}
         {if empty($available)}

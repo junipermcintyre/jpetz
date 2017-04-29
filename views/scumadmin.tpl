@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Scum Admin{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Scum Points Administration</h1>
         <p><em>With great power, comes great responsibility</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <div id="scumTable">
             <!-- This is where the scum point charts will go - on load, it's a CSS spinner though -->
             <div class="sk-folding-cube">
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <h3>Instructions</h3>
         <p>This page is used to make modifications to users scum points when their role is altered.</p>
         <p>Selecting the <font color="purple">Beautiful people</font> button will add 1 point to the chosen users.</p>

@@ -1,11 +1,11 @@
 {extends file="../templates/shopparent.tpl"}
 {block name=title}Green Gaming - Shop{/block}
 {block name=body}
-    <div class="shop-container container">
+    <div class="container">
         <h1 class="display-3">Shop</h1>
         <p><em>Buying... or selling? Hehehehe...</em></p>
     </div>
-    <div class="shop-container container">
+    <div class="container">
         <h2>J-Petz</h2>
         {foreach from=$pets item=i key=k}
             <hr>

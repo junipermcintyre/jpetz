@@ -1,11 +1,11 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Question{/block}
 {block name=body}
-    <div class="main-container container">
+    <div class="container">
         <h1 class="display-3">Question of the Day</h1>
         <p><em>Riddle me this...</em></p>
     </div>
-    <div class="main-container container">
+    <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12" id="question">
 	        	<div class="sk-folding-cube">

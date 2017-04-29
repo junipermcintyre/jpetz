@@ -1,11 +1,11 @@
 {extends file="../templates/graveparent.tpl"}
 {block name=title}Green Gaming - J-Petz Graveyard{/block}
 {block name=body}
-    <div class="spooky-container container">
+    <div class="container">
         <h1 class="display-3">Graveyard</h1>
         <p><em>Please take better care of your J-Petz</em></p>
     </div>
-    <div class="spooky-container container">
+    <div class="container">
     	{if empty($pets)}
     		<p>Somehow, there are no dead pets!</p>
     	{else}

@@ -2,7 +2,11 @@
 <html lang="en">
   <title>{block name=title}Jerad McIntyre{/block}</title>
   {include file="head.tpl"}
-  <body class="spooky-body">
+  {if $nighttime}
+  	<body class="spooky-body-dark">
+  {else}
+  	<body class="spooky-body">
+  {/if}
     {include file="nav.tpl"}
     {block name=body}Default Body{/block}
     <!-- Render DebugBar -->
