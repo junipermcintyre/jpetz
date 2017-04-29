@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!-- Custom Style overwrites -->
-    <link rel="stylesheet" href="/css/style.css?ver=1.1">
+    <link rel="stylesheet" href="/css/style.css?ver=2.0">
 
     <!-- Scripts -->
     <!-- CDN for jQuery 3.1.1 -->

@@ -17,15 +17,15 @@ $("#nighttime").click(function(){
         var body_name = $("body").attr("class").split("-dark")[0];
         $("body").attr("class", body_name + "-dark");
 
-        var footer_name = $("credit").attr("class").split("-dark")[0];
-        $("credit").attr("class", footer_name + "-dark");
+        var footer_name = $("#credit").attr("class").split("-dark")[0];
+        $("#credit").attr("class", footer_name + "-dark");
     } else {
         Cookies.set('nighttime', 0, { expires: 356 });
 
         var body_name = $("body").attr("class").split("-dark")[0];
         $("body").attr("class", body_name);
 
-        var footer_name = $("credit").attr("class").split("-dark")[0];
-        $("credit").attr("class", footer_name);
+        var footer_name = $("#credit").attr("class").split("-dark")[0];
+        $("#credit").attr("class", footer_name);
     }
 });
