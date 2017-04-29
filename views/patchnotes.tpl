@@ -1,6 +1,21 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Patch Notes{/block}
 {block name=body}
+	<div class="main-container container">
+        <h1 class="display-3">Patch Notes for 2.0.3</h1>
+        <p><em>Raid Balancing</em></p>
+    </div>
+    <div class="main-container container">
+        <div class="row">
+            <code class="col-md-6 col-xs-12">
+            * Added probe / drone to sc case<br>
+            * Fixed bug that wasn't counting the defending players pets properly when determining if a player was allowed to raid another player
+            </code>
+            <div class="col-md-6 col-xs-12">
+                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
     <div class="main-container container">
         <h1 class="display-3">Patch Notes for 2.0.2</h1>
         <p><em>Raid Balancing</em></p>
@@ -12,9 +27,6 @@
             * The limit at which one can attack another player has been decreased<br>
             * Viewing your own raid defence no longer shows busy pets as defending
             </code>
-            <div class="col-md-6 col-xs-12">
-                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-            </div>
         </div>
     </div>
     <div class="main-container container">

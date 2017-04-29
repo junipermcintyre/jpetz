@@ -218,6 +218,7 @@
 			WHERE u.id = {$id}
 			AND p.alive = 1
 			AND p.busy = 0
+			AND p.actions >= 5
 			AND p.hp > 2";
 
 		$result = $dbh->query($sql);
