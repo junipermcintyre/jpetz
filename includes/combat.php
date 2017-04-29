@@ -83,8 +83,7 @@ function kill($db, $petId) {
 function estimateRaidSuccess($att, $def) {
 	if ($att + $def == 0)
 		return -1;
-	
-	return min(floor($att / $att + $def) * 100, 90);
+	return min(floor($att / ($att + $def) * 100), 90);
 }
 
 
@@ -100,9 +99,14 @@ function getRaidSuccess($att, $def) {
 
 // Check if one user can raid another
 function canRaid($ac, $ap, $dc, $dp) {
-    if ($ac > $dc + 300)							// If the attacker has 300 or more scum points than defender
+	$ac = (int) $ac;
+	$ap = (int) $ap;
+	$dc = (int) $dc;
+	$dp = (int) $ap;
+	$diff = $ap - $dc;					// Diff is how many more pets the attacker has than the defender
+    if ($ac > $dc - (100 * $diff))		// If the attacker has more points than the defender, with scaling leniency based on pet counts
         return false;
-    if ($ap - $dp > max($dp * 0.25, 4))   			// If the attacker has more pets (with some leeway)
+    if ($diff > max($dp * 0.25, 4))   	// If the attacker has more pets (with some leeway)
         return false;
     return true;
 }
