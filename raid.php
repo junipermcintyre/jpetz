@@ -116,7 +116,6 @@
             JOIN rarity r ON s.rarity = r.id
             WHERE p.owner = {$id}
             AND p.alive = true
-            AND p.busy = false
             AND p.defending = true
             AND p.hp > 1"
         );   
@@ -143,6 +142,19 @@
                 $p['text'] = $row['flavour'];
             array_push($d_array, $p);                                          // And store the data into a result row
         }
+
+        // Here's something special - we want the COUNT of pets to include busy, and non-defending ones! Let's get that
+        $sql = "
+            SELECT
+            COUNT(p.owner) as pets
+            FROM users u
+            LEFT JOIN pets p ON u.id = p.owner
+            WHERE u.id = {$id}
+            AND p.alive = true";
+        $result = $db->query($sql);
+        $d_count = $result->fetch_assoc();
+        $d_count = $d_count['pets'];
+        $db->next_result();
 
         /***********************************   Grab attacking pet data   **********************************/
         $aPets = $db->query("
@@ -198,7 +210,7 @@
 
         /***********************************   Complete view rendering   ***********************************/
         // Validate if raiding is OK
-        $rFlag = canRaid($aPoints, count($a_array), $dPoints, count($d_array));
+        $rFlag = canRaid($aPoints, count($a_array), $dPoints, $d_count);
 
         // Calculate raid success chance
         $chance = estimateRaidSuccess($attTtl, $defTtl);
