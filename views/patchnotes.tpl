@@ -1,6 +1,21 @@
 {extends file="../templates/parent.tpl"}
 {block name=title}Green Gaming - Patch Notes{/block}
 {block name=body}
+	<div class="container">
+        <h1 class="display-3">Patch Notes for 2.1.0</h1>
+        <p><em>It's actually happening</em></p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <code class="col-md-6 col-xs-12">
+            * MemeDB is live<br>
+            * Placed link to MemeDB in main nav
+            </code>
+            <div class="col-md-6 col-xs-12">
+                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <h1 class="display-3">Patch Notes for 2.0.4</h1>
         <p><em>Nighttime Browsing Mode</em></p>
@@ -10,9 +25,6 @@
             <code class="col-md-6 col-xs-12">
             * It is not perfect let me tell you
             </code>
-            <div class="col-md-6 col-xs-12">
-                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-            </div>
         </div>
     </div>
 	<div class="container">

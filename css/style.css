@@ -52,6 +52,14 @@
   background-color: #000;
 }
 
+.main-body-dark .card {
+  background-color: #000;
+}
+
+.main-body-dark .card-img-top {
+  background-color: #282828;
+}
+
 .boss-body {
   background-image: url('/images/background_fire.jpg');
   /* Move down content because we have a fixed navbar that is 50px tall */
@@ -221,6 +229,10 @@
 }
 
 .shop-body-dark .modal-content {
+  background-color: #000;
+}
+
+.shop-body-dark .card {
   background-color: #000;
 }
 
