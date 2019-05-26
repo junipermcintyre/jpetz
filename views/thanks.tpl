@@ -6,7 +6,7 @@
 		<p><em>It's for the academy, and only the academy</em></p>
 	</div>
 	<div class="container">
-		<p>Without the hard work of a few individuals, the goodness at <a href="https://jpetz.junipermcintyre.net/">jpetz.junipermcintyre.net/</a> would not exist. I'd like to thank...</p>
+		<p>Without the hard work of a few individuals, the goodness at <a href="https://jpetz.junipermcintyre.net/">jpetz.junipermcintyre.net</a> would not exist. I'd like to thank...</p>
 		<ul>
 			<li>Jina, for the lovely J-Petz art (<a href="https://twitter.com/notfriendlytaco">Twitter</a>)</li>
 			<li>Izzy, for letting me bounce ideas off her and bouncing more back at me (<a href="https://twitter.com/ipickupworms">Twitter</a>)</li>

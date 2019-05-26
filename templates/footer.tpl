@@ -5,7 +5,7 @@
 {else}
   <div id="credit" class="footer">
 {/if}
-  <span class="text-muted"><p class="text-center">All J-Petz images courtesy of <a href="https://friendlytaco.tumblr.com/succ" target="_blank">FriendlyTaco</a></p></span>
+  <p class="text-center"><span class="text-muted">All J-Petz images courtesy of <a href="https://friendlytaco.tumblr.com/succ" target="_blank">FriendlyTaco</a> | <a href="/thanks.php">Thanks to...</a></span></p>
 </div>
 <div class="modal fade" id="feature-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

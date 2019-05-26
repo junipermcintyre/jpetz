@@ -1,7 +1,8 @@
 # J-Petz
-jpetz.junipermcintyre.net website
 
-This repository contains all necessary code involved in running the jerweb application. Database setup files to come soon.
+https://jpetz.junipermcintyre.net
+
+This is an old project I had a lot of fun with.
 
 # Installation
 * Set up database (scripts for that to come)
@@ -15,7 +16,7 @@ This repository contains all necessary code involved in running the jerweb appli
 * Implement scum journal entry for Raid Boss
 * Add daily pet feature (journal and home page)
 * Add pet graveyard memorials
-* Add pet graveyard "pey respects" feature
+* Add pet graveyard "pay respects" feature
 * Add question of the day to the homepage(?)
 * BOUNTIES (custom quests given by players)
 * Implement more features on boss view - reward, bonuses, difficulty, who got last hit, who hit the boss so far, dmg charts(?)
