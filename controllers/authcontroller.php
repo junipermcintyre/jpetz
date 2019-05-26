@@ -378,17 +378,27 @@
 
         $db->close();
 
-		$subject = 'Feature request on jpetz.junipermcintyre.net';
-		$headers = 'From: noreply@jpetz.junipermcintyre.net' . "\r\n" .
-				   'X-Mailer: PHP/' . phpversion();
+		$mail = new PHPMailer(); // create a new object
+		$mail->IsSMTP(); // enable SMTP
+		$mail->SMTPDebug = 0; // debugging: 0 = off, 1 = errors and messages, 2 = messages only
+		$mail->SMTPAuth = true; // authentication enabled
+		$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465; // or 587
+		$mail->IsHTML(false);
+		$mail->Username = getenv("MAIL_ADDRESS");
+		$mail->Password = getenv("MAIL_PASS");
+		$mail->SetFrom(getenv("MAIL_ADDRESS"));
+		$mail->Subject = "[J-Petz] Feature Report";
+		$mail->AddAddress("junipermcintyre@gmail.com");
+		$mail->Body = $message;
 
-		$to = "junipermcintyre@gmail.com";
+		if($mail->Send()) { // Good!
+			$response = array("success" => true, "message" => "Feature request sent!");
+			return json_encode($response);
+		}
 
-		if (mail($to, $subject, $message, $headers))
-	        $response = array("success" => true, "message" => "Feature request sent!");	// Everything went well!
-	    else
-	        $response = array("success" => false, "message" => "Couldn't send mail!");	// Not good!
-
+        $response = array("success" => false, "message" => "Couldn't send mail!");	// Not good!
 	    return json_encode($response);
 	}
 
