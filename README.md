@@ -1,4 +1,4 @@
-# jerweb
+# J-Petz
 jpetz.junipermcintyre.net website
 
 This repository contains all necessary code involved in running the jerweb application. Database setup files to come soon.
