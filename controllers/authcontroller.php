@@ -205,7 +205,7 @@
     	$result = $db->query("UPDATE users SET resettoken = '{$token}' WHERE email = '{$email}'");
 
     	$db->close();
-    	
+
     	// Step #4 - If we updated properly, send the user an email with the token + URL for reset
     	if ($result) {
 
@@ -228,7 +228,7 @@
     		$body .= "If it wasn't you, you can ignore this and it will all go away.";
     		$mail->Body = $body;
 
-			if(!$mail->Send()) {
+			if($mail->Send()) {
 				$response = array("success" => true, "message" => "If there's an account for that email, we sent an email!");
 				return json_encode($response);
 			}
