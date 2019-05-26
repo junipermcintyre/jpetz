@@ -29,9 +29,6 @@
             * MemeDB is live<br>
             * Placed link to MemeDB in main nav
             </code>
-            <div class="col-md-6 col-xs-12">
-                <iframe src="https://discordapp.com/widget?id=77577034204721152&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
-            </div>
         </div>
     </div>
 
