@@ -2,7 +2,6 @@
     /*
     * This page displays the reset password form (not the email sending one)
     */
-    $access = "mod";                    // Define access level
     include 'includes/before.php';      // Get initial boilerplate
 
     // Step #1 - Let's get that email for that token
