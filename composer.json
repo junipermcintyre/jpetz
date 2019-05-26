@@ -1,6 +1,7 @@
 {
     "require": {
         "vlucas/phpdotenv": "^2.2",
-        "maximebf/debugbar": "1.*"
+        "maximebf/debugbar": "1.*",
+        "phpmailer/phpmailer": "~6.0"
     }
 }

@@ -1,4 +1,7 @@
 <?php
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
 	// We'll be modifiying session stuff, so make sure the session is active
 	session_start();
 
@@ -202,14 +205,30 @@
     	$result = $db->query("UPDATE users SET resettoken = '{$token}' WHERE email = '{$email}'");
 
     	$db->close();
-
+    	
     	// Step #4 - If we updated properly, send the user an email with the token + URL for reset
     	if ($result) {
+
+    		$mail = new PHPMailer(); // create a new object
+			$mail->IsSMTP(); // enable SMTP
+			$mail->SMTPDebug = 2; // debugging: 1 = errors and messages, 2 = messages only
+			$mail->SMTPAuth = true; // authentication enabled
+			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+			$mail->Host = "smtp.gmail.com";
+			$mail->Port = 465; // or 587
+			$mail->IsHTML(false);
+			$mail->Username = getenv("MAIL_ADDRESS");
+			$mail->Password = getenv("MAIL_PASS");
+			$mail->SetFrom(getenv("MAIL_ADDRESS"));
+			$mail->Subject = "[J-Petz] Password Recovery";
+			$mail->AddAddress($email);
+
     		$body = "Hey dumbshit, you either forgot your password and are resetting it, or someone's messing with you. ";
-    		$body .= "If it was you, follow this link to reset it (and try not to forget in the future): https://jpetz.junipermcintyre.net/reset.php?token={$token}. ";
+    		$body .= "If it was you, follow this link to reset it (and try not to forget in the future): ".getenv("APP_URL")."/reset.php?token={$token}. ";
     		$body .= "If it wasn't you, you can ignore this and it will all go away.";
-    		$headers = "From: passwordrecovery@jpetz.junipermcintyre.net\r\n";
-			if (mail($email, "Password Recovery", $body, $headers)) {
+    		$mail->Body = $body;
+
+			if(!$mail->Send()) {
 				$response = array("success" => true, "message" => "If there's an account for that email, we sent an email!");
 				return json_encode($response);
 			}
