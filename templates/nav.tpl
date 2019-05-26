@@ -35,9 +35,6 @@
                     <a class="nav-link" href="/logout.php">Logout</a>
                 </li>
             {/if}
-            <li class="nav-item">
-                <a class="nav-link" href="http://jeradmcintyre.com/projects/memedb">MemeDB</a>
-            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-auto">
             <label class="form-check-label unselectable">
