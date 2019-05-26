@@ -46,6 +46,61 @@
 
     // Get results (only need to get one row, because users are unique)
     $sth->fetch();
+    $sth->close();
+    $db->next_result();
+
+
+
+    /*************************************** Get users pet data *****************************************/
+    $pets = $db->query("
+            SELECT
+            p.id,
+            p.name,
+            p.bio,
+            p.hp,
+            p.maxhp,
+            p.att,
+            p.def,
+            p.hunger,
+            p.maxhunger,
+            s.img,
+            s.name as species,
+            s.flavour,
+            t.name as type,
+            r.name as rarity,
+            p.defending
+            FROM pets p
+            JOIN users u ON p.owner = u.id
+            JOIN species s ON p.species = s.id
+            JOIN rarity r ON s.rarity = r.id
+            JOIN types t ON s.type = t.id
+            WHERE p.owner = {$id}
+            AND p.alive = true
+            AND p.busy = false"
+        );   
+        if ($pets === false) {throw new Exception ($db->error);}                // If something went wrong
+        $p_array = array();                       
+
+        while ($row = $pets->fetch_assoc()) {                                   // Iterate over each pet
+            $p = array();
+            $p['id'] = $row['id'];
+            $p['name'] = $row['name'];
+            $p['hp'] = $row['hp'];
+            $p['maxhp'] = $row['maxhp'];
+            $p['att'] = $row['att'];
+            $p['def'] = $row['def'];
+            $p['hunger'] = $row['hunger'];
+            $p['maxhunger'] = $row['maxhunger'];
+            $p['img'] = $row['img'];
+            $p['species'] = $row['species'];
+            $p['type'] = $row['type'];
+            $p['text'] = $row['bio'];
+            $p['rarity'] = $row['rarity'];
+            $p['defending'] = $row['defending'];
+            if (is_null($p['text']) || $p['text'] == "")
+                $p['text'] = $row['flavour'];
+            array_push($p_array, $p);
+        }
 
     include 'includes/after.php';
 

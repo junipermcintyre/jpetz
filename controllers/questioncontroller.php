@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*							QUESTION CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	November 9th 2016										*
 	*	Purpose:		Serve as an AJAX controller for all queries to the 		*
 	*					QUESTION data in the DB									*

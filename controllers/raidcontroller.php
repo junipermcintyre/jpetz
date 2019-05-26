@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*								RAID CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	2017-03-14												*
 	*	Purpose:		Serve as an AJAX controller for Raiding!				*
 	*																			*

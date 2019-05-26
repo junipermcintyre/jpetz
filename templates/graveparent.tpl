@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>{block name=title}Jerad McIntyre{/block}</title>
+  <title>{block name=title}J McIntyre{/block}</title>
   {include file="head.tpl"}
   {if $nighttime}
   	<body class="spooky-body-dark">

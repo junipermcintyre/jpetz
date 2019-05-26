@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*							QUEST CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	Jan 28, 2017											*
 	*	Purpose:		Serve as an AJAX controller for all functions involving	*
 	*					the the going on of quests.								*

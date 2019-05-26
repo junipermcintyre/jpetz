@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*								SHOP CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	[Date]													*
 	*	Purpose:		Serve as an AJAX controller for all functions involving	*
 	*					the transfer of scum points for items.					*

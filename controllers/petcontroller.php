@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*								PET CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	2017-03-17												*
 	*	Purpose:		Serve as an AJAX controller for all interactions		*
 	*					involving PETS.											*
@@ -528,9 +528,9 @@
 				array(
 		    		"title" => "Examine the J-Pet for yourself",
 		    		"description" => "{$pd->ownername} has flaunted their pet, {$pd->name}! {$pd->species} is a {$pd->type} J-Pet.",
-		    		"url" => "http://jeradmcintyre.com/pet.php?pet={$pet}",
+		    		"url" => "https://jpetz.junipermcintyre.net/pet.php?pet={$pet}",
 		    		"image" => array(
-						"url" => "http://jeradmcintyre.com/images/pets/{$pd->img}"
+						"url" => "https://jpetz.junipermcintyre.net/images/pets/{$pd->img}"
 					)
 				)
 			)

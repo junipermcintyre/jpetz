@@ -2,7 +2,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">Green Gaming</a>
+    <span class="navbar-brand">J-Petz</span>
     <div class="collapse navbar-collapse" id="exCollapsingNavbar2">
         <ul class="navbar-nav" style="padding-right: 20px;">
             <li class="nav-item">
@@ -17,6 +17,7 @@
                     <a class="dropdown-item" href="/question.php">Question of the day</a>
                     <a class="dropdown-item" href="/scum.php">Leaderboards</a>
                     <a class="dropdown-item" href="/shop.php">Points Shop</a>
+                    <a class="dropdown-item" href="/graveyard.php">Graveyard</a>
                 </div>
             </li>
             {if $usrInfo != ""}

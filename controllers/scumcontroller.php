@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*								SCUM CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	October 26th 2016										*
 	*	Purpose:		Serve as an AJAX controller for all queries to the 		*
 	*					SCUM data in the DB										*

@@ -2,7 +2,7 @@
 	/****************************************************************************
 	*							LEAGUE CONTROLLER								*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	May 19. 2016											*
 	*	Purpose:		Serve as an AJAX controller for all queries to the 		*
 	*					League of Legends API 									*

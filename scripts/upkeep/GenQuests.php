@@ -153,7 +153,7 @@ function getStory($q) {
 					"description" => "Peasants are being slaughtered by an enemy Lord, send a J-Pet to assist!"
 				),
 				array(
-					"title" => "Jeradmcintyre.com Beta Tester",
+					"title" => "J-Petz Beta Tester",
 					"description" => "Use that report feature button to do something cool!"
 				),
 				array(

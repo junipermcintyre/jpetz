@@ -3,9 +3,9 @@
 	session_start();
 
 	/****************************************************************************
-	*							AUTH CONTROLLER								*
+	*							AUTH CONTROLLER									*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	May 20. 2016											*
 	*	Purpose:		Serve as an AJAX controller for all actions involving	*
 	*					user accounts.		 									*
@@ -206,9 +206,9 @@
     	// Step #4 - If we updated properly, send the user an email with the token + URL for reset
     	if ($result) {
     		$body = "Hey dumbshit, you either forgot your password and are resetting it, or someone's messing with you. ";
-    		$body .= "If it was you, follow this link to reset it (and try not to forget in the future): http://jeradmcintyre.com/reset.php?token={$token}. ";
+    		$body .= "If it was you, follow this link to reset it (and try not to forget in the future): https://jpetz.junipermcintyre.net/reset.php?token={$token}. ";
     		$body .= "If it wasn't you, you can ignore this and it will all go away.";
-    		$headers = "From: passwordrecovery@jeradmcintyre.com\r\n";
+    		$headers = "From: passwordrecovery@jpetz.junipermcintyre.net\r\n";
 			if (mail($email, "Password Recovery", $body, $headers)) {
 				$response = array("success" => true, "message" => "If there's an account for that email, we sent an email!");
 				return json_encode($response);
@@ -359,11 +359,11 @@
 
         $db->close();
 
-		$subject = 'Feature request on gg.jeradmcintyre.com';
-		$headers = 'From: noreply@gg.jeradmcintyre.com' . "\r\n" .
+		$subject = 'Feature request on jpetz.junipermcintyre.net';
+		$headers = 'From: noreply@jpetz.junipermcintyre.net' . "\r\n" .
 				   'X-Mailer: PHP/' . phpversion();
 
-		$to = "mcintyrejerad@gmail.com";
+		$to = "junipermcintyre@gmail.com";
 
 		if (mail($to, $subject, $message, $headers))
 	        $response = array("success" => true, "message" => "Feature request sent!");	// Everything went well!

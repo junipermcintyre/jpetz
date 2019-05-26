@@ -10,15 +10,18 @@
     		<p>Somehow, there are no dead pets!</p>
     	{else}
     		<div class="clearfix">
+    			<div class="row">
 		        {foreach from=$pets item=p}
-	                <div class="card pull-left pet-item">
-	                    <img class="card-img-top img-responsive dead-pet" src="/images/pets/{$p.img}" alt="Pet image" />
-	                    <div class="card-block">
-	                        <h4 class="card-title stats">{$p.name}</h4>
-	                        <h6 class="text-muted stats"><em>{$p.species} | {$p.type} collection</em></h6>
-	                        <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-primary btn-lg btn-block">Stats</button>
-	                    </div>
-	                </div>
+		        	<div class="col-12 col-sm-12 col-md-4">
+		                <div class="card pull-left pet-item">
+		                    <img class="card-img-top img-responsive dead-pet" src="/images/pets/{$p.img}" alt="Pet image" />
+		                    <div class="card-block">
+		                        <h4 class="card-title stats">{$p.ownerName}'s {$p.name}</h4>
+		                        <h6 class="text-muted stats"><em>{$p.species} | {$p.type} collection</em></h6>
+		                        <button data-toggle="modal" data-target="#pet-{$p.id}" class="btn btn-primary btn-lg btn-block">Stats</button>
+		                    </div>
+		                </div>
+		            </div>
 
 		            <div class="modal fade" id="pet-{$p.id}" tabindex="-1" role="dialog" aria-labelledby="Pet Modal Window" aria-hidden="true">
 		                <div class="modal-dialog" role="document">
@@ -66,6 +69,7 @@
 		                </div>
 		            </div>
 		        {/foreach}
+		        </div>
 	        </div>
 	    {/if}
     </div>

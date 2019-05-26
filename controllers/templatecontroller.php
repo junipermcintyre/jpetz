@@ -5,7 +5,7 @@
 	/****************************************************************************
 	*							[SUBJECT] CONTROLLER							*
 	*****************************************************************************
-	*	Author: 		Jerad McIntyre											*
+	*	Author: 		J McIntyre												*
 	*	Date updated:	[Date]													*
 	*	Purpose:		Serve as an AJAX controller for ...						*
 	*																			*
