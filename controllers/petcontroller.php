@@ -518,6 +518,7 @@
 
 		// Set some additional options for cURL (http://stackoverflow.com/a/24879774)
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($curl, CURLOPT_URL, getenv("PET_BOT_URL"));								// Change the URL to point at webhook URL
 		curl_setopt($curl, CURLOPT_POST, true);												// Gotta post the data to the webhook
@@ -543,7 +544,7 @@
 
 		if (curl_errno($curl) > 0) {														// Ensure we sent the data properly
 			echo "Error sending webhook to discord!\n";
-			throw new Exception("Couldn't get the newspaper out!");
+			throw new Exception("Couldn't flaunt your pet!");
 		}
 
 		curl_close($curl);

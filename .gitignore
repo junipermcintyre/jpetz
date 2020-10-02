@@ -31,3 +31,6 @@ php.ini
 # Scripts .htaccess
 /scripts/.htaccess
 /scripts/.htpasswd
+
+# script logs
+logs/

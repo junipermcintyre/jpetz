@@ -32,7 +32,7 @@ if (!$pollData)	{																			// cURL done fucked up
 $pollData = json_decode($pollData);															// Turn the JSON into a php array
 
 $content .= "**Here's what everyone voted for last question:**\n";			                // Build the question output string
-$content .= "*Question: {$pollData->title}*\n```";
+$content .= "*Question: {$pollData->title}*\n```\n";
 $i = 0;
 foreach ($pollData->options as $option) {
     $option = html_entity_decode($option, ENT_QUOTES);

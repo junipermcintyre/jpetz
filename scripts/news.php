@@ -34,13 +34,13 @@ include('news/ScumTopFive.php');
 include('news/PreviousQuestionResults.php');
 
 // Get new question and answers
-# include('news/NewQuestion.php');
+include('news/NewQuestion.php');
 
 // Show which quests were completed last night
 # include('news/CompleteQuests.php');
 
 // Show what happened to yesterdays raid boss
-include('news/BossReward.php');
+# include('news/BossReward.php');
 
 // Top pet collector
 # include('news/BestPetCollector.php');
@@ -60,6 +60,7 @@ $curl = curl_init();																// cURL, activate!
 // Set some additional options for cURL (http://stackoverflow.com/a/24879774)
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
 curl_setopt($curl, CURLOPT_URL, getenv("NEWS_BOT_URL"));							// Change the URL to point at webhook URL
 curl_setopt($curl, CURLOPT_POST, true);												// Gotta post the data to the webhook
 

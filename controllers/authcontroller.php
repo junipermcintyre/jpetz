@@ -1,6 +1,7 @@
 <?php
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
+	use PHPMailer\PHPMailer\SMTP;
 
 	// We'll be modifiying session stuff, so make sure the session is active
 	session_start();
@@ -208,14 +209,13 @@
 
     	// Step #4 - If we updated properly, send the user an email with the token + URL for reset
     	if ($result) {
-
     		$mail = new PHPMailer(); // create a new object
 			$mail->IsSMTP(); // enable SMTP
-			$mail->SMTPDebug = 0; // debugging: 0 = off, 1 = errors and messages, 2 = messages only
+			$mail->SMTPDebug = SMTP::DEBUG_OFF; // debugging: 0 = off, 1 = errors and messages, 2 = messages only
 			$mail->SMTPAuth = true; // authentication enabled
-			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // secure transfer enabled REQUIRED for Gmail
 			$mail->Host = "smtp.gmail.com";
-			$mail->Port = 465; // or 587
+			$mail->Port = 587; // or 587 (or something with a 4xx)
 			$mail->IsHTML(false);
 			$mail->Username = getenv("MAIL_ADDRESS");
 			$mail->Password = getenv("MAIL_PASS");
@@ -227,7 +227,6 @@
     		$body .= "If it was you, follow this link to reset it (and try not to forget in the future): ".getenv("APP_URL")."/reset.php?token={$token}. ";
     		$body .= "If it wasn't you, you can ignore this and it will all go away.";
     		$mail->Body = $body;
-
 			if($mail->Send()) {
 				$response = array("success" => true, "message" => "If there's an account for that email, we sent an email!");
 				return json_encode($response);
@@ -384,7 +383,7 @@
 		$mail->SMTPAuth = true; // authentication enabled
 		$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 		$mail->Host = "smtp.gmail.com";
-		$mail->Port = 465; // or 587
+		$mail->Port = 587; // or 465
 		$mail->IsHTML(false);
 		$mail->Username = getenv("MAIL_ADDRESS");
 		$mail->Password = getenv("MAIL_PASS");

@@ -33,13 +33,13 @@ if (!is_null($code)) {                                                          
     $pollData = json_decode($pollData);     													// Turn the JSON into a php array
 
     $content .= "**Here's the new question of the day:**\n";			                        // Build the question output string
-    $content .= "*Question: {$pollData->title}*\n```";
+    $content .= "*Question: {$pollData->title}*\n```\n";
+
     foreach ($pollData->options as $option) {
         $option = html_entity_decode($option, ENT_QUOTES);
     	$content .= "{$option}\n";
     }
     $content .= "```\nVoting is *very* available at https://jpetz.junipermcintyre.net/question.php\n\n";
-
 } else {                                                                                        // i.e. we've got no questions left
     $content .= "**Here's the new question of the day:**\n```";    
     $content .= "Uh oh! We're fresh out of questions!\n";                                       // Build the question output string
