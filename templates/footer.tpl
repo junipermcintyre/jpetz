@@ -18,7 +18,6 @@
       </div>
       <div class="modal-body">
         <p>If you think something should be changed - send it in here. You're probably right.</p>
-        <p>A list of officially planned things can be found <a href="https://github.com/junipermcintyre/jpetz" target="_blank">here</a>.</p>
         <div class="form-group row">
         	<label for="name" class="col-md-2 col-xs-12 col-form-label">Name</label>
         	<div class="col-md-10 col-xs-12">
